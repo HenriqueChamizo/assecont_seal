@@ -1,0 +1,13 @@
+D:\Projetos\TeamFundation\FechamentoSeal\Model\bin\Debug\Model.dll
+D:\Projetos\TeamFundation\FechamentoSeal\Model\bin\Debug\Model.pdb
+D:\Projetos\TeamFundation\FechamentoSeal\Model\obj\Debug\Model.dll
+D:\Projetos\TeamFundation\FechamentoSeal\Model\obj\Debug\Model.pdb
+D:\Git\Assecont\TeamFundation\FechamentoSeal\Model\bin\Debug\Model.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\Model\bin\Debug\Model.pdb
+D:\Git\Assecont\TeamFundation\FechamentoSeal\Model\obj\Debug\Model.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\Model\obj\Debug\Model.pdb
+D:\Git\Assecont\TeamFundation\FechamentoSeal\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\Model\bin\Debug\Model.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\Model\bin\Debug\Model.pdb
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\Model\obj\Debug\Model.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\Model\obj\Debug\Model.pdb

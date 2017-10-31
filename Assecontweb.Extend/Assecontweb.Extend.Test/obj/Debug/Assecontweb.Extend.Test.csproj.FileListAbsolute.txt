@@ -1,0 +1,74 @@
+C:\Users\henriquec\Documents\Visual Studio 2015\Projects\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.Test.exe.config
+C:\Users\henriquec\Documents\Visual Studio 2015\Projects\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.Test.exe
+C:\Users\henriquec\Documents\Visual Studio 2015\Projects\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.Test.pdb
+C:\Users\henriquec\Documents\Visual Studio 2015\Projects\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.dll
+C:\Users\henriquec\Documents\Visual Studio 2015\Projects\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.pdb
+C:\Users\henriquec\Documents\Visual Studio 2015\Projects\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.csprojResolveAssemblyReference.cache
+C:\Users\henriquec\Documents\Visual Studio 2015\Projects\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.Properties.Resources.resources
+C:\Users\henriquec\Documents\Visual Studio 2015\Projects\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.csproj.GenerateResource.Cache
+C:\Users\henriquec\Documents\Visual Studio 2015\Projects\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.exe
+C:\Users\henriquec\Documents\Visual Studio 2015\Projects\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.pdb
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.Test.exe.config
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.exe
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.pdb
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.Test.exe
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.Test.pdb
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.dll
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.pdb
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.csprojResolveAssemblyReference.cache
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.Properties.Resources.resources
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.csproj.GenerateResource.Cache
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Excel.dll
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.Test.exe.config
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.exe
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.pdb
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.Test.exe
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.Test.pdb
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.dll
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Excel.dll
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.pdb
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.csprojResolveAssemblyReference.cache
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.Properties.Resources.resources
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.csproj.GenerateResource.Cache
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.Test.exe.config
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.exe
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.pdb
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.Test.exe
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.Test.pdb
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.dll
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Excel.dll
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.pdb
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.csprojResolveAssemblyReference.cache
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.Properties.Resources.resources
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.csproj.GenerateResource.Cache
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.Test.exe.config
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.Test.exe
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.Test.pdb
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.dll
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Excel.dll
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.pdb
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.dll.config
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.csprojResolveAssemblyReference.cache
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.Properties.Resources.resources
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.csproj.GenerateResource.Cache
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.csproj.CoreCompileInputs.cache
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.exe
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.pdb
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.Test.exe.config
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.Test.exe
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.Test.pdb
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.dll
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Excel.dll
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.pdb
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.dll.config
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.csprojResolveAssemblyReference.cache
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.Properties.Resources.resources
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.csproj.GenerateResource.Cache
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.csproj.CoreCompileInputs.cache
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.exe
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.pdb

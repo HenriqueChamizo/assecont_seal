@@ -1,0 +1,704 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetNotasTxt" targetNamespace="http://tempuri.org/DataSetNotasTxt.xsd" xmlns:mstns="http://tempuri.org/DataSetNotasTxt.xsd" xmlns="http://tempuri.org/DataSetNotasTxt.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="masterConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="masterConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Assecontweb.Extend.Properties.Settings.GlobalReference.Default.masterConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ValoresTableAdapter" GeneratorDataComponentClassName="ValoresTableAdapter" Name="Valores" UserDataComponentName="ValoresTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="masterConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select '' as ValorServicos, '' as ValorDeducoes, '' as ValorPis, '' as ValorCofins, '' as ValorCsll, '' as IssRetido, '' as OutrasRetencoes, '' as BaseCalculo, '' as Aliquota, '' as ValorLiquidoNfse, '' as ValorIssRetido, '' as ValorIss, '' as DescontoCondicionado, '' as DescontoIncondicionado</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ValorServicos" DataSetColumn="ValorServicos" />
+              <Mapping SourceColumn="ValorDeducoes" DataSetColumn="ValorDeducoes" />
+              <Mapping SourceColumn="ValorPis" DataSetColumn="ValorPis" />
+              <Mapping SourceColumn="ValorCofins" DataSetColumn="ValorCofins" />
+              <Mapping SourceColumn="ValorCsll" DataSetColumn="ValorCsll" />
+              <Mapping SourceColumn="IssRetido" DataSetColumn="IssRetido" />
+              <Mapping SourceColumn="OutrasRetencoes" DataSetColumn="OutrasRetencoes" />
+              <Mapping SourceColumn="BaseCalculo" DataSetColumn="BaseCalculo" />
+              <Mapping SourceColumn="Aliquota" DataSetColumn="Aliquota" />
+              <Mapping SourceColumn="ValorLiquidoNfse" DataSetColumn="ValorLiquidoNfse" />
+              <Mapping SourceColumn="ValorIssRetido" DataSetColumn="ValorIssRetido" />
+              <Mapping SourceColumn="ValorIss" DataSetColumn="ValorIss" />
+              <Mapping SourceColumn="DescontoCondicionado" DataSetColumn="DescontoCondicionado" />
+              <Mapping SourceColumn="DescontoIncondicionado" DataSetColumn="DescontoIncondicionado" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ServicoTableAdapter" GeneratorDataComponentClassName="ServicoTableAdapter" Name="Servico" UserDataComponentName="ServicoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="masterConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select '' as ItemListaServico, '' as CodigoCnae, '' as CodigoTributacaoMunicipio, '' as Discriminacao, '' as MunicipioPrestacaoServico</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ItemListaServico" DataSetColumn="ItemListaServico" />
+              <Mapping SourceColumn="CodigoCnae" DataSetColumn="CodigoCnae" />
+              <Mapping SourceColumn="CodigoTributacaoMunicipio" DataSetColumn="CodigoTributacaoMunicipio" />
+              <Mapping SourceColumn="Discriminacao" DataSetColumn="Discriminacao" />
+              <Mapping SourceColumn="MunicipioPrestacaoServico" DataSetColumn="MunicipioPrestacaoServico" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PrestadorServicoTableAdapter" GeneratorDataComponentClassName="PrestadorServicoTableAdapter" Name="PrestadorServico" UserDataComponentName="PrestadorServicoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="masterConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select '' as RazaoSocial, '' as NomeFantasia</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="RazaoSocial" DataSetColumn="RazaoSocial" />
+              <Mapping SourceColumn="NomeFantasia" DataSetColumn="NomeFantasia" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CpfCnpjPrestadorTableAdapter" GeneratorDataComponentClassName="CpfCnpjPrestadorTableAdapter" Name="CpfCnpjPrestador" UserDataComponentName="CpfCnpjPrestadorTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="masterConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select '' as Cnpj</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Cnpj" DataSetColumn="Cnpj" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="EnderecoPrestadorTableAdapter" GeneratorDataComponentClassName="EnderecoPrestadorTableAdapter" Name="EnderecoPrestador" UserDataComponentName="EnderecoPrestadorTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="masterConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select '' as Rua, '' as Numero, '' as Bairro, '' as Cidade, '' as Estado, '' as Cep</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Rua" DataSetColumn="Rua" />
+              <Mapping SourceColumn="Numero" DataSetColumn="Numero" />
+              <Mapping SourceColumn="Bairro" DataSetColumn="Bairro" />
+              <Mapping SourceColumn="Cidade" DataSetColumn="Cidade" />
+              <Mapping SourceColumn="Estado" DataSetColumn="Estado" />
+              <Mapping SourceColumn="Cep" DataSetColumn="Cep" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ContatoPrestadorTableAdapter" GeneratorDataComponentClassName="ContatoPrestadorTableAdapter" Name="ContatoPrestador" UserDataComponentName="ContatoPrestadorTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="masterConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select '' as Telefone, '' as Email</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Telefone" DataSetColumn="Telefone" />
+              <Mapping SourceColumn="Email" DataSetColumn="Email" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TomadorServicoTableAdapter" GeneratorDataComponentClassName="TomadorServicoTableAdapter" Name="TomadorServico" UserDataComponentName="TomadorServicoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="masterConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select '' as RazaoSocial</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="RazaoSocial" DataSetColumn="RazaoSocial" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="OrgaoGeradorTableAdapter" GeneratorDataComponentClassName="OrgaoGeradorTableAdapter" Name="OrgaoGerador" UserDataComponentName="OrgaoGeradorTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="masterConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select '' as CodigoMunicipio, '' as Uf</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CodigoMunicipio" DataSetColumn="CodigoMunicipio" />
+              <Mapping SourceColumn="Uf" DataSetColumn="Uf" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="InfNfseTableAdapter" GeneratorDataComponentClassName="InfNfseTableAdapter" Name="InfNfse" UserDataComponentName="InfNfseTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="masterConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select '' as Numero, '' as CodigoVerificacao, '' as DataEmissao, '' as NaturezaOperacao, '' as RegimeEspecialTributacao, '' as OptanteSimplesNacional, '' as IncentivadorCultural, '' as Competencia, '' as NfseSubstituida, '' as OutrasInformacoes, '' as ValorCredito</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Numero" DataSetColumn="Numero" />
+              <Mapping SourceColumn="CodigoVerificacao" DataSetColumn="CodigoVerificacao" />
+              <Mapping SourceColumn="DataEmissao" DataSetColumn="DataEmissao" />
+              <Mapping SourceColumn="NaturezaOperacao" DataSetColumn="NaturezaOperacao" />
+              <Mapping SourceColumn="RegimeEspecialTributacao" DataSetColumn="RegimeEspecialTributacao" />
+              <Mapping SourceColumn="OptanteSimplesNacional" DataSetColumn="OptanteSimplesNacional" />
+              <Mapping SourceColumn="IncentivadorCultural" DataSetColumn="IncentivadorCultural" />
+              <Mapping SourceColumn="Competencia" DataSetColumn="Competencia" />
+              <Mapping SourceColumn="NfseSubstituida" DataSetColumn="NfseSubstituida" />
+              <Mapping SourceColumn="OutrasInformacoes" DataSetColumn="OutrasInformacoes" />
+              <Mapping SourceColumn="ValorCredito" DataSetColumn="ValorCredito" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="EnderecoTomadorTableAdapter" GeneratorDataComponentClassName="EnderecoTomadorTableAdapter" Name="EnderecoTomador" UserDataComponentName="EnderecoTomadorTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="masterConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>select '' as Rua, '' as Numero, '' as Bairro, '' as Cidade, '' as Estado, '' as Cep</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Rua" DataSetColumn="Rua" />
+              <Mapping SourceColumn="Numero" DataSetColumn="Numero" />
+              <Mapping SourceColumn="Bairro" DataSetColumn="Bairro" />
+              <Mapping SourceColumn="Cidade" DataSetColumn="Cidade" />
+              <Mapping SourceColumn="Estado" DataSetColumn="Estado" />
+              <Mapping SourceColumn="Cep" DataSetColumn="Cep" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CpfCnpjTomadorTableAdapter" GeneratorDataComponentClassName="CpfCnpjTomadorTableAdapter" Name="CpfCnpjTomador" UserDataComponentName="CpfCnpjTomadorTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="masterConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>select '' as Cnpj</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Cnpj" DataSetColumn="Cnpj" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ContatoTomadorTableAdapter" GeneratorDataComponentClassName="ContatoTomadorTableAdapter" Name="ContatoTomador" UserDataComponentName="ContatoTomadorTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="masterConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>select '' as Telefone, '' as Email</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Telefone" DataSetColumn="Telefone" />
+              <Mapping SourceColumn="Email" DataSetColumn="Email" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetNotasTxt" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetNotasTxt" msprop:Generator_UserDSName="DataSetNotasTxt">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Valores" msprop:Generator_TableClassName="ValoresDataTable" msprop:Generator_TableVarName="tableValores" msprop:Generator_TablePropName="Valores" msprop:Generator_RowDeletingName="ValoresRowDeleting" msprop:Generator_RowChangingName="ValoresRowChanging" msprop:Generator_RowEvHandlerName="ValoresRowChangeEventHandler" msprop:Generator_RowDeletedName="ValoresRowDeleted" msprop:Generator_UserTableName="Valores" msprop:Generator_RowChangedName="ValoresRowChanged" msprop:Generator_RowEvArgName="ValoresRowChangeEvent" msprop:Generator_RowClassName="ValoresRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ValorServicos" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnValorServicos" msprop:Generator_ColumnPropNameInRow="ValorServicos" msprop:Generator_ColumnPropNameInTable="ValorServicosColumn" msprop:Generator_UserColumnName="ValorServicos" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ValorDeducoes" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnValorDeducoes" msprop:Generator_ColumnPropNameInRow="ValorDeducoes" msprop:Generator_ColumnPropNameInTable="ValorDeducoesColumn" msprop:Generator_UserColumnName="ValorDeducoes" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ValorPis" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnValorPis" msprop:Generator_ColumnPropNameInRow="ValorPis" msprop:Generator_ColumnPropNameInTable="ValorPisColumn" msprop:Generator_UserColumnName="ValorPis" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ValorCofins" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnValorCofins" msprop:Generator_ColumnPropNameInRow="ValorCofins" msprop:Generator_ColumnPropNameInTable="ValorCofinsColumn" msprop:Generator_UserColumnName="ValorCofins" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ValorCsll" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnValorCsll" msprop:Generator_ColumnPropNameInRow="ValorCsll" msprop:Generator_ColumnPropNameInTable="ValorCsllColumn" msprop:Generator_UserColumnName="ValorCsll" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IssRetido" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnIssRetido" msprop:Generator_ColumnPropNameInRow="IssRetido" msprop:Generator_ColumnPropNameInTable="IssRetidoColumn" msprop:Generator_UserColumnName="IssRetido" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OutrasRetencoes" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnOutrasRetencoes" msprop:Generator_ColumnPropNameInRow="OutrasRetencoes" msprop:Generator_ColumnPropNameInTable="OutrasRetencoesColumn" msprop:Generator_UserColumnName="OutrasRetencoes" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BaseCalculo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBaseCalculo" msprop:Generator_ColumnPropNameInRow="BaseCalculo" msprop:Generator_ColumnPropNameInTable="BaseCalculoColumn" msprop:Generator_UserColumnName="BaseCalculo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Aliquota" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnAliquota" msprop:Generator_ColumnPropNameInRow="Aliquota" msprop:Generator_ColumnPropNameInTable="AliquotaColumn" msprop:Generator_UserColumnName="Aliquota" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ValorLiquidoNfse" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnValorLiquidoNfse" msprop:Generator_ColumnPropNameInRow="ValorLiquidoNfse" msprop:Generator_ColumnPropNameInTable="ValorLiquidoNfseColumn" msprop:Generator_UserColumnName="ValorLiquidoNfse" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ValorIssRetido" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnValorIssRetido" msprop:Generator_ColumnPropNameInRow="ValorIssRetido" msprop:Generator_ColumnPropNameInTable="ValorIssRetidoColumn" msprop:Generator_UserColumnName="ValorIssRetido" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ValorIss" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnValorIss" msprop:Generator_ColumnPropNameInRow="ValorIss" msprop:Generator_ColumnPropNameInTable="ValorIssColumn" msprop:Generator_UserColumnName="ValorIss" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DescontoCondicionado" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDescontoCondicionado" msprop:Generator_ColumnPropNameInRow="DescontoCondicionado" msprop:Generator_ColumnPropNameInTable="DescontoCondicionadoColumn" msprop:Generator_UserColumnName="DescontoCondicionado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DescontoIncondicionado" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDescontoIncondicionado" msprop:Generator_ColumnPropNameInRow="DescontoIncondicionado" msprop:Generator_ColumnPropNameInTable="DescontoIncondicionadoColumn" msprop:Generator_UserColumnName="DescontoIncondicionado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Servico" msprop:Generator_TableClassName="ServicoDataTable" msprop:Generator_TableVarName="tableServico" msprop:Generator_TablePropName="Servico" msprop:Generator_RowDeletingName="ServicoRowDeleting" msprop:Generator_RowChangingName="ServicoRowChanging" msprop:Generator_RowEvHandlerName="ServicoRowChangeEventHandler" msprop:Generator_RowDeletedName="ServicoRowDeleted" msprop:Generator_UserTableName="Servico" msprop:Generator_RowChangedName="ServicoRowChanged" msprop:Generator_RowEvArgName="ServicoRowChangeEvent" msprop:Generator_RowClassName="ServicoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ItemListaServico" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnItemListaServico" msprop:Generator_ColumnPropNameInRow="ItemListaServico" msprop:Generator_ColumnPropNameInTable="ItemListaServicoColumn" msprop:Generator_UserColumnName="ItemListaServico" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CodigoCnae" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCodigoCnae" msprop:Generator_ColumnPropNameInRow="CodigoCnae" msprop:Generator_ColumnPropNameInTable="CodigoCnaeColumn" msprop:Generator_UserColumnName="CodigoCnae" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CodigoTributacaoMunicipio" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCodigoTributacaoMunicipio" msprop:Generator_ColumnPropNameInRow="CodigoTributacaoMunicipio" msprop:Generator_ColumnPropNameInTable="CodigoTributacaoMunicipioColumn" msprop:Generator_UserColumnName="CodigoTributacaoMunicipio" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Discriminacao" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDiscriminacao" msprop:Generator_ColumnPropNameInRow="Discriminacao" msprop:Generator_ColumnPropNameInTable="DiscriminacaoColumn" msprop:Generator_UserColumnName="Discriminacao" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MunicipioPrestacaoServico" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMunicipioPrestacaoServico" msprop:Generator_ColumnPropNameInRow="MunicipioPrestacaoServico" msprop:Generator_ColumnPropNameInTable="MunicipioPrestacaoServicoColumn" msprop:Generator_UserColumnName="MunicipioPrestacaoServico" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PrestadorServico" msprop:Generator_TableClassName="PrestadorServicoDataTable" msprop:Generator_TableVarName="tablePrestadorServico" msprop:Generator_TablePropName="PrestadorServico" msprop:Generator_RowDeletingName="PrestadorServicoRowDeleting" msprop:Generator_RowChangingName="PrestadorServicoRowChanging" msprop:Generator_RowEvHandlerName="PrestadorServicoRowChangeEventHandler" msprop:Generator_RowDeletedName="PrestadorServicoRowDeleted" msprop:Generator_UserTableName="PrestadorServico" msprop:Generator_RowChangedName="PrestadorServicoRowChanged" msprop:Generator_RowEvArgName="PrestadorServicoRowChangeEvent" msprop:Generator_RowClassName="PrestadorServicoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RazaoSocial" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRazaoSocial" msprop:Generator_ColumnPropNameInRow="RazaoSocial" msprop:Generator_ColumnPropNameInTable="RazaoSocialColumn" msprop:Generator_UserColumnName="RazaoSocial" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NomeFantasia" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNomeFantasia" msprop:Generator_ColumnPropNameInRow="NomeFantasia" msprop:Generator_ColumnPropNameInTable="NomeFantasiaColumn" msprop:Generator_UserColumnName="NomeFantasia" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CpfCnpjPrestador" msprop:Generator_TableClassName="CpfCnpjPrestadorDataTable" msprop:Generator_TableVarName="tableCpfCnpjPrestador" msprop:Generator_TablePropName="CpfCnpjPrestador" msprop:Generator_RowDeletingName="CpfCnpjPrestadorRowDeleting" msprop:Generator_RowChangingName="CpfCnpjPrestadorRowChanging" msprop:Generator_RowEvHandlerName="CpfCnpjPrestadorRowChangeEventHandler" msprop:Generator_RowDeletedName="CpfCnpjPrestadorRowDeleted" msprop:Generator_UserTableName="CpfCnpjPrestador" msprop:Generator_RowChangedName="CpfCnpjPrestadorRowChanged" msprop:Generator_RowEvArgName="CpfCnpjPrestadorRowChangeEvent" msprop:Generator_RowClassName="CpfCnpjPrestadorRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Cnpj" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCnpj" msprop:Generator_ColumnPropNameInRow="Cnpj" msprop:Generator_ColumnPropNameInTable="CnpjColumn" msprop:Generator_UserColumnName="Cnpj" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="EnderecoPrestador" msprop:Generator_TableClassName="EnderecoPrestadorDataTable" msprop:Generator_TableVarName="tableEnderecoPrestador" msprop:Generator_TablePropName="EnderecoPrestador" msprop:Generator_RowDeletingName="EnderecoPrestadorRowDeleting" msprop:Generator_RowChangingName="EnderecoPrestadorRowChanging" msprop:Generator_RowEvHandlerName="EnderecoPrestadorRowChangeEventHandler" msprop:Generator_RowDeletedName="EnderecoPrestadorRowDeleted" msprop:Generator_UserTableName="EnderecoPrestador" msprop:Generator_RowChangedName="EnderecoPrestadorRowChanged" msprop:Generator_RowEvArgName="EnderecoPrestadorRowChangeEvent" msprop:Generator_RowClassName="EnderecoPrestadorRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Rua" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRua" msprop:Generator_ColumnPropNameInRow="Rua" msprop:Generator_ColumnPropNameInTable="RuaColumn" msprop:Generator_UserColumnName="Rua" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Numero" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNumero" msprop:Generator_ColumnPropNameInRow="Numero" msprop:Generator_ColumnPropNameInTable="NumeroColumn" msprop:Generator_UserColumnName="Numero" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Bairro" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBairro" msprop:Generator_ColumnPropNameInRow="Bairro" msprop:Generator_ColumnPropNameInTable="BairroColumn" msprop:Generator_UserColumnName="Bairro" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Cidade" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCidade" msprop:Generator_ColumnPropNameInRow="Cidade" msprop:Generator_ColumnPropNameInTable="CidadeColumn" msprop:Generator_UserColumnName="Cidade" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Estado" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEstado" msprop:Generator_ColumnPropNameInRow="Estado" msprop:Generator_ColumnPropNameInTable="EstadoColumn" msprop:Generator_UserColumnName="Estado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Cep" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCep" msprop:Generator_ColumnPropNameInRow="Cep" msprop:Generator_ColumnPropNameInTable="CepColumn" msprop:Generator_UserColumnName="Cep" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ContatoPrestador" msprop:Generator_TableClassName="ContatoPrestadorDataTable" msprop:Generator_TableVarName="tableContatoPrestador" msprop:Generator_TablePropName="ContatoPrestador" msprop:Generator_RowDeletingName="ContatoPrestadorRowDeleting" msprop:Generator_RowChangingName="ContatoPrestadorRowChanging" msprop:Generator_RowEvHandlerName="ContatoPrestadorRowChangeEventHandler" msprop:Generator_RowDeletedName="ContatoPrestadorRowDeleted" msprop:Generator_UserTableName="ContatoPrestador" msprop:Generator_RowChangedName="ContatoPrestadorRowChanged" msprop:Generator_RowEvArgName="ContatoPrestadorRowChangeEvent" msprop:Generator_RowClassName="ContatoPrestadorRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Telefone" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTelefone" msprop:Generator_ColumnPropNameInRow="Telefone" msprop:Generator_ColumnPropNameInTable="TelefoneColumn" msprop:Generator_UserColumnName="Telefone" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Email" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEmail" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_UserColumnName="Email" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TomadorServico" msprop:Generator_TableClassName="TomadorServicoDataTable" msprop:Generator_TableVarName="tableTomadorServico" msprop:Generator_TablePropName="TomadorServico" msprop:Generator_RowDeletingName="TomadorServicoRowDeleting" msprop:Generator_RowChangingName="TomadorServicoRowChanging" msprop:Generator_RowEvHandlerName="TomadorServicoRowChangeEventHandler" msprop:Generator_RowDeletedName="TomadorServicoRowDeleted" msprop:Generator_UserTableName="TomadorServico" msprop:Generator_RowChangedName="TomadorServicoRowChanged" msprop:Generator_RowEvArgName="TomadorServicoRowChangeEvent" msprop:Generator_RowClassName="TomadorServicoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RazaoSocial" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRazaoSocial" msprop:Generator_ColumnPropNameInRow="RazaoSocial" msprop:Generator_ColumnPropNameInTable="RazaoSocialColumn" msprop:Generator_UserColumnName="RazaoSocial" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="OrgaoGerador" msprop:Generator_TableClassName="OrgaoGeradorDataTable" msprop:Generator_TableVarName="tableOrgaoGerador" msprop:Generator_TablePropName="OrgaoGerador" msprop:Generator_RowDeletingName="OrgaoGeradorRowDeleting" msprop:Generator_RowChangingName="OrgaoGeradorRowChanging" msprop:Generator_RowEvHandlerName="OrgaoGeradorRowChangeEventHandler" msprop:Generator_RowDeletedName="OrgaoGeradorRowDeleted" msprop:Generator_UserTableName="OrgaoGerador" msprop:Generator_RowChangedName="OrgaoGeradorRowChanged" msprop:Generator_RowEvArgName="OrgaoGeradorRowChangeEvent" msprop:Generator_RowClassName="OrgaoGeradorRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CodigoMunicipio" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCodigoMunicipio" msprop:Generator_ColumnPropNameInRow="CodigoMunicipio" msprop:Generator_ColumnPropNameInTable="CodigoMunicipioColumn" msprop:Generator_UserColumnName="CodigoMunicipio" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Uf" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnUf" msprop:Generator_ColumnPropNameInRow="Uf" msprop:Generator_ColumnPropNameInTable="UfColumn" msprop:Generator_UserColumnName="Uf" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="InfNfse" msprop:Generator_TableClassName="InfNfseDataTable" msprop:Generator_TableVarName="tableInfNfse" msprop:Generator_TablePropName="InfNfse" msprop:Generator_RowDeletingName="InfNfseRowDeleting" msprop:Generator_RowChangingName="InfNfseRowChanging" msprop:Generator_RowEvHandlerName="InfNfseRowChangeEventHandler" msprop:Generator_RowDeletedName="InfNfseRowDeleted" msprop:Generator_UserTableName="InfNfse" msprop:Generator_RowChangedName="InfNfseRowChanged" msprop:Generator_RowEvArgName="InfNfseRowChangeEvent" msprop:Generator_RowClassName="InfNfseRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Numero" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNumero" msprop:Generator_ColumnPropNameInRow="Numero" msprop:Generator_ColumnPropNameInTable="NumeroColumn" msprop:Generator_UserColumnName="Numero" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CodigoVerificacao" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCodigoVerificacao" msprop:Generator_ColumnPropNameInRow="CodigoVerificacao" msprop:Generator_ColumnPropNameInTable="CodigoVerificacaoColumn" msprop:Generator_UserColumnName="CodigoVerificacao" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DataEmissao" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDataEmissao" msprop:Generator_ColumnPropNameInRow="DataEmissao" msprop:Generator_ColumnPropNameInTable="DataEmissaoColumn" msprop:Generator_UserColumnName="DataEmissao" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NaturezaOperacao" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNaturezaOperacao" msprop:Generator_ColumnPropNameInRow="NaturezaOperacao" msprop:Generator_ColumnPropNameInTable="NaturezaOperacaoColumn" msprop:Generator_UserColumnName="NaturezaOperacao" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RegimeEspecialTributacao" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRegimeEspecialTributacao" msprop:Generator_ColumnPropNameInRow="RegimeEspecialTributacao" msprop:Generator_ColumnPropNameInTable="RegimeEspecialTributacaoColumn" msprop:Generator_UserColumnName="RegimeEspecialTributacao" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OptanteSimplesNacional" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnOptanteSimplesNacional" msprop:Generator_ColumnPropNameInRow="OptanteSimplesNacional" msprop:Generator_ColumnPropNameInTable="OptanteSimplesNacionalColumn" msprop:Generator_UserColumnName="OptanteSimplesNacional" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IncentivadorCultural" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnIncentivadorCultural" msprop:Generator_ColumnPropNameInRow="IncentivadorCultural" msprop:Generator_ColumnPropNameInTable="IncentivadorCulturalColumn" msprop:Generator_UserColumnName="IncentivadorCultural" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Competencia" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCompetencia" msprop:Generator_ColumnPropNameInRow="Competencia" msprop:Generator_ColumnPropNameInTable="CompetenciaColumn" msprop:Generator_UserColumnName="Competencia" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NfseSubstituida" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNfseSubstituida" msprop:Generator_ColumnPropNameInRow="NfseSubstituida" msprop:Generator_ColumnPropNameInTable="NfseSubstituidaColumn" msprop:Generator_UserColumnName="NfseSubstituida" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OutrasInformacoes" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnOutrasInformacoes" msprop:Generator_ColumnPropNameInRow="OutrasInformacoes" msprop:Generator_ColumnPropNameInTable="OutrasInformacoesColumn" msprop:Generator_UserColumnName="OutrasInformacoes" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ValorCredito" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnValorCredito" msprop:Generator_ColumnPropNameInRow="ValorCredito" msprop:Generator_ColumnPropNameInTable="ValorCreditoColumn" msprop:Generator_UserColumnName="ValorCredito" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="EnderecoTomador" msprop:Generator_TableClassName="EnderecoTomadorDataTable" msprop:Generator_TableVarName="tableEnderecoTomador" msprop:Generator_TablePropName="EnderecoTomador" msprop:Generator_RowDeletingName="EnderecoTomadorRowDeleting" msprop:Generator_RowChangingName="EnderecoTomadorRowChanging" msprop:Generator_RowEvHandlerName="EnderecoTomadorRowChangeEventHandler" msprop:Generator_RowDeletedName="EnderecoTomadorRowDeleted" msprop:Generator_UserTableName="EnderecoTomador" msprop:Generator_RowChangedName="EnderecoTomadorRowChanged" msprop:Generator_RowEvArgName="EnderecoTomadorRowChangeEvent" msprop:Generator_RowClassName="EnderecoTomadorRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Rua" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRua" msprop:Generator_ColumnPropNameInRow="Rua" msprop:Generator_ColumnPropNameInTable="RuaColumn" msprop:Generator_UserColumnName="Rua" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Numero" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNumero" msprop:Generator_ColumnPropNameInRow="Numero" msprop:Generator_ColumnPropNameInTable="NumeroColumn" msprop:Generator_UserColumnName="Numero" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Bairro" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBairro" msprop:Generator_ColumnPropNameInRow="Bairro" msprop:Generator_ColumnPropNameInTable="BairroColumn" msprop:Generator_UserColumnName="Bairro" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Cidade" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCidade" msprop:Generator_ColumnPropNameInRow="Cidade" msprop:Generator_ColumnPropNameInTable="CidadeColumn" msprop:Generator_UserColumnName="Cidade" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Estado" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEstado" msprop:Generator_ColumnPropNameInRow="Estado" msprop:Generator_ColumnPropNameInTable="EstadoColumn" msprop:Generator_UserColumnName="Estado" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Cep" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCep" msprop:Generator_ColumnPropNameInRow="Cep" msprop:Generator_ColumnPropNameInTable="CepColumn" msprop:Generator_UserColumnName="Cep" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CpfCnpjTomador" msprop:Generator_TableClassName="CpfCnpjTomadorDataTable" msprop:Generator_TableVarName="tableCpfCnpjTomador" msprop:Generator_TablePropName="CpfCnpjTomador" msprop:Generator_RowDeletingName="CpfCnpjTomadorRowDeleting" msprop:Generator_RowChangingName="CpfCnpjTomadorRowChanging" msprop:Generator_RowEvHandlerName="CpfCnpjTomadorRowChangeEventHandler" msprop:Generator_RowDeletedName="CpfCnpjTomadorRowDeleted" msprop:Generator_UserTableName="CpfCnpjTomador" msprop:Generator_RowChangedName="CpfCnpjTomadorRowChanged" msprop:Generator_RowEvArgName="CpfCnpjTomadorRowChangeEvent" msprop:Generator_RowClassName="CpfCnpjTomadorRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Cnpj" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCnpj" msprop:Generator_ColumnPropNameInRow="Cnpj" msprop:Generator_ColumnPropNameInTable="CnpjColumn" msprop:Generator_UserColumnName="Cnpj" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ContatoTomador" msprop:Generator_TableClassName="ContatoTomadorDataTable" msprop:Generator_TableVarName="tableContatoTomador" msprop:Generator_TablePropName="ContatoTomador" msprop:Generator_RowDeletingName="ContatoTomadorRowDeleting" msprop:Generator_RowChangingName="ContatoTomadorRowChanging" msprop:Generator_RowEvHandlerName="ContatoTomadorRowChangeEventHandler" msprop:Generator_RowDeletedName="ContatoTomadorRowDeleted" msprop:Generator_UserTableName="ContatoTomador" msprop:Generator_RowChangedName="ContatoTomadorRowChanged" msprop:Generator_RowEvArgName="ContatoTomadorRowChangeEvent" msprop:Generator_RowClassName="ContatoTomadorRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Telefone" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTelefone" msprop:Generator_ColumnPropNameInRow="Telefone" msprop:Generator_ColumnPropNameInTable="TelefoneColumn" msprop:Generator_UserColumnName="Telefone" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Email" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEmail" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_UserColumnName="Email" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Cancelada" msprop:Generator_TableClassName="CanceladaDataTable" msprop:Generator_TableVarName="tableCancelada" msprop:Generator_TablePropName="Cancelada" msprop:Generator_RowDeletingName="CanceladaRowDeleting" msprop:Generator_RowChangingName="CanceladaRowChanging" msprop:Generator_RowEvHandlerName="CanceladaRowChangeEventHandler" msprop:Generator_RowDeletedName="CanceladaRowDeleted" msprop:Generator_UserTableName="Cancelada" msprop:Generator_RowChangedName="CanceladaRowChanged" msprop:Generator_RowEvArgName="CanceladaRowChangeEvent" msprop:Generator_RowClassName="CanceladaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Cancelada" msprop:Generator_ColumnVarNameInTable="columnCancelada" msprop:Generator_ColumnPropNameInRow="Cancelada" msprop:nullValue="_null" msprop:Generator_ColumnPropNameInTable="CanceladaColumn" msprop:Generator_UserColumnName="Cancelada" type="xs:string" default="&quot;T&quot;" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

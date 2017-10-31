@@ -1,0 +1,118 @@
+﻿@using Model.Seal;
+@model Seal.Models.ExternoIndexModels
+@{
+    ViewBag.Title = "Historico";
+}
+<h2>Histórico de Uploads</h2>
+
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="hidden-xs">Índice</th>
+                    <th>Descrição</th>
+                    <th class="hidden-xs">Data</th>
+                    <th class="hidden-xs">Upload</th>
+                    <th class="hidden-xs">Status</th>
+                    <th class="hidden-lg hidden-md hidden-print hidden-sm">Upload/Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.documentos != null && Model.documentos.Count > 0)
+                {
+                    foreach (Model.Seal.Documento doc in Model.documentos)
+                    {
+                        DocumentoDados dado = Model.dados.Find(f => f.doc_int_id == doc.doc_int_id);
+                        <tr>
+                            <th scope="row" class="hidden-xs">@doc.doc_int_id</th>
+                            <td style="text-overflow:clip">
+                                <a href="~/Externo/ClienteDetail/@doc.doc_int_id.ToString()"> @doc.doc_des_descricao</a>
+                            </td>
+                            <td class="hidden-xs">@doc.doc_dt_data.ToString("dd/MM/yyyy")</td>
+                            <td class="hidden-xs">
+                                @if (doc.doc_bit_erro)
+                                {
+                                    <span class="label label-danger">Erro (Arquivos)</span>
+                                }
+                                else
+                                {
+                                    if (dado != null && dado.publico_total != 0 && dado.privado_total != 0)
+                                    {
+                                        <span class="label label-success">Ok</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="label label-warning">Erro (Conteúdo)</span>
+                                    }
+                                }
+                            </td>
+                            <td class="hidden-xs">
+                                @if (dado != null && dado.publico_total != 0 && dado.privado_total != 0)
+                                {
+                                    if (dado.dcd_int_aprovacao == 0)
+                                    {
+                                        <span class="label label-warning">Sem conferir</span>
+                                    }
+                                    else if (dado.dcd_int_aprovacao == 1)
+                                    {
+                                        <span class="label label-success">Conferido</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="label label-danger">Erro nos dados</span>
+                                    }
+                                }
+                                else
+                                {
+                                    <span class="label label-default">Vazio</span>
+                                }
+                            </td>
+                            <td class="hidden-lg hidden-md hidden-print hidden-sm">
+                                @if (doc.doc_bit_erro)
+                                {
+                                    <span class="label label-danger">Erro</span>
+                                    <span class="label label-default">Vazio</span>
+                                }
+                                else
+                                {
+                                    if (dado != null && dado.publico_total != 0 && dado.privado_total != 0)
+                                    {
+                                        <span class="label label-success">Ok</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="label label-warning">Erro</span>
+                                        <span class="label label-default">Vazio</span>
+                                    }
+                                }
+                                @if (dado != null && dado.publico_total != 0 && dado.privado_total != 0)
+                                {
+                                    if (dado.dcd_int_aprovacao == 0)
+                                    {
+                                        <span class="label label-warning">Falta</span>
+                                    }
+                                    else if (dado.dcd_int_aprovacao == 1)
+                                    {
+                                        <span class="label label-success">Certo</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="label label-danger">Erro</span>
+                                    }
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" align="center" class="hidden-xs">Não foi feito Upload de documentos</td>
+                        <td colspan="2" align="center" class="hidden-lg hidden-md hidden-print hidden-sm">Não foi feito Upload de documentos</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

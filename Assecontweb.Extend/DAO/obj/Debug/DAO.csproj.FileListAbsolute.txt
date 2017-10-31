@@ -1,0 +1,67 @@
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\DAO\bin\Debug\DAO.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\DAO\bin\Debug\DAO.pdb
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\DAO\obj\Debug\DAO.csprojResolveAssemblyReference.cache
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\DAO\obj\Debug\DAO.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\DAO\obj\Debug\DAO.pdb
+D:\Projetos\TeamFundation\FechamentoSeal\DAO\bin\Debug\DAO.dll
+D:\Projetos\TeamFundation\FechamentoSeal\DAO\bin\Debug\DAO.pdb
+D:\Projetos\TeamFundation\FechamentoSeal\DAO\obj\Debug\DAO.dll
+D:\Projetos\TeamFundation\FechamentoSeal\DAO\obj\Debug\DAO.pdb
+D:\Projetos\TeamFundation\FechamentoSeal\DAO\bin\Debug\Model.dll
+D:\Projetos\TeamFundation\FechamentoSeal\DAO\bin\Debug\Model.pdb
+D:\Projetos\TeamFundation\FechamentoSeal\DAO\obj\Debug\DAO.csprojResolveAssemblyReference.cache
+D:\Git\Assecont\TeamFundation\FechamentoSeal\DAO\bin\Debug\DAO.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\DAO\bin\Debug\DAO.pdb
+D:\Git\Assecont\TeamFundation\FechamentoSeal\DAO\bin\Debug\Model.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\DAO\bin\Debug\Model.pdb
+D:\Git\Assecont\TeamFundation\FechamentoSeal\DAO\obj\Debug\DAO.csprojResolveAssemblyReference.cache
+D:\Git\Assecont\TeamFundation\FechamentoSeal\DAO\obj\Debug\DAO.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\DAO\obj\Debug\DAO.pdb
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\DAO\bin\Debug\DAO.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\DAO\bin\Debug\DAO.pdb
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\DAO\bin\Debug\Model.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\DAO\bin\Debug\Model.pdb
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\DAO\obj\Debug\DAO.csprojResolveAssemblyReference.cache
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\DAO\obj\Debug\DAO.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\DAO\obj\Debug\DAO.pdb
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\DAO\bin\Debug\Assecontweb.Extend.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\DAO\bin\Debug\Excel.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\DAO\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\DAO\bin\Debug\Assecontweb.Extend.pdb
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\DAO\bin\Debug\DAO.dll
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\DAO\bin\Debug\DAO.pdb
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\DAO\bin\Debug\Model.dll
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\DAO\bin\Debug\Excel.dll
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\DAO\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\DAO\bin\Debug\Model.pdb
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\DAO\bin\Debug\Assecontweb.Extend.pdb
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\DAO\obj\Debug\DAO.csprojResolveAssemblyReference.cache
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\DAO\obj\Debug\DAO.dll
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\DAO\obj\Debug\DAO.pdb
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\DAO\bin\Debug\Assecontweb.Extend.dll
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\DAO\bin\Debug\DAO.dll
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\DAO\bin\Debug\DAO.pdb
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\DAO\bin\Debug\Assecontweb.Extend.dll
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\DAO\bin\Debug\Model.dll
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\DAO\bin\Debug\Excel.dll
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\DAO\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\DAO\bin\Debug\Assecontweb.Extend.pdb
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\DAO\bin\Debug\Model.pdb
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\DAO\obj\Debug\DAO.csprojResolveAssemblyReference.cache
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\DAO\obj\Debug\DAO.dll
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\DAO\obj\Debug\DAO.pdb
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\DAO\bin\Debug\Assecontweb.Extend.dll.config
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\DAO\bin\Debug\DAO.dll
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\DAO\bin\Debug\DAO.pdb
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\DAO\bin\Debug\Assecontweb.Extend.dll
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\DAO\bin\Debug\Model.dll
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\DAO\bin\Debug\Excel.dll
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\DAO\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\DAO\bin\Debug\Assecontweb.Extend.pdb
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\DAO\bin\Debug\Assecontweb.Extend.dll.config
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\DAO\bin\Debug\Model.pdb
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\DAO\obj\Debug\DAO.csprojResolveAssemblyReference.cache
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\DAO\obj\Debug\DAO.dll
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\DAO\obj\Debug\DAO.pdb

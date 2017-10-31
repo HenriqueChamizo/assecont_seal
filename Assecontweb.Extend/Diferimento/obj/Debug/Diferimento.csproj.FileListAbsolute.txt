@@ -1,0 +1,77 @@
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Diferimento.exe.config
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Diferimento.exe
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Diferimento.pdb
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.csprojResolveAssemblyReference.cache
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.Properties.Resources.resources
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.csproj.GenerateResource.Cache
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.exe
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.pdb
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Assecontweb.Extend.dll
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\DAO.dll
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Model.dll
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Excel.dll
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Assecontweb.Extend.pdb
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\DAO.pdb
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Model.pdb
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.FrmClientes.resources
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.Principal.resources
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\pt-BR\Diferimento.resources.dll
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.FrmClientes.pt-BR.resources
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\pt-BR\Diferimento.resources.dll
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.FrmNotasXml.resources
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.FrmNotasTxt.resources
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.FrmRelatorio.resources
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Diferimento.exe.config
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Diferimento.exe
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Diferimento.pdb
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\pt-BR\Diferimento.resources.dll
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Assecontweb.Extend.dll
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\DAO.dll
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Model.dll
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Excel.dll
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Assecontweb.Extend.pdb
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\DAO.pdb
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Model.pdb
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.csprojResolveAssemblyReference.cache
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.FrmClientes.resources
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.FrmNotasTxt.resources
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.FrmNotasXml.resources
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.FrmRelatorio.resources
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.Principal.resources
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.Properties.Resources.resources
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.FrmClientes.pt-BR.resources
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.csproj.GenerateResource.Cache
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\pt-BR\Diferimento.resources.dll
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.exe
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.pdb
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Assecontweb.Extend.dll.config
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.csproj.CoreCompileInputs.cache
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Diferimento.exe.config
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Diferimento.exe
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Diferimento.pdb
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\pt-BR\Diferimento.resources.dll
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Assecontweb.Extend.dll
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\DAO.dll
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Model.dll
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Excel.dll
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Assecontweb.Extend.pdb
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Assecontweb.Extend.dll.config
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\DAO.pdb
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\bin\Debug\Model.pdb
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.csprojResolveAssemblyReference.cache
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.FrmClientes.resources
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.FrmNotasTxt.resources
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.FrmNotasXml.resources
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.FrmRelatorio.resources
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.Principal.resources
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.Properties.Resources.resources
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.FrmClientes.pt-BR.resources
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.csproj.GenerateResource.Cache
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.csproj.CoreCompileInputs.cache
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\pt-BR\Diferimento.resources.dll
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.exe
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.pdb
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.FrmExcluirNota.resources

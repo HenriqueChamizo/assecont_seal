@@ -1,0 +1,46 @@
+﻿@using Assecontweb.Extend.Nfe.Danfe;
+@model Seal.Models.NotaFiscal.IndexModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>@Model.title</h2>
+
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Número</th>
+                    <th>Natureza de Operação</th>
+                    <th class="hidden-xs">Valor Produtos</th>
+                    <th class="hidden-xs">Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.danfes != null && Model.danfes.Count > 0)
+                {
+                    System.Globalization.NumberFormatInfo nfi = new System.Globalization.CultureInfo("pt-BR", false).NumberFormat;
+                    foreach (NotaFiscal nt in Model.danfes)
+                    {
+                        <tr>
+                            <th scope="row">@nt.Ide.nNf</th>
+                            <td style="text-overflow:clip">
+                                <a href="~/NotaFiscal/Detail/@nt.Ide.nNf"> @nt.Ide.natOp</a>
+                            </td>
+                            <td class="hidden-xs">@nt.Total.vProd.ToString("C", nfi)</td>
+                            <td class="hidden-xs">@nt.Ide.dhEmi</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" align="center" class="hidden-xs">Não foi feito Upload de Notas Fiscais</td>
+                        <td colspan="2" align="center" class="hidden-lg hidden-md hidden-print hidden-sm">Não foi feito Upload de Notas Fiscais</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

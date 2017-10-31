@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Seal</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/dropzonescripts")*@
+    @*@Styles.Render("~/Content/dropzonescss")*@
+    <script src="~/Scripts/dropzone/dropzone.js" type="text/javascript"></script>
+    <link href="~/Content/dropzone/basic.css" rel="stylesheet" />
+    <link href="~/Content/dropzone/dropzone.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                @if (ViewBag.Interno == null || !ViewBag.Interno)
+                {
+                    @Html.ActionLink("Assecont - Seal", "Index", "Interno", new { area = "" }, new { @class = "navbar-brand" })
+                    @*<li><a href="~/Cliente/Index/">Upload</a>Html.ActionLink("Upload", "Index", "Cliente")</li>*@
+                }
+                else
+                {
+                    @Html.ActionLink("Seal", "Index", "Externo", new { area = "" }, new { @class = "navbar-brand" })
+                }
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    @if (ViewBag.btnUpload == null || ViewBag.btnUpload)
+                    {
+                        <li><a href="~/Cliente/Index/">Upload</a>@*@Html.ActionLink("Upload", "Index", "Cliente")*@</li>
+                    }
+                    <li>@Html.ActionLink("Sair", "Sair", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Seal Fechamento</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

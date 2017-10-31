@@ -1,0 +1,150 @@
+﻿@model Seal.Models.ClienteIndexModels
+@{
+    ViewBag.Title = "Upload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Upload</h2>
+<style>
+    .dropzone {
+        background: none !important;
+        border: none !important;
+        width: 100% !important;
+        padding: 0px !important;
+        text-align: center !important;
+        min-height: inherit !important;
+    }
+
+    .dz-default {
+        margin: 0px !important;
+    }
+</style>
+<div class="row">
+    <div class="col-sm-12"><br /></div>
+    <div class="col-sm-12">
+        <div class="panel panel-@(Model.documento.doc_bit_erro ? "danger" : (Model.dados != null && Model.dados.privado_total != 0 && Model.dados.publico_total != 0 ? "success" : "warning"))">
+            <div class="panel-heading">
+                <h4>
+                    @Model.documento.doc_des_descricao
+                    <small>@(Model.documento.doc_bit_erro ? "Erro nos arquivos" : (Model.dados != null && Model.dados.privado_total != 0 && Model.dados.publico_total != 0 ? "Aprovado" : "Erro no conteúdo"))</small>
+                </h4>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Arquivo de Clientes</label><br />
+                            <a href="@Model.urlCliente" style="width:100%" class="btn btn-sm btn-@(Model.documento.doc_bit_erro ? "danger" : (Model.dados != null && Model.dados.privado_total != 0 && Model.dados.publico_total != 0 ? "success" : "warning"))" target="_blank">@Model.documento.doc_des_nameclientes</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Arquivo de Contas a Receber</label>
+                            <a href="@Model.urlContasReceber" style="width:100%" class="btn btn-sm btn-@(Model.documento.doc_bit_erro ? "danger" : (Model.dados != null && Model.dados.privado_total != 0 && Model.dados.publico_total != 0 ? "success" : "warning"))" target="_blank">@Model.documento.doc_des_namecontasreceber</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Data</label>
+                            <input type="text" class="form-control" name="data" id="data" value="@Model.documento.doc_dt_data.ToString("dd/MM/yyyy HH:mm:ss")" disabled />
+                        </div>
+                    </div>
+                    @if (Model.dados != null &&
+                            Model.dados.privado_total != 0 &&
+                            Model.dados.publico_total != 0)
+                    {
+                        System.Globalization.NumberFormatInfo nfi = new System.Globalization.CultureInfo("pt-BR", false).NumberFormat;
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Contribuinte</label>
+                                <input type="text" class="form-control text-right" name="privadocontribuinte" id="privadocontribuinte" value="@Model.dados.dcd_num_privadocontribuinte.ToString("C", nfi)" disabled />
+                            </div>
+                        </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Não Contribuinte</label>
+                                    <input type="text" class="form-control text-right" name="privadoncontribuinte" id="privadoncontribuinte" value="@Model.dados.dcd_num_privadoncontribuinte.ToString("C", nfi)" disabled />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Soma Privado</label>
+                                    <input type="text" class="form-control text-right" name="privadototal" id="privadototal" value="@Model.dados.privado_total.ToString("C", nfi)" disabled />
+                                </div>
+                            </div>
+                            <div class="col-sm-12"></div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Com Lei 9718</label>
+                                    <input type="text" class="form-control text-right" name="publicocontribuinte" id="publicocontribuinte" value="@Model.dados.dcd_num_publicocontribuinte.ToString("C", nfi)" disabled />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Sem Lei 9718</label>
+                                    <input type="text" class="form-control text-right" name="publiconcontribuinte" id="publiconcontribuinte" value="@Model.dados.dcd_num_publiconcontribuinte.ToString("C", nfi)" disabled />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Soma Público</label>
+                                    <input type="text" class="form-control text-right" name="publicototal" id="publicototal" value="@Model.dados.publico_total.ToString("C", nfi)" disabled />
+                                </div>
+                            </div>
+                            <div class="col-sm-12"></div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Total</label>
+                                    <input type="text" class="form-control text-right" name="total" id="total" value="@Model.dados.total.ToString("C", nfi)" disabled />
+                                </div>
+                            </div>
+                    }
+                </div>
+            </div>
+            @if (Model.dados != null &&
+                    Model.dados.privado_total != 0 &&
+                    Model.dados.publico_total != 0)
+            {
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-12" style="text-align: right">
+                            @if (Model.dados.dcd_int_aprovacao == 0)
+                            {
+                                <button type="button" class="btn btn-success" onclick="Conferir(@Model.dados.dcd_int_id, 1)">
+                                    <span class="glyphicon glyphicon-floppy-save"></span> Conferido
+                                </button>
+                                    <button type="button" class="btn btn-danger" onclick="Conferir(@Model.dados.dcd_int_id, 2)">
+                                        <span class="glyphicon glyphicon-floppy-save"></span> Erro
+                                    </button>
+                            }
+                            else if (Model.dados.dcd_int_aprovacao == 1)
+                            {
+                                <h3 style="margin: 0px"><span class="label label-success">Conferido</span></h3>
+                            }
+                            else
+                            {
+                                <h3 style="margin: 0px"><span class="label label-danger">Erro nos dados</span></h3>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<script>
+    function Conferir(dado, aprova) {
+        jQuery.ajax({
+            url: '@Url.Action("ConfereDocumento", "Cliente")',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                'dado': dado,
+                'aprova': aprova
+            }),
+            dataType: "html"
+        }).done(function (result){
+            window.location.href = "@Url.Action("Inicio", "Home")";
+        });
+    }
+</script>

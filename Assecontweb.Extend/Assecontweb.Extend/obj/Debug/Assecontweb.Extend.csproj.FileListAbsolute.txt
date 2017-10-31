@@ -1,0 +1,74 @@
+c:\users\henriquec\documents\visual studio 2015\Projects\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Assecontweb.Extend.dll
+c:\users\henriquec\documents\visual studio 2015\Projects\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Assecontweb.Extend.pdb
+c:\users\henriquec\documents\visual studio 2015\Projects\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\System.Net.Http.dll
+c:\users\henriquec\documents\visual studio 2015\Projects\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Wr.Classes.dll
+c:\users\henriquec\documents\visual studio 2015\Projects\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\System.Net.Http.xml
+c:\users\henriquec\documents\visual studio 2015\Projects\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.csprojResolveAssemblyReference.cache
+c:\users\henriquec\documents\visual studio 2015\Projects\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.dll
+c:\users\henriquec\documents\visual studio 2015\Projects\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.pdb
+C:\Users\henriquec\Documents\Visual Studio 2015\Projects\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.FrmDiferimento.resources
+C:\Users\henriquec\Documents\Visual Studio 2015\Projects\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.csproj.GenerateResource.Cache
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Assecontweb.Extend.dll
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Assecontweb.Extend.pdb
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\System.Net.Http.dll
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Wr.Classes.dll
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\System.Net.Http.xml
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.FrmDiferimento.resources
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.csproj.GenerateResource.Cache
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.dll
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.pdb
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.csprojResolveAssemblyReference.cache
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Excel.dll
+D:\Projetos\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Assecontweb.Extend.dll
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Assecontweb.Extend.pdb
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Excel.dll
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\System.Net.Http.dll
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Wr.Classes.dll
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\System.Net.Http.xml
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.csprojResolveAssemblyReference.cache
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.FrmDiferimento.resources
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.csproj.GenerateResource.Cache
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.dll
+D:\Git\Assecont\TeamFundation\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.pdb
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.FrmDiferimento.resources
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.csproj.GenerateResource.Cache
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.dll
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.pdb
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Assecontweb.Extend.dll
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Assecontweb.Extend.pdb
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Excel.dll
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\System.Net.Http.dll
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Wr.Classes.dll
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\System.Net.Http.xml
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.FrmNfe.resources
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Assecontweb.Extend.dll.config
+D:\BitBucket\Assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.csprojResolveAssemblyReference.cache
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Assecontweb.Extend.dll.config
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Assecontweb.Extend.dll
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Assecontweb.Extend.pdb
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Excel.dll
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Wr.Classes.dll
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.csprojResolveAssemblyReference.cache
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.FrmDiferimento.resources
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.FrmNfe.resources
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.csproj.GenerateResource.Cache
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.dll
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.pdb
+C:\Disco D\BitBucket\assecont\Projetos\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.csproj.CoreCompileInputs.cache
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Assecontweb.Extend.dll.config
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Assecontweb.Extend.dll
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Assecontweb.Extend.pdb
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Excel.dll
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Wr.Classes.dll
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.csprojResolveAssemblyReference.cache
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.FrmDiferimento.resources
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.FrmNfe.resources
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.csproj.GenerateResource.Cache
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.csproj.CoreCompileInputs.cache
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.dll
+C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.pdb

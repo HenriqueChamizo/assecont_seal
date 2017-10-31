@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2B853064-EAFE-4768-8CB0-6DD8237E89C3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Assecontweb.Extend</RootNamespace>
+    <AssemblyName>Assecontweb.Extend</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Excel">
+      <HintPath>dlls\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>dlls\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Wr.Classes">
+      <HintPath>dlls\Wr.Classes.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CFechamento\Cliente.cs" />
+    <Compile Include="CFechamento\ContaReceber.cs" />
+    <Compile Include="DataSetNotasTxt.cs">
+      <DependentUpon>DataSetNotasTxt.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSetNotasTxt.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetNotasTxt.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Fechamento.cs" />
+    <Compile Include="FileExtends.cs" />
+    <Compile Include="FrmDiferimento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDiferimento.Designer.cs">
+      <DependentUpon>FrmDiferimento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmNfe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNfe.Designer.cs">
+      <DependentUpon>FrmNfe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Nfe\Danfe\COFINSModel.cs" />
+    <Compile Include="Nfe\Danfe\COFINSOutrModel.cs" />
+    <Compile Include="Nfe\Danfe\NotaFiscal.cs" />
+    <Compile Include="Nfe\Danfe\DestModel.cs" />
+    <Compile Include="Nfe\Danfe\detModel.cs" />
+    <Compile Include="Nfe\Danfe\Duplicata.cs" />
+    <Compile Include="Nfe\Danfe\EmitModel.cs" />
+    <Compile Include="Nfe\Danfe\enderDestModel.cs" />
+    <Compile Include="Nfe\Danfe\enderEmitModel.cs" />
+    <Compile Include="Nfe\Danfe\enumFieldsNaoObrigatorios.cs" />
+    <Compile Include="Nfe\Danfe\IcmsModel.cs" />
+    <Compile Include="Nfe\Danfe\ICMSTotModel.cs" />
+    <Compile Include="Nfe\Danfe\IdeModel.cs" />
+    <Compile Include="Nfe\Danfe\Iicms.cs" />
+    <Compile Include="Nfe\Danfe\impostoModel.cs" />
+    <Compile Include="Nfe\Danfe\InfAdicModel.cs" />
+    <Compile Include="Nfe\Danfe\InfProt.cs" />
+    <Compile Include="Nfe\Danfe\InfProtModel.cs" />
+    <Compile Include="Nfe\Danfe\PISModel.cs" />
+    <Compile Include="Nfe\Danfe\PISOutrModel.cs" />
+    <Compile Include="Nfe\Danfe\prodModel.cs" />
+    <Compile Include="Nfe\Danfe\ProtNFeModel.cs" />
+    <Compile Include="Nfe\Danfe\rotinasNfe.cs" />
+    <Compile Include="Nfe\Danfe\SimpleNacional.cs" />
+    <Compile Include="Nfe\Danfe\SimpleNascionalEX.cs" />
+    <Compile Include="Nfe\Danfe\TotalModel.cs" />
+    <Compile Include="Nfe\Danfe\TranspModel.cs" />
+    <Compile Include="Nfe\Danfe\transportadoraModel.cs" />
+    <Compile Include="Nfe\Danfe\TribIntegral.cs" />
+    <Compile Include="Nfe\Danfe\volModel.cs" />
+    <Compile Include="Nfe\Servico\ContatoModel.cs" />
+    <Compile Include="Nfe\Servico\CpfCnpjModel.cs" />
+    <Compile Include="Nfe\Servico\EnderecoModel.cs" />
+    <Compile Include="Nfe\Servico\IdentificacaoModel.cs" />
+    <Compile Include="Nfe\Servico\NotaFiscal.cs" />
+    <Compile Include="Nfe\Servico\OrgaoGeradorModel.cs" />
+    <Compile Include="Nfe\Servico\PrestadorServicoModel.cs" />
+    <Compile Include="Nfe\Servico\ServicoModel.cs" />
+    <Compile Include="Nfe\Servico\TomadorServicoModel.cs" />
+    <Compile Include="Nfe\Servico\ValoresModel.cs" />
+    <Compile Include="PathExtends.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FrmDiferimento.resx">
+      <DependentUpon>FrmDiferimento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmNfe.resx">
+      <DependentUpon>FrmNfe.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="DataSetNotasTxt.xsc">
+      <DependentUpon>DataSetNotasTxt.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetNotasTxt.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetNotasTxt.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSetNotasTxt.xss">
+      <DependentUpon>DataSetNotasTxt.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

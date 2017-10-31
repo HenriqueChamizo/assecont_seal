@@ -1,0 +1,210 @@
+﻿@{
+    ViewBag.Title = "Upload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Upload</h2>
+<style>
+    .dropzone {
+        background: none !important;
+        border: none !important;
+        width: 100% !important;
+        padding: 0px !important;
+        text-align: center !important;
+        min-height: inherit !important;
+    }
+
+    .dz-default {
+        margin: 0px !important;
+    }
+</style>
+<div class="row">
+    <div class="col-sm-12"><br /></div>
+    <div class="col-sm-3">
+        <div class="jumbotron" style="padding:15px">
+            <label>Planilha de Clientes</label>
+            @*<form action="~/Cliente/SaveUploadedFileClientes" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm1">*@
+            <div class="dropzone" id="dropzoneForm1">
+                <div class="fallback">
+                    <div class="img-thumbnail">
+                        <input name="clientes" type="file" multiple />
+                    </div>
+                    <input type="submit" value="Upload" />
+                </div>
+                @*</form>*@
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="jumbotron" style="padding:15px">
+            <label>Planilha de Contas a Receber</label>
+            @*<form action="~/Cliente/SaveUploadedFileContasReceber" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm2">*@
+            <div class="dropzone" id="dropzoneForm2">
+                <div class="fallback">
+                    <div class="img-thumbnail">
+                        <input name="contasreceber" type="file" multiple />
+                    </div>
+                    <input type="submit" value="Upload" />
+                </div>
+                @*</form>*@
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <form onsubmit="btnSubmitClick()">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label>Descrição</label>
+                        <input type="text" class="form-control" name="descricao" id="descricao" />
+                    </div>
+                </div>
+                <div class="col-sm-12" style="text-align:right">
+                    <button type="submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-floppy-save"></span> Salvar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-12"><br /></div>
+    <div class="col-sm-12">
+        <div class="progress hidden" id="loading">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                <span id="spanLoading">Aguarde, o processo pode demorar um pouco...</span>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function btnSubmitClick() {
+        var descricao = String($('#descricao').val());
+
+        $(document).ajaxStart(function () {
+            $('#loading').removeClass('hidden');
+        });
+
+        jQuery.ajax({
+            url: '@Url.Action("SalvarDocumento", "Cliente")',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ 'descricao': descricao }),
+            dataType: "html",
+            success: function (result) {
+                SubmitSaveCliente(result);
+            }
+        }).done(function (result){
+            window.location.href = "@Url.Action("Inicio", "Home")";
+        });
+    }
+
+    function SubmitSaveCliente(id) {
+        $('#spanLoading').html("Processando arquivo de clientes...");
+        //$(document).ajaxStart(function () {
+        //    document.getElementById("spanLoading").innerText = "Processando arquivo de clientes...";
+        //    //$('#spanLoading').html("Processando arquivo de clientes...");
+        //});
+
+        jQuery.ajax({
+            url: '@Url.Action("SaveClientesSql", "Cliente")',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ 'sDoc': id }),
+            dataType: "html",
+            success: function (result) {
+                SubmitSaveConta(result);
+            }
+        });
+    }
+
+    function SubmitSaveConta(id) {
+        $('#spanLoading').html("Processando arquivo de contas a receber...");
+        //$(document).ajaxStart(function () {
+        //    document.getElementById("spanLoading").innerText = "Processando arquivo de contas a receber...";
+        //    //$('#spanLoading').html("Processando arquivo de contas a receber...");
+        //});
+
+        jQuery.ajax({
+            url: '@Url.Action("SaveContasReceberSql", "Cliente")',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ 'sDoc': id }),
+            dataType: "html",
+            success: function (result) {
+                window.location.href = "@Url.Action("Inicio", "Home")";
+            }
+        });
+    }
+
+    //File Upload response from the server
+    Dropzone.options.dropzoneForm1 = {
+        url: "@Url.Action("SaveUploadedFileClientes", "Cliente")",
+        method: "post",
+        init: function () {
+            this.on("complete", function (data) {
+                //var res = eval('(' + data.xhr.responseText + ')');
+                var res = JSON.parse(data);
+            });
+            this.on("maxfilesexceeded", function (data) {
+                var res = eval('(Número de Arquivos maior que o Permitido)');
+            });
+        },
+        paramName: "file1", // The name that will be used to transfer the file
+        maxFilesize: 2, // MB
+        maxFiles: 1,
+        accept: function (file, done) {
+            if (file.name == "social-iphone.jpg") {
+                done("Naha, you don't.");
+            }
+            else { done(); }
+        },
+        addRemoveLinks: true,
+        previewsContainer: null,
+        clickable: true,
+        //acceptedFiles: "application/excel",
+        acceptedFiles: '.xls,.xlsx',
+        //acceptedFiles: 'image/*',
+        parallelUploads: 1,
+        autoProcessQueue: true,
+        uploadMultiple: false,
+        maxFiles: 1,
+        dictCancelUpload: "Cancelar upload",
+        dictRemoveFile: "Remover Arquivo",
+        dictDefaultMessage: "Clique para selecionar o Planilha"
+    };
+    Dropzone.options.dropzoneForm2 = {
+        url: "@Url.Action("SaveUploadedFileContasReceber", "Cliente")",
+        method: "post",
+        init: function () {
+            this.on("complete", function (data) {
+                //var res = eval('(' + data.xhr.responseText + ')');
+                var res = JSON.parse(data);
+            });
+            this.on("maxfilesexceeded", function (data) {
+                var res = eval('(Número de Arquivos maior que o Permitido)');
+            });
+        },
+        paramName: "file2", // The name that will be used to transfer the file
+        maxFilesize: 2, // MB
+        maxFiles: 1,
+        accept: function (file, done) {
+            if (file.name == "social-iphone.jpg") {
+                done("Naha, you don't.");
+            }
+            else { done(); }
+        },
+        addRemoveLinks: true,
+        previewsContainer: null,
+        clickable: true,
+        //acceptedFiles: "application/excel",
+        acceptedFiles: '.xls,.xlsx',
+        //acceptedFiles: 'image/*',
+        parallelUploads: 1,
+        autoProcessQueue: true,
+        uploadMultiple: false,
+        maxFiles: 1,
+        dictCancelUpload: "Cancelar upload",
+        dictRemoveFile: "Remover Arquivo",
+        dictDefaultMessage: "Clique para selecionar o Planilha"
+    };
+</script>

@@ -1,0 +1,120 @@
+﻿namespace Diferimento
+{
+    partial class FrmNotasTxt
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.lblProgress = new System.Windows.Forms.Label();
+            this.progress = new System.Windows.Forms.ProgressBar();
+            this.btnOkNotas = new System.Windows.Forms.Button();
+            this.txtNotas = new System.Windows.Forms.TextBox();
+            this.btnNotas = new System.Windows.Forms.Button();
+            this.lblNotasDanfe = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // lblProgress
+            // 
+            this.lblProgress.AutoSize = true;
+            this.lblProgress.Location = new System.Drawing.Point(11, 62);
+            this.lblProgress.Name = "lblProgress";
+            this.lblProgress.Size = new System.Drawing.Size(57, 13);
+            this.lblProgress.TabIndex = 45;
+            this.lblProgress.Text = "Progress...";
+            // 
+            // progress
+            // 
+            this.progress.Location = new System.Drawing.Point(14, 78);
+            this.progress.Name = "progress";
+            this.progress.Size = new System.Drawing.Size(413, 10);
+            this.progress.TabIndex = 44;
+            // 
+            // btnOkNotas
+            // 
+            this.btnOkNotas.Location = new System.Drawing.Point(433, 65);
+            this.btnOkNotas.Name = "btnOkNotas";
+            this.btnOkNotas.Size = new System.Drawing.Size(75, 23);
+            this.btnOkNotas.TabIndex = 43;
+            this.btnOkNotas.Text = "Ok";
+            this.btnOkNotas.UseVisualStyleBackColor = true;
+            this.btnOkNotas.Click += new System.EventHandler(this.btnOkNotas_Click);
+            // 
+            // txtNotas
+            // 
+            this.txtNotas.Enabled = false;
+            this.txtNotas.Location = new System.Drawing.Point(14, 38);
+            this.txtNotas.Name = "txtNotas";
+            this.txtNotas.Size = new System.Drawing.Size(452, 20);
+            this.txtNotas.TabIndex = 40;
+            // 
+            // btnNotas
+            // 
+            this.btnNotas.Location = new System.Drawing.Point(472, 37);
+            this.btnNotas.Name = "btnNotas";
+            this.btnNotas.Size = new System.Drawing.Size(36, 20);
+            this.btnNotas.TabIndex = 41;
+            this.btnNotas.Text = "...";
+            this.btnNotas.UseVisualStyleBackColor = true;
+            this.btnNotas.Click += new System.EventHandler(this.btnNotas_Click);
+            // 
+            // lblNotasDanfe
+            // 
+            this.lblNotasDanfe.AutoSize = true;
+            this.lblNotasDanfe.Location = new System.Drawing.Point(11, 18);
+            this.lblNotasDanfe.Name = "lblNotasDanfe";
+            this.lblNotasDanfe.Size = new System.Drawing.Size(70, 13);
+            this.lblNotasDanfe.TabIndex = 42;
+            this.lblNotasDanfe.Text = "Notas Fiscais";
+            // 
+            // FrmNotasTxt
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(518, 106);
+            this.Controls.Add(this.lblProgress);
+            this.Controls.Add(this.progress);
+            this.Controls.Add(this.btnOkNotas);
+            this.Controls.Add(this.txtNotas);
+            this.Controls.Add(this.btnNotas);
+            this.Controls.Add(this.lblNotasDanfe);
+            this.Name = "FrmNotasTxt";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Importar Notas Fiscais (TXT)";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label lblProgress;
+        private System.Windows.Forms.ProgressBar progress;
+        private System.Windows.Forms.Button btnOkNotas;
+        private System.Windows.Forms.TextBox txtNotas;
+        private System.Windows.Forms.Button btnNotas;
+        private System.Windows.Forms.Label lblNotasDanfe;
+    }
+}

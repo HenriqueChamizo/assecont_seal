@@ -1,0 +1,483 @@
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\ApplicationInsights.config
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\csc.exe
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\csc.exe.config
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\csc.rsp
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\csi.exe
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\csi.exe.config
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\csi.rsp
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CodeAnalysis.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CSharp.Core.targets
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.VisualBasic.Core.targets
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.Win32.Primitives.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.AppContext.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Collections.Immutable.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Console.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Diagnostics.Process.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Diagnostics.StackTrace.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.IO.Compression.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.IO.FileSystem.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.IO.FileSystem.Primitives.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.IO.Pipes.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Reflection.Metadata.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.AccessControl.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Claims.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Cryptography.Encoding.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Cryptography.Primitives.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Principal.Windows.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Text.Encoding.CodePages.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Threading.Thread.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.ValueTuple.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Xml.ReaderWriter.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Xml.XmlDocument.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Xml.XPath.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Xml.XPath.XDocument.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\vbc.exe
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\vbc.exe.config
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\vbc.rsp
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\VBCSCompiler.exe
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\roslyn\VBCSCompiler.exe.config
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\FechamentoSeal.dll.config
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\FechamentoSeal.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\FechamentoSeal.pdb
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Antlr3.Runtime.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\EntityFramework.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\EntityFramework.SqlServer.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.Agent.Intercept.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.DependencyCollector.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.PerfCounterCollector.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.ServerTelemetryChannel.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.Web.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.WindowsServer.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.ApplicationInsights.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.Core.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.Owin.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Host.SystemWeb.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Cookies.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Facebook.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Google.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.OAuth.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Twitter.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.Web.Infrastructure.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Newtonsoft.Json.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Owin.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\System.Web.Helpers.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\System.Web.Mvc.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\System.Web.Optimization.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\System.Web.Razor.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.Deployment.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.Razor.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\WebGrease.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Antlr3.Runtime.pdb
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.DependencyCollector.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.ServerTelemetryChannel.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.Web.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.WindowsServer.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.ApplicationInsights.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Host.SystemWeb.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Cookies.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Facebook.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Google.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.OAuth.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Twitter.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Newtonsoft.Json.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\System.Web.Helpers.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\System.Web.Mvc.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\System.Web.Optimization.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\System.Web.Razor.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.Deployment.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.Razor.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\EntityFramework.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\EntityFramework.SqlServer.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.Core.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.Owin.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\obj\Debug\FechamentoSeal.csprojResolveAssemblyReference.cache
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\obj\Debug\FechamentoSeal.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\obj\Debug\FechamentoSeal.pdb
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\DAO.dll
+c:\Users\henriquec\Documents\Visual Studio 2015\Projects\FechamentoSeal\FechamentoSeal\bin\DAO.pdb
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\csc.exe
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\csc.exe.config
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\csc.rsp
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\csi.exe
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\csi.exe.config
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\csi.rsp
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.Win32.Primitives.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.AppContext.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Collections.Immutable.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Console.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Diagnostics.Process.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.IO.Compression.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.IO.FileSystem.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.IO.Pipes.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Reflection.Metadata.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.AccessControl.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Claims.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Principal.Windows.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Threading.Thread.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.ValueTuple.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Xml.XmlDocument.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Xml.XPath.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\vbc.exe
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\vbc.exe.config
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\vbc.rsp
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\VBCSCompiler.exe
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\VBCSCompiler.exe.config
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\FechamentoSeal.dll.config
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\FechamentoSeal.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\FechamentoSeal.pdb
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Antlr3.Runtime.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\DAO.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\EntityFramework.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\EntityFramework.SqlServer.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.DependencyCollector.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.Web.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.WindowsServer.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.ApplicationInsights.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Facebook.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Google.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Twitter.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Web.Infrastructure.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Newtonsoft.Json.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Owin.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.Helpers.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.Mvc.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.Optimization.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.Razor.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.Deployment.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.Razor.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\WebGrease.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\DAO.pdb
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Antlr3.Runtime.pdb
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.DependencyCollector.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.Web.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.WindowsServer.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.ApplicationInsights.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Facebook.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Google.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Twitter.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Newtonsoft.Json.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.Helpers.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.Mvc.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.Optimization.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.Razor.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.Deployment.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.Razor.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\EntityFramework.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\EntityFramework.SqlServer.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\obj\Debug\FechamentoSeal.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\obj\Debug\FechamentoSeal.pdb
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\obj\Debug\FechamentoSeal.csprojResolveAssemblyReference.cache
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Model.dll
+D:\Projetos\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Model.pdb
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\csc.exe
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\csc.exe.config
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\csc.rsp
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\csi.exe
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\csi.exe.config
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\csi.rsp
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.Win32.Primitives.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.AppContext.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Collections.Immutable.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Console.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Diagnostics.Process.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.IO.Compression.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.IO.FileSystem.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.IO.Pipes.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Reflection.Metadata.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.AccessControl.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Claims.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Principal.Windows.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Threading.Thread.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.ValueTuple.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Xml.XmlDocument.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Xml.XPath.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\vbc.exe
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\vbc.exe.config
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\vbc.rsp
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\VBCSCompiler.exe
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\roslyn\VBCSCompiler.exe.config
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\FechamentoSeal.dll.config
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\FechamentoSeal.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\FechamentoSeal.pdb
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Antlr3.Runtime.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\DAO.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\EntityFramework.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\EntityFramework.SqlServer.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.DependencyCollector.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.Web.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.WindowsServer.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.ApplicationInsights.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Facebook.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Google.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Twitter.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Web.Infrastructure.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Model.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Newtonsoft.Json.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Owin.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.Helpers.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.Mvc.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.Optimization.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.Razor.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.Deployment.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.Razor.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\WebGrease.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\DAO.pdb
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Model.pdb
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Antlr3.Runtime.pdb
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.DependencyCollector.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.Web.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.WindowsServer.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.ApplicationInsights.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Facebook.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Google.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Twitter.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Newtonsoft.Json.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.Helpers.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.Mvc.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.Optimization.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.Razor.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.Deployment.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.Razor.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\EntityFramework.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\EntityFramework.SqlServer.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\obj\Debug\FechamentoSeal.csprojResolveAssemblyReference.cache
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\obj\Debug\FechamentoSeal.dll
+D:\Git\Assecont\TeamFundation\FechamentoSeal\FechamentoSeal\obj\Debug\FechamentoSeal.pdb
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\csc.exe
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\csc.exe.config
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\csc.rsp
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\csi.exe
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\csi.exe.config
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\csi.rsp
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\Microsoft.Win32.Primitives.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.AppContext.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Collections.Immutable.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Console.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Diagnostics.Process.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.IO.Compression.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.IO.FileSystem.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.IO.Pipes.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Reflection.Metadata.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.AccessControl.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Claims.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Security.Principal.Windows.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Threading.Thread.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.ValueTuple.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Xml.XmlDocument.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Xml.XPath.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\vbc.exe
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\vbc.exe.config
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\vbc.rsp
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\VBCSCompiler.exe
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\roslyn\VBCSCompiler.exe.config
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\FechamentoSeal.dll.config
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\FechamentoSeal.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\FechamentoSeal.pdb
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Antlr3.Runtime.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\DAO.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\EntityFramework.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\EntityFramework.SqlServer.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.Agent.Intercept.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.DependencyCollector.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.Web.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.WindowsServer.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.ApplicationInsights.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.Core.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Cookies.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Facebook.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Google.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.OAuth.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Twitter.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.Web.Infrastructure.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Model.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Newtonsoft.Json.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Owin.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\System.Web.Helpers.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\System.Web.Mvc.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\System.Web.Optimization.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\System.Web.Razor.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.Deployment.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.Razor.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\WebGrease.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\DAO.pdb
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Model.pdb
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Antlr3.Runtime.pdb
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.DependencyCollector.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.Web.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.AI.WindowsServer.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.ApplicationInsights.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Cookies.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Facebook.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Google.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.OAuth.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.Owin.Security.Twitter.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Newtonsoft.Json.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\System.Web.Helpers.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\System.Web.Mvc.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\System.Web.Optimization.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\System.Web.Razor.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.Deployment.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\System.Web.WebPages.Razor.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\EntityFramework.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\EntityFramework.SqlServer.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.Core.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\obj\Debug\FechamentoSeal.csprojResolveAssemblyReference.cache
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\obj\Debug\FechamentoSeal.dll
+D:\BitBucket\Assecont\Projetos\FechamentoSeal\FechamentoSeal\obj\Debug\FechamentoSeal.pdb

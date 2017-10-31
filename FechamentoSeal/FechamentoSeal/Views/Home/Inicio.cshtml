@@ -1,0 +1,38 @@
+﻿@model FechamentoSeal.Models.HomeInicioModels
+@{
+    ViewBag.Title = "Historico";
+}
+<h2>Histórico de Uploads</h2>
+
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Índice</th>
+                    <th>Descrição</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.documentos != null && Model.documentos.Count > 0)
+                {
+                    foreach (Model.Seal.Documento doc in Model.documentos)
+                    {
+                        <tr>
+                            <th scope="row">@doc.doc_int_id</th>
+                            <td>@doc.doc_des_descricao</td>
+                            <td>@doc.doc_dt_data.ToString("dd/MM/yyyy")</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="3" align="center">Não foi feito Upload de documentos</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

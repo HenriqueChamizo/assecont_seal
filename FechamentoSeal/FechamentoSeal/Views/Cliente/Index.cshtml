@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "Upload";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Upload</h2>
+<style>
+    .dropzone {
+        background: none !important;
+        border: none !important;
+        width: 100% !important;
+        padding: 0px !important;
+        text-align: center !important;
+        min-height: inherit !important;
+    }
+    .dz-default {
+        margin: 0px !important;
+    }
+</style>
+<div class="row">
+    <div class="col-sm-12"><br/></div>
+    <div class="col-sm-3">
+        <div class="jumbotron" style="padding:15px">
+            <label>Planilha de Clientes</label>
+            <form action="~/Cliente/SaveUploadedFileClientes" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm1">
+                <div class="fallback">
+                    <div class="img-thumbnail">
+                        <input name="clientes" type="file" multiple />
+                    </div>
+                    <input type="submit" value="Upload" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="jumbotron" style="padding:15px">
+            <label>Planilha de Contas a Receber</label>
+            <form action="~/Cliente/SaveUploadedFileContasReceber" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm2">
+                <div class="fallback">
+                    <div class="img-thumbnail">
+                        <input name="contasreceber" type="file" multiple />
+                    </div>
+                    <input type="submit" value="Upload" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <form action="" method="post">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label>Descrição</label>
+                        <input type="text" class="form-control" name="descricao" id="descricao" />
+                    </div>
+                </div>
+                <div class="col-sm-12" style="text-align:right">
+                    <button type="submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-floppy-save"></span> Salvar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    //File Upload response from the server
+    Dropzone.options.dropzoneForm1 = {
+        init: function () {
+            this.on("complete", function (data) {
+                //var res = eval('(' + data.xhr.responseText + ')');
+                var res = JSON.parse(data.responseText);
+            });
+            this.on("maxfilesexceeded", function (data) {
+                var res = eval('(Número de Arquivos maior que o Permitido)');
+            });
+        },
+        paramName: "file1", // The name that will be used to transfer the file
+        maxFilesize: 2, // MB
+        maxFiles: 1,
+        accept: function (file, done) {
+            if (file.name == "social-iphone.jpg") {
+                done("Naha, you don't.");
+            }
+            else { done(); }
+        },
+        addRemoveLinks: true,
+        previewsContainer: null,
+        clickable: true,
+        //acceptedFiles: "application/excel",
+        acceptedFiles: '.xls,.xlsx',
+        //acceptedFiles: 'image/*',
+        parallelUploads: 1,
+        autoProcessQueue: true,
+        uploadMultiple: false,
+        maxFiles: 1,
+        dictCancelUpload: "Cancelar upload",
+        dictRemoveFile: "Remover Arquivo",
+        dictDefaultMessage: "Clique para selecionar o Planilha"
+    };
+    Dropzone.options.dropzoneForm2 = {
+        init: function () {
+            this.on("complete", function (data) {
+                //var res = eval('(' + data.xhr.responseText + ')');
+                var res = JSON.parse(data.responseText);
+            });
+            this.on("maxfilesexceeded", function (data) {
+                var res = eval('(Número de Arquivos maior que o Permitido)');
+            });
+        },
+        paramName: "file2", // The name that will be used to transfer the file
+        maxFilesize: 2, // MB
+        maxFiles: 1,
+        accept: function (file, done) {
+            if (file.name == "social-iphone.jpg") {
+                done("Naha, you don't.");
+            }
+            else { done(); }
+        },
+        addRemoveLinks: true,
+        previewsContainer: null,
+        clickable: true,
+        //acceptedFiles: "application/excel",
+        acceptedFiles: '.xls,.xlsx',
+        //acceptedFiles: 'image/*',
+        parallelUploads: 1,
+        autoProcessQueue: true,
+        uploadMultiple: false,
+        maxFiles: 1,
+        dictCancelUpload: "Cancelar upload",
+        dictRemoveFile: "Remover Arquivo",
+        dictDefaultMessage: "Clique para selecionar o Planilha"
+    };
+</script>
+
