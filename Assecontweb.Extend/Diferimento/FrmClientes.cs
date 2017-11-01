@@ -49,7 +49,7 @@ namespace Diferimento
                 txtCliente.Text = openClientes.FileName;
                 if (!string.IsNullOrEmpty(txtCliente.Text))
                 {
-                    FileCliente file = new FileCliente(txtCliente.Text, "Plan1");
+                    FileCliente file = new FileCliente(txtCliente.Text, "Atualização de Parceiros de Neg");//"Plan1");
                     if (file.clientes != null && file.clientes.Count > 0)
                         clientes = file.clientes;
                     else

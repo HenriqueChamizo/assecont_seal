@@ -840,8 +840,17 @@ namespace Assecontweb.Extend
                     else
                         vUnTrib = vUnTrib.Substring(0, vUnTrib.Length - 2) + "," + vUnTrib.Substring(vUnTrib.Length - 2, 2);
                     item.prod.vUnTrib = Convert.ToDouble(vUnTrib);
-                    try { item.prod.vFrete = Convert.ToDouble(dr["vFrete"].ToString()); }
-                    catch { }
+                    try
+                    {
+                        string vFrete = dr["vFrete"].ToString().Replace(".", "");
+                        string vFreteI = vFrete.Substring(0, vFrete.Length - 2) + "," + vFrete.Substring(vFrete.Length - 2, 2);
+                        item.prod.vFrete = Convert.ToDouble(vFreteI);
+                    }
+                    catch
+                    {
+                        item.prod.vFrete = Convert.ToDouble(0);
+                    }
+                    //item.prod.vFrete = Convert.ToDouble(dr["vFrete"].ToString());
                     item.prod.indTot = Convert.ToInt32(dr["indTot"]);
                     item.prod.vOutros = item.prod.vFrete;
                     item.prod.vTotal = Convert.ToDouble((item.prod.vProd + item.prod.vOutros).ToString());

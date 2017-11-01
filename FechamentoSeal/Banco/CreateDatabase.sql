@@ -173,6 +173,7 @@ ndi_des_uCom varchar(2) null,
 ndi_num_qCom numeric(14, 4) null, 
 ndi_num_vUnCom numeric(22, 10) null,
 ndi_num_vProd numeric(16, 2) null, 
+ndi_num_vFrete numeric(16, 2) null, 
 ndi_des_uTrib varchar(2) null, 
 ndi_num_qTrib numeric(14, 4) null, 
 ndi_num_vUnTrib numeric(22, 10) null, 
@@ -198,6 +199,9 @@ nfd_int_id int not null,
 constraint Pk_SealNotaFiscalDanfeItem primary key (ndi_int_id),
 constraint Fk_SealNotaFiscalDanfeItem_SealNotaFiscalDanfe foreign key (nfd_int_id) references SealNotaFiscalDanfe (nfd_int_id)
 );
+
+--alter table SealNotaFiscalDanfeItem 
+--add ndi_num_vFrete numeric(16, 2) null 
 
 create table SealNotaFiscalRecebida(
 nfr_int_id int identity, 

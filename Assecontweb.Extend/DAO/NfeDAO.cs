@@ -380,7 +380,7 @@ namespace DAO
                         {
                             try
                             {
-                                query = @"declare @ndi_int_num int                  = @num,
+                                query = @"declare @ndi_int_num int          = @num,
 		                                  @ndi_des_cProd varchar(100)       = @cProd,
 		                                  @ndi_des_prod varchar(100)        = @prod,
 		                                  @ndi_int_ncm int                  = @ncm,
@@ -389,6 +389,7 @@ namespace DAO
 		                                  @ndi_num_qCom numeric(14,4)       = @qCom,
 		                                  @ndi_num_vUnCom numeric(22,10)    = @nUnCom,
 		                                  @ndi_num_vProd numeric(16,2)      = @vProd,
+		                                  @ndi_num_vFrete numeric(16,2)     = @vFrete,
 		                                  @ndi_des_uTrib varchar(2)         = @uTrib,
 		                                  @ndi_num_qTrib numeric(14,4)      = @qTrib,
 		                                  @ndi_num_vUnTrib numeric(22,10)   = @vUnTrib,
@@ -396,10 +397,10 @@ namespace DAO
                                   
                                   insert into SealNotaFiscalDanfeItem
                                   ( ndi_int_num, ndi_des_cProd, ndi_des_prod, ndi_int_ncm, ndi_int_cfop, ndi_des_uCom, ndi_num_qCom, ndi_num_vUnCom, ndi_num_vProd, ndi_des_uTrib, ndi_num_qTrib,
-                                   ndi_num_vUnTrib, ndi_int_indTot, nfd_int_id)
+                                   ndi_num_vUnTrib, ndi_int_indTot, nfd_int_id, ndi_num_vFrete)
                                   values
                                   (@ndi_int_num,@ndi_des_cProd,@ndi_des_prod,@ndi_int_ncm,@ndi_int_cfop,@ndi_des_uCom,@ndi_num_qCom,@ndi_num_vUnCom,@ndi_num_vProd,@ndi_des_uTrib,@ndi_num_qTrib,
-                                  @ndi_num_vUnTrib,@ndi_int_indTot,@nfd_int_id)";
+                                  @ndi_num_vUnTrib,@ndi_int_indTot,@nfd_int_id,@ndi_num_vFrete)";
 
                                 cmd = new SqlCommand(query, conn);
                                 cmd.Parameters.AddWithValue("@num", count);
@@ -414,6 +415,7 @@ namespace DAO
                                 cmd.Parameters.AddWithValue("@nUnCom", (float)(Convert.ToDouble(item.prod.vUnCom)));
                                 string vProd = item.prod.vProd.ToString();
                                 cmd.Parameters.AddWithValue("@vProd", (float)(Convert.ToDouble(item.prod.vProd)));
+                                cmd.Parameters.AddWithValue("@vFrete", (float)(Convert.ToDouble(item.prod.vFrete)));
                                 cmd.Parameters.AddWithValue("@uTrib", item.prod.uTrib);
                                 string qTrib = item.prod.qTrib.ToString();
                                 cmd.Parameters.AddWithValue("@qTrib", (float)(Convert.ToDouble(item.prod.qTrib)));
@@ -950,141 +952,141 @@ namespace DAO
 	                                sum(case when c.nde_des_uf = 'MS' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'CONTRIBUINTE' or f.cli_des_grupo = 'NÃO CONTRIBUINTE'))
-				                            then a.ndi_num_vProd else 0 end) as MSDanfePrivado, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as MSDanfePrivado, 
 	                                sum(case when c.nde_des_uf = 'MS' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'CONTRIB - Lei 9718' or f.cli_des_grupo = 'Ñ CONTRIB - Lei 9718'))
-				                            then a.ndi_num_vProd else 0 end) as MSDanfeLei, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as MSDanfeLei, 
 	                                sum(case when c.nde_des_uf = 'MS' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
-					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) 
-						                            and (f.cli_int_id is not null)
-				                            then a.ndi_num_vProd else 0 end) as MSDanfeFatu, 
+					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
+						                            (f.cli_int_id is not null)
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as MSDanfeFatu, 
 	                                --Recebidas
 	                                sum(case when c.nde_des_uf = 'MS' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'CONTRIBUINTE' or f.cli_des_grupo = 'NÃO CONTRIBUINTE')) and
 					                                (e.nfr_int_id is not null)
-				                            then a.ndi_num_vProd else 0 end) as MSDanfePrivadoRec, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as MSDanfePrivadoRec, 
 	                                sum(case when c.nde_des_uf = 'MS' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'CONTRIB - Lei 9718' or f.cli_des_grupo = 'Ñ CONTRIB - Lei 9718')) and
 					                                (e.nfr_int_id is not null)
-				                            then a.ndi_num_vProd else 0 end) as MSDanfeLeiRec, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as MSDanfeLeiRec, 
 	                                sum(case when c.nde_des_uf = 'MS' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null) and (e.nfr_int_id is not null)
-				                            then a.ndi_num_vProd else 0 end) as MSDanfeFatuRec, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as MSDanfeFatuRec, 
 	                                --Não Recebidas
 	                                sum(case when c.nde_des_uf = 'MS' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'CONTRIBUINTE' or f.cli_des_grupo = 'NÃO CONTRIBUINTE')) and 
 					                                (e.nfr_int_id is null)
-				                            then a.ndi_num_vProd else 0 end) as MSDanfePrivadoNRec, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as MSDanfePrivadoNRec, 
 	                                sum(case when c.nde_des_uf = 'MS' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'CONTRIB - Lei 9718' or f.cli_des_grupo = 'Ñ CONTRIB - Lei 9718')) and 
 					                                (e.nfr_int_id is null)
-				                            then a.ndi_num_vProd else 0 end) as MSDanfeLeiNRec, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as MSDanfeLeiNRec, 
 	                                sum(case when c.nde_des_uf = 'MS' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null) and (e.nfr_int_id is null)
-				                            then a.ndi_num_vProd else 0 end) as MSDanfeFatuNRec, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as MSDanfeFatuNRec, 
 	                                --Contribuinte
 	                                sum(case when c.nde_des_uf = 'MS' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'CONTRIBUINTE')) 
-				                            then a.ndi_num_vProd else 0 end) as MSDanfePrivadoContri, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as MSDanfePrivadoContri, 
 	                                sum(case when c.nde_des_uf = 'MS' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'CONTRIB - Lei 9718')) 
-				                            then a.ndi_num_vProd else 0 end) as MSDanfeLeiContri, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as MSDanfeLeiContri, 
 	                                sum(case when c.nde_des_uf = 'MS' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'CONTRIBUINTE' or f.cli_des_grupo = 'CONTRIB - Lei 9718')) 
-				                            then a.ndi_num_vProd else 0 end) as MSDanfeFatuContri, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as MSDanfeFatuContri, 
 	                                --Não Contribuinte
 	                                sum(case when c.nde_des_uf = 'MS' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'NÃO CONTRIBUINTE')) 
-				                            then a.ndi_num_vProd else 0 end) as MSDanfePrivadoNContri, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as MSDanfePrivadoNContri, 
 	                                sum(case when c.nde_des_uf = 'MS' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'Ñ CONTRIB - Lei 9718')) 
-				                            then a.ndi_num_vProd else 0 end) as MSDanfeLeiNContri, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as MSDanfeLeiNContri, 
 	                                sum(case when c.nde_des_uf = 'MS' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'NÃO CONTRIBUINTE' or f.cli_des_grupo = 'Ñ CONTRIB - Lei 9718')) 
-				                            then a.ndi_num_vProd else 0 end) as MSDanfeFatuNContri, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as MSDanfeFatuNContri, 
 	                                --SPSPSPSPSPSPSPSP
 	                                --Danfes Faturadas
 	                                sum(case when c.nde_des_uf = 'SP' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'CONTRIBUINTE' or f.cli_des_grupo = 'NÃO CONTRIBUINTE'))
-				                            then a.ndi_num_vProd else 0 end) as  SPDanfePrivado, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as  SPDanfePrivado, 
 	                                sum(case when c.nde_des_uf = 'SP' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'CONTRIB - Lei 9718' or f.cli_des_grupo = 'Ñ CONTRIB - Lei 9718'))
-				                            then a.ndi_num_vProd else 0 end) as  SPDanfeLei, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as  SPDanfeLei, 
 	                                sum(case when c.nde_des_uf = 'SP' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) 
 					                                and (f.cli_int_id is not null)  
-				                            then a.ndi_num_vProd else 0 end) as  SPDanfeFatu, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as  SPDanfeFatu, 
 	                                --Recebidas
 	                                sum(case when c.nde_des_uf = 'SP' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'CONTRIBUINTE' or f.cli_des_grupo = 'NÃO CONTRIBUINTE')) and 
 					                                (e.nfr_int_id is not null)
-				                            then a.ndi_num_vProd else 0 end) as  SPDanfePrivadoRec, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as  SPDanfePrivadoRec, 
 	                                sum(case when c.nde_des_uf = 'SP' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'CONTRIB - Lei 9718' or f.cli_des_grupo = 'Ñ CONTRIB - Lei 9718')) and
 					                                (e.nfr_int_id is not null)
-				                            then a.ndi_num_vProd else 0 end) as  SPDanfeLeiRec, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as  SPDanfeLeiRec, 
 	                                sum(case when c.nde_des_uf = 'SP' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) 
 					                                and (f.cli_int_id is not null) and (e.nfr_int_id is not null)
-				                            then a.ndi_num_vProd else 0 end) as  SPDanfeFatuRec, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as  SPDanfeFatuRec, 
 	                                --Não Recebidas
 	                                sum(case when c.nde_des_uf = 'SP' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'CONTRIBUINTE' or f.cli_des_grupo = 'NÃO CONTRIBUINTE')) and 
 					                                (e.nfr_int_id is null) 
-				                            then a.ndi_num_vProd else 0 end) as  SPDanfePrivadoNRec, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as  SPDanfePrivadoNRec, 
 	                                sum(case when c.nde_des_uf = 'SP' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'CONTRIB - Lei 9718' or f.cli_des_grupo = 'Ñ CONTRIB - Lei 9718')) and
 					                                (e.nfr_int_id is null)
-				                            then a.ndi_num_vProd else 0 end) as  SPDanfeLeiNRec, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as  SPDanfeLeiNRec, 
 	                                sum(case when c.nde_des_uf = 'SP' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null) and (e.nfr_int_id is null)
-				                            then a.ndi_num_vProd else 0 end) as  SPDanfeFatuNRec, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as  SPDanfeFatuNRec, 
 	                                --Contribuinte
 	                                sum(case when c.nde_des_uf = 'SP' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'CONTRIBUINTE'))
-				                            then a.ndi_num_vProd else 0 end) as  SPDanfePrivadoContri, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as  SPDanfePrivadoContri, 
 	                                sum(case when c.nde_des_uf = 'SP' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'CONTRIB - Lei 9718')) 
-				                            then a.ndi_num_vProd else 0 end) as  SPDanfeLeiContri, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as  SPDanfeLeiContri, 
 	                                sum(case when c.nde_des_uf = 'SP' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'CONTRIBUINTE' or f.cli_des_grupo = 'CONTRIB - Lei 9718')) 
-				                            then a.ndi_num_vProd else 0 end) as  SPDanfeFatuContri, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as  SPDanfeFatuContri, 
 	                                --Não Contribuinte
 	                                sum(case when c.nde_des_uf = 'SP' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'NÃO CONTRIBUINTE')) 
-				                            then a.ndi_num_vProd else 0 end) as  SPDanfePrivadoNContri, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as  SPDanfePrivadoNContri, 
 	                                sum(case when c.nde_des_uf = 'SP' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'Ñ CONTRIB - Lei 9718')) 
-				                            then a.ndi_num_vProd else 0 end) as  SPDanfeLeiNContri, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as  SPDanfeLeiNContri, 
 	                                sum(case when c.nde_des_uf = 'SP' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (f.cli_int_id is not null and (f.cli_des_grupo = 'NÃO CONTRIBUINTE' or f.cli_des_grupo = 'Ñ CONTRIB - Lei 9718')) 
-				                            then a.ndi_num_vProd else 0 end) as  SPDanfeFatuNContri
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as  SPDanfeFatuNContri
                             from SealNotaFiscalDanfeItem a
                             inner join SealNotaFiscalDanfe b on a.nfd_int_id = b.nfd_int_id
                             left join SealNotaFiscalDanfeEmpresa c on b.nde_int_emit = c.nde_int_id
@@ -1201,32 +1203,32 @@ namespace DAO
 	                                SUM(case when (a.nfs_des_ufmunicipio = 'MS' and b.nse_int_id is not null) and 
 					                                (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
 					                                (e.cli_int_id is not null and (e.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE'))) and 
-					                                (a.nfs_int_listaservico in (702, 103, 105, 107, 104, 106))  
+					                                (a.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))  
 			                                then a.nfs_num_vlrservico else 0 end) as MSServicoPrivadoCum, 
 	                                SUM(case when (a.nfs_des_ufmunicipio = 'MS' and b.nse_int_id is not null) and 
 					                                (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
 					                                (e.cli_int_id is not null and (e.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718'))) and 
-					                                (a.nfs_int_listaservico in (702, 103, 105, 107, 104, 106)) 
+					                                (a.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) 
 			                                then a.nfs_num_vlrservico else 0 end) as MSServicoLeiCum, 
 	                                SUM(case when (a.nfs_des_ufmunicipio = 'MS' and b.nse_int_id is not null) and 
 					                                (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
-					                                (a.nfs_int_listaservico in (702, 103, 105, 107, 104, 106)) and 
+					                                (a.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) and 
 					                                (e.cli_int_id is not null) 
 			                                then a.nfs_num_vlrservico else 0 end) as MSServicoFatuCum, 
 	                                --Não Cumulativos
 	                                SUM(case when (a.nfs_des_ufmunicipio = 'MS' and b.nse_int_id is not null) and 
 					                                (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
 					                                (e.cli_int_id is not null and (e.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE'))) and 
-					                                (a.nfs_int_listaservico in (1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703))
+					                                (a.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))
 			                                then a.nfs_num_vlrservico else 0 end) as MSServicoPrivadoNCum, 
 	                                SUM(case when (a.nfs_des_ufmunicipio = 'MS' and b.nse_int_id is not null) and 
 					                                (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
 					                                (e.cli_int_id is not null and (e.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718'))) and 
-					                                (a.nfs_int_listaservico in (1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703))
+					                                (a.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))
 			                                then a.nfs_num_vlrservico else 0 end) as MSServicoLeiNCum, 
 	                                SUM(case when (a.nfs_des_ufmunicipio = 'MS' and b.nse_int_id is not null) and 
 					                                (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
-					                                (a.nfs_int_listaservico in (1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703)) and 
+					                                (a.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) and 
 					                                (e.cli_int_id is not null) 
 			                                then a.nfs_num_vlrservico else 0 end) as MSServicoFatuNCum, 
 	                                --SPSPSPSPSPSPSPSP
@@ -1277,38 +1279,32 @@ namespace DAO
 	                                SUM(case when ((a.nfs_des_ufmunicipio = 'SP' and b.nse_int_id is null) or a.nse_int_prestador is null) and 
 					                                (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
 					                                (e.cli_int_id is not null and (e.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE'))) and 
-					                                (a.nfs_int_listaservico in (1015, 1023, 2682, 2798, 2917, 2918, 2690, 2879))  
+					                                (a.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))  
 			                                then a.nfs_num_vlrservico else 0 end) as SPServicoPrivadoCum, 
 	                                SUM(case when ((a.nfs_des_ufmunicipio = 'SP' and b.nse_int_id is null) or a.nse_int_prestador is null) and 
 					                                (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
 					                                (e.cli_int_id is not null and (e.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718'))) and 
-					                                (a.nfs_int_listaservico in (1015, 1023, 2682, 2798, 2917, 2918, 2690, 2879))  
+					                                (a.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))  
 			                                then a.nfs_num_vlrservico else 0 end) as SPServicoLeiCum, 
 	                                SUM(case when ((a.nfs_des_ufmunicipio = 'SP' and b.nse_int_id is null) or a.nse_int_prestador is null) and 
 					                                (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
-					                                (a.nfs_int_listaservico in (1015, 1023, 2682, 2798, 2917, 2918, 2690, 2879)) AND 
+					                                (a.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) AND 
 					                                (e.cli_int_id is not null) 
 			                                then a.nfs_num_vlrservico else 0 end) as SPServicoFatuCum, 
 	                                --Não Cumulativos
 	                                SUM(case when ((a.nfs_des_ufmunicipio = 'SP' and b.nse_int_id is null) or a.nse_int_prestador is null) and 
 					                                (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
 					                                (e.cli_int_id is not null and (e.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE'))) and 
-					                                (a.nfs_int_listaservico in (01880, 02119, 02135, 02186, 02194, 03093, 03115, 03450, 03468, 05991, 
-													                            06009, 07285, 07315, 07323, 07331, 07366, 07390, 07412, 07439, 07447, 
-													                            07455, 07471, 07498, 02496))
+					                                (a.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))
 			                                then a.nfs_num_vlrservico else 0 end) as SPServicoPrivadoNCum, 
 	                                SUM(case when ((a.nfs_des_ufmunicipio = 'SP' and b.nse_int_id is null) or a.nse_int_prestador is null) and 
 					                                (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
 					                                (e.cli_int_id is not null and (e.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718'))) and 
-					                                (a.nfs_int_listaservico in (01880, 02119, 02135, 02186, 02194, 03093, 03115, 03450, 03468, 05991, 
-													                            06009, 07285, 07315, 07323, 07331, 07366, 07390, 07412, 07439, 07447, 
-													                            07455, 07471, 07498, 02496))
+					                                (a.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))
 			                                then a.nfs_num_vlrservico else 0 end) as SPServicoLeiNCum, 
 	                                SUM(case when ((a.nfs_des_ufmunicipio = 'SP' and b.nse_int_id is null) or a.nse_int_prestador is null) and 
 					                                (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
-					                                (a.nfs_int_listaservico in (01880, 02119, 02135, 02186, 02194, 03093, 03115, 03450, 03468, 05991, 
-													                            06009, 07285, 07315, 07323, 07331, 07366, 07390, 07412, 07439, 07447, 
-													                            07455, 07471, 07498, 02496)) and 
+					                                (a.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) and 
 					                                (e.cli_int_id is not null) 
 			                                then a.nfs_num_vlrservico else 0 end) as SPServicoFatuNCum
                             from SealNotaFiscalServico a

@@ -68,8 +68,6 @@ namespace Diferimento
             this.Cursor = Cursors.WaitCursor;
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                string erro = "";
-
                 clientes = frm.clientes;
                 contasReceber = frm.contasReceber;
             }

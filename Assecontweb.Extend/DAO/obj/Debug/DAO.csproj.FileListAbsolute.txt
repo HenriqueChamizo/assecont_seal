@@ -65,3 +65,16 @@ C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\DAO\obj\Debug\DAO.
 C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
 C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\DAO\obj\Debug\DAO.dll
 C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\DAO\obj\Debug\DAO.pdb
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\DAO\bin\Debug\DAO.dll
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\DAO\bin\Debug\DAO.pdb
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\DAO\bin\Debug\Assecontweb.Extend.dll
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\DAO\bin\Debug\Model.dll
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\DAO\bin\Debug\Excel.dll
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\DAO\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\DAO\bin\Debug\Assecontweb.Extend.pdb
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\DAO\bin\Debug\Assecontweb.Extend.dll.config
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\DAO\bin\Debug\Model.pdb
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\DAO\obj\Debug\DAO.csprojResolveAssemblyReference.cache
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\DAO\obj\Debug\DAO.dll
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\DAO\obj\Debug\DAO.pdb

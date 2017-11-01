@@ -72,3 +72,17 @@ C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend
 C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.csproj.CoreCompileInputs.cache
 C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.exe
 C:\Disco D\BitBucket\assecont.old\Projetos\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.pdb
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.Test.exe.config
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.Test.exe
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.Test.pdb
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.dll
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Excel.dll
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.pdb
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Assecontweb.Extend.Test\bin\Debug\Assecontweb.Extend.dll.config
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.csprojResolveAssemblyReference.cache
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.Properties.Resources.resources
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.csproj.GenerateResource.Cache
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.csproj.CoreCompileInputs.cache
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.exe
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Assecontweb.Extend.Test\obj\Debug\Assecontweb.Extend.Test.pdb
