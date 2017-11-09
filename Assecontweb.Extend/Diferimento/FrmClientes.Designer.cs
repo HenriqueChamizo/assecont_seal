@@ -36,6 +36,7 @@
             this.btnContasReceber = new System.Windows.Forms.Button();
             this.txtContasReceber = new System.Windows.Forms.TextBox();
             this.btnSalvar = new System.Windows.Forms.Button();
+            this.cbAntigo = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // lblCliente
@@ -79,11 +80,18 @@
             this.btnSalvar.UseVisualStyleBackColor = true;
             this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
+            // cbAntigo
+            // 
+            resources.ApplyResources(this.cbAntigo, "cbAntigo");
+            this.cbAntigo.Name = "cbAntigo";
+            this.cbAntigo.UseVisualStyleBackColor = true;
+            // 
             // FrmClientes
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.Controls.Add(this.cbAntigo);
             this.Controls.Add(this.btnSalvar);
             this.Controls.Add(this.lblCliente);
             this.Controls.Add(this.btnCliente);
@@ -106,5 +114,6 @@
         private System.Windows.Forms.Button btnContasReceber;
         private System.Windows.Forms.TextBox txtContasReceber;
         private System.Windows.Forms.Button btnSalvar;
+        private System.Windows.Forms.CheckBox cbAntigo;
     }
 }

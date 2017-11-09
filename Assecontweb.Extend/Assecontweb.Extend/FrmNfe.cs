@@ -177,11 +177,11 @@ namespace Assecontweb.Extend
                 txtContasReceber.Text = openContasReceber.FileName;
                 if (!string.IsNullOrEmpty(txtContasReceber.Text))
                 {
-                    FileContaReceber file = new FileContaReceber(txtContasReceber.Text, "Original");
+                    FileContaReceber file = new FileContaReceber(txtContasReceber.Text, true, "Original");
                     if (file.contas != null && file.contas.Count > 0)
                         contasReceber = file.contas;
                     else
-                        contasReceber = file.GetContas();
+                        contasReceber = file.GetContas(true);
                 }
             }
         }

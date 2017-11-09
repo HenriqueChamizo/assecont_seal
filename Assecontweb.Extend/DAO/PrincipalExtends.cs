@@ -161,20 +161,32 @@ namespace DAO
     public class RetencaoConsu
     {
         public double PisPrivado { get; set; }
+        public double CsslPrivado { get; set; }
         public double CofinsPrivado { get; set; }
         public double IrPrivado { get; set; }
+        public double InssPrivado { get; set; }
+        public double IssPrivado { get; set; }
         public double PisPublico { get; set; }
+        public double CsslPublico { get; set; }
         public double CofinsPublico { get; set; }
         public double IrPublico { get; set; }
+        public double InssPublico { get; set; }
+        public double IssPublico { get; set; }
 
         public RetencaoConsu()
         {
             PisPrivado = 0;
+            CsslPrivado = 0;
             CofinsPrivado = 0;
             IrPrivado = 0;
+            InssPrivado = 0;
+            IssPrivado = 0;
             PisPublico = 0;
+            CsslPublico = 0;
             CofinsPublico = 0;
             IrPublico = 0;
+            InssPublico = 0;
+            IssPublico = 0;
         }
     }
 }

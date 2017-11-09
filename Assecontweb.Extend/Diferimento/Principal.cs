@@ -616,19 +616,31 @@ namespace Diferimento
                             #region Retenções Não Cumulativos
                             lblConsulNCumPisPrivado.Text = conso.RetencaoConsuNCum.PisPrivado.ToString("C", nfi);
                             lblConsulNCumPisPublico.Text = conso.RetencaoConsuNCum.PisPublico.ToString("C", nfi);
+                            lblConsulNCumCsslPrivado.Text = conso.RetencaoConsuNCum.CsslPrivado.ToString("C", nfi);
+                            lblConsulNCumCsslPublico.Text = conso.RetencaoConsuNCum.CsslPublico.ToString("C", nfi);
                             lblConsulNCumCofinsPrivado.Text = conso.RetencaoConsuNCum.CofinsPrivado.ToString("C", nfi);
                             lblConsulNCumCofinsPublico.Text = conso.RetencaoConsuNCum.CofinsPublico.ToString("C", nfi);
                             lblConsulNCumIrPrivado.Text = conso.RetencaoConsuNCum.IrPrivado.ToString("C", nfi);
                             lblConsulNCumIrPublico.Text = conso.RetencaoConsuNCum.IrPublico.ToString("C", nfi);
+                            lblConsulNCumInssPrivado.Text = conso.RetencaoConsuNCum.InssPrivado.ToString("C", nfi);
+                            lblConsulNCumInssPublico.Text = conso.RetencaoConsuNCum.InssPublico.ToString("C", nfi);
+                            lblConsulNCumIssPrivado.Text = conso.RetencaoConsuNCum.IssPrivado.ToString("C", nfi);
+                            lblConsulNCumIssPublico.Text = conso.RetencaoConsuNCum.IssPublico.ToString("C", nfi);
                             #endregion
 
                             #region Retenções Cumulativos
                             lblConsulCumPisPrivado.Text = conso.RetencaoConsuCum.PisPrivado.ToString("C", nfi);
                             lblConsulCumPisPublico.Text = conso.RetencaoConsuCum.PisPublico.ToString("C", nfi);
+                            lblConsulCumCsslPrivado.Text = conso.RetencaoConsuCum.CsslPrivado.ToString("C", nfi);
+                            lblConsulCumCsslPublico.Text = conso.RetencaoConsuCum.CsslPublico.ToString("C", nfi);
                             lblConsulCumCofinsPrivado.Text = conso.RetencaoConsuCum.CofinsPrivado.ToString("C", nfi);
                             lblConsulCumCofinsPublico.Text = conso.RetencaoConsuCum.CofinsPublico.ToString("C", nfi);
                             lblConsulCumIrPrivado.Text = conso.RetencaoConsuCum.IrPrivado.ToString("C", nfi);
                             lblConsulCumIrPublico.Text = conso.RetencaoConsuCum.IrPublico.ToString("C", nfi);
+                            lblConsulCumInssPrivado.Text = conso.RetencaoConsuCum.InssPrivado.ToString("C", nfi);
+                            lblConsulCumInssPublico.Text = conso.RetencaoConsuCum.InssPublico.ToString("C", nfi);
+                            lblConsulCumIssPrivado.Text = conso.RetencaoConsuCum.IssPrivado.ToString("C", nfi);
+                            lblConsulCumIssPublico.Text = conso.RetencaoConsuCum.IssPublico.ToString("C", nfi);
                             #endregion
                             conso = null;
                             //status = StatusPrincipal.SistemaOK;

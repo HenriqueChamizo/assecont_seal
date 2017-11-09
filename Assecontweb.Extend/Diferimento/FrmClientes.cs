@@ -89,11 +89,12 @@ namespace Diferimento
                 txtContasReceber.Text = openContasReceber.FileName;
                 if (!string.IsNullOrEmpty(txtContasReceber.Text))
                 {
-                    FileContaReceber file = new FileContaReceber(txtContasReceber.Text, "Original");
+                    cbAntigo.Enabled = false;
+                    FileContaReceber file = new FileContaReceber(txtContasReceber.Text, cbAntigo.Checked, "Original");
                     if (file.contas != null && file.contas.Count > 0)
                         contasReceber = file.contas;
                     else
-                        contasReceber = file.GetContas();
+                        contasReceber = file.GetContas(cbAntigo.Checked);
 
                     File homefile = new File();
                     homefile.path = file.path;
@@ -153,7 +154,7 @@ namespace Diferimento
                     documento.doc_des_namecontasreceber = FileContas.fileName;
                     documento.doc_file_contasreceber = FileContas.buffer;
 
-                    FileContaReceber fileContas = new FileContaReceber(FileContas.path, "Original");
+                    FileContaReceber fileContas = new FileContaReceber(FileContas.path, cbAntigo.Checked, "Original");
                     contas = Convert.ContasReceber(fileContas.contas);
                 }
                 

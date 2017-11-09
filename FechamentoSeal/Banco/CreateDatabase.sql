@@ -47,8 +47,10 @@ cli_des_nome varchar(150) null,
 cli_des_tipo varchar(50) not null, 
 cli_des_grupo varchar(50) not null, 
 cli_des_cnpj varchar(14) null, 
+cli_bit_atual bit not null, 
 constraint Pk_SealCliente primary key (cli_int_id)
 );
+
 
 create table SealNotaFiscalServicoEmpresa(
 nse_int_id int identity, 

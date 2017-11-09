@@ -19,12 +19,14 @@ namespace DAO
 
         public bool GetDanfes(ref List<Assecontweb.Extend.Nfe.Danfe.NotaFiscal> danfes, ref string erro)
         {
+            SqlConnection c = new SqlConnection(connectionstring);
+            DbDataReader d;
             string query = "";
             bool retorno = false;
             erro = "OK";
             try
             {
-                conn.Open();
+                c.Open();
                 query = @"select a.nfd_int_id,a.nfd_int_nUF,a.nfd_int_cNF,a.nfd_des_natPo,a.nfd_int_indOag,a.nfd_int_mod,a.nfd_int_serie,a.nfd_int_nNf,a.nfd_dt_dhEmi,a.nfd_int_tpNf, 
                             a.nfd_int_idDest,a.nfd_int_cMunicFG,a.nfd_int_tpImp,a.nfd_int_tpEmis,a.nfd_int_cDV,a.nfd_int_tpAmb,a.nfd_int_finNfe,a.nfd_int_indFinal,a.nfd_int_indPres, 
                             a.nfd_int_procEmi,a.nfd_des_verProc,a.nfd_des_xml, SUM(d.ndi_num_vProd) VProds, SUM(d.ndi_num_qTrib) qTrib
@@ -37,40 +39,40 @@ namespace DAO
                             a.nfd_int_procEmi,a.nfd_des_verProc,a.nfd_des_xml
                             order by a.nfd_dt_dhEmi desc";
 
-                cmd = new SqlCommand(query, conn);
+                cmd = new SqlCommand(query, c);
 
-                DbDataReader dr = cmd.ExecuteReader();
+                d = cmd.ExecuteReader();
 
                 Assecontweb.Extend.Nfe.Danfe.NotaFiscal danfe;
-                while (dr.Read())
+                while (d.Read())
                 {
                     danfe = new Assecontweb.Extend.Nfe.Danfe.NotaFiscal();
                     danfe.Ide = new Assecontweb.Extend.Nfe.Danfe.IdeModel();
-                    danfe.Ide.cUF = Convert.ToString(dr["nfd_int_nUF"]);
-                    danfe.Ide.cNF = Convert.ToInt32(dr["nfd_int_cNF"]);
-                    danfe.Ide.natOp = Convert.ToString(dr["nfd_des_natPo"]);
-                    danfe.Ide.indPag = Convert.ToInt32(dr["nfd_int_indOag"]);
-                    danfe.Ide.mod = Convert.ToInt32(dr["nfd_int_mod"]);
-                    danfe.Ide.serie = Convert.ToInt32(dr["nfd_int_serie"]);
-                    danfe.Ide.nNf = Convert.ToInt32(dr["nfd_int_nNf"]);
-                    danfe.Ide.dhEmi = Convert.ToDateTime(dr["nfd_dt_dhEmi"]).ToString("dd/MM/yyyy HH:mm");
-                    danfe.Ide.tpNF = Convert.ToInt32(dr["nfd_int_tpNf"]);
-                    danfe.Ide.idDest = Convert.ToInt32(dr["nfd_int_idDest"]);
-                    danfe.Ide.cMunFG = Convert.ToInt32(dr["nfd_int_cMunicFG"]);
-                    danfe.Ide.tpImp = Convert.ToInt32(dr["nfd_int_tpImp"]);
-                    danfe.Ide.tpEmis = Convert.ToInt32(dr["nfd_int_tpEmis"]);
-                    danfe.Ide.cDV = Convert.ToInt32(dr["nfd_int_cDV"]);
-                    danfe.Ide.tpAmb = Convert.ToInt32(dr["nfd_int_tpAmb"]);
-                    danfe.Ide.finNFe = Convert.ToInt32(dr["nfd_int_finNfe"]);
-                    danfe.Ide.indFinal = Convert.ToInt32(dr["nfd_int_indFinal"]);
-                    danfe.Ide.indPres = Convert.ToInt32(dr["nfd_int_indPres"]);
-                    danfe.Ide.procEmi = Convert.ToInt32(dr["nfd_int_procEmi"]);
-                    danfe.Ide.veProc = Convert.ToString(dr["nfd_des_verProc"]);
-                    danfe.xmlConteudo = Convert.ToString(dr["nfd_des_xml"]);
+                    danfe.Ide.cUF = Convert.ToString(d["nfd_int_nUF"]);
+                    danfe.Ide.cNF = Convert.ToInt32(d["nfd_int_cNF"]);
+                    danfe.Ide.natOp = Convert.ToString(d["nfd_des_natPo"]);
+                    danfe.Ide.indPag = Convert.ToInt32(d["nfd_int_indOag"]);
+                    danfe.Ide.mod = Convert.ToInt32(d["nfd_int_mod"]);
+                    danfe.Ide.serie = Convert.ToInt32(d["nfd_int_serie"]);
+                    danfe.Ide.nNf = Convert.ToInt32(d["nfd_int_nNf"]);
+                    danfe.Ide.dhEmi = Convert.ToDateTime(d["nfd_dt_dhEmi"]).ToString("dd/MM/yyyy HH:mm");
+                    danfe.Ide.tpNF = Convert.ToInt32(d["nfd_int_tpNf"]);
+                    danfe.Ide.idDest = Convert.ToInt32(d["nfd_int_idDest"]);
+                    danfe.Ide.cMunFG = Convert.ToInt32(d["nfd_int_cMunicFG"]);
+                    danfe.Ide.tpImp = Convert.ToInt32(d["nfd_int_tpImp"]);
+                    danfe.Ide.tpEmis = Convert.ToInt32(d["nfd_int_tpEmis"]);
+                    danfe.Ide.cDV = Convert.ToInt32(d["nfd_int_cDV"]);
+                    danfe.Ide.tpAmb = Convert.ToInt32(d["nfd_int_tpAmb"]);
+                    danfe.Ide.finNFe = Convert.ToInt32(d["nfd_int_finNfe"]);
+                    danfe.Ide.indFinal = Convert.ToInt32(d["nfd_int_indFinal"]);
+                    danfe.Ide.indPres = Convert.ToInt32(d["nfd_int_indPres"]);
+                    danfe.Ide.procEmi = Convert.ToInt32(d["nfd_int_procEmi"]);
+                    danfe.Ide.veProc = Convert.ToString(d["nfd_des_verProc"]);
+                    danfe.xmlConteudo = Convert.ToString(d["nfd_des_xml"]);
 
                     danfe.Total = new Assecontweb.Extend.Nfe.Danfe.ICMSTotModel();
-                    danfe.Total.vProd = (Convert.ToDouble(dr["VProds"]));
-                    danfe.Total.vTotTrib = (Convert.ToDouble(dr["qTrib"]));
+                    danfe.Total.vProd = (Convert.ToDouble(d["VProds"]));
+                    danfe.Total.vTotTrib = (Convert.ToDouble(d["qTrib"]));
 
                     danfes.Add(danfe);
                 }
@@ -83,14 +85,16 @@ namespace DAO
             }
             finally
             {
-                //dr.Close();
-                conn.Close();
+                //d.Close();
+                c.Close();
             }
             return retorno;
         }
 
         public bool SetDanfes(List<Assecontweb.Extend.Nfe.Danfe.NotaFiscal> danfes, List<DataSet> events, out string erro)
         {
+            SqlConnection c = new SqlConnection(connectionstring);
+            DbDataReader d;
             string query = "";
             bool retorno = false;
             int i;
@@ -154,7 +158,7 @@ namespace DAO
                 {
                     throw new Exception(ex.Message);
                 }
-                conn.Open();
+                c.Open();
                 foreach (Assecontweb.Extend.Nfe.Danfe.NotaFiscal danfe in danfes)
                 {
                     int nde_int_emit = 0;
@@ -178,7 +182,7 @@ namespace DAO
                         if (string.IsNullOrEmpty(danfe.Emit.enderEmit.Email))
                             query = query.Replace(",@nde_des_email_emit", "").Replace(",nde_des_email", "");
 
-                        cmd = new SqlCommand(query, conn);
+                        cmd = new SqlCommand(query, c);
                         cmd.Parameters.AddWithValue("@nde_des_cnpj_emit", danfe.Emit.CNPJ);
                         cmd.Parameters.AddWithValue("@nde_des_nome_emit", danfe.Emit.xNome);
                         cmd.Parameters.AddWithValue("@nde_des_fant_emit", danfe.Emit.xFant);
@@ -250,7 +254,7 @@ namespace DAO
                         if (string.IsNullOrEmpty(danfe.Dest.enderDest.Email))
                             query = query.Replace(",@nde_des_email_dest", "").Replace(",nde_des_email", "");
 
-                        cmd = new SqlCommand(query, conn);
+                        cmd = new SqlCommand(query, c);
                         if (!string.IsNullOrEmpty(danfe.Dest.CNPJ))
                             cmd.Parameters.AddWithValue("@nde_des_cnpj_dest", danfe.Dest.CNPJ);
                         else
@@ -337,7 +341,7 @@ namespace DAO
 	                                select -1
                                 end";
 
-                        cmd = new SqlCommand(query, conn);
+                        cmd = new SqlCommand(query, c);
                         cmd.Parameters.AddWithValue("@nUF", danfe.Ide.cUF);
                         cmd.Parameters.AddWithValue("@cNF", danfe.Ide.cNF);
                         cmd.Parameters.AddWithValue("@natPo", danfe.Ide.natOp);
@@ -357,7 +361,7 @@ namespace DAO
                         cmd.Parameters.AddWithValue("@indFinal", danfe.Ide.indFinal);
                         cmd.Parameters.AddWithValue("@indPres", danfe.Ide.indPres);
                         cmd.Parameters.AddWithValue("@procEmi", danfe.Ide.procEmi);
-                        cmd.Parameters.AddWithValue("@verProc", danfe.Ide.veProc);
+                        cmd.Parameters.AddWithValue("@verProc", string.IsNullOrEmpty(danfe.Ide.veProc) ? "" : danfe.Ide.veProc);
                         cmd.Parameters.AddWithValue("@nde_int_emit", nde_int_emit);
                         cmd.Parameters.AddWithValue("@nde_int_dest", nde_int_dest);
                         cmd.Parameters.AddWithValue("@nfd_des_xml", danfe.xmlConteudo);
@@ -402,7 +406,7 @@ namespace DAO
                                   (@ndi_int_num,@ndi_des_cProd,@ndi_des_prod,@ndi_int_ncm,@ndi_int_cfop,@ndi_des_uCom,@ndi_num_qCom,@ndi_num_vUnCom,@ndi_num_vProd,@ndi_des_uTrib,@ndi_num_qTrib,
                                   @ndi_num_vUnTrib,@ndi_int_indTot,@nfd_int_id,@ndi_num_vFrete)";
 
-                                cmd = new SqlCommand(query, conn);
+                                cmd = new SqlCommand(query, c);
                                 cmd.Parameters.AddWithValue("@num", count);
                                 cmd.Parameters.AddWithValue("@cProd", item.prod.cProd);
                                 cmd.Parameters.AddWithValue("@prod", item.prod.xProd);
@@ -528,14 +532,16 @@ namespace DAO
             }
             finally
             {
-                //dr.Close();
-                conn.Close();
+                //d.Close();
+                c.Close();
             }
             return retorno;
         }
 
         public bool GetDanfesNaoProcessadas(ref List<Assecontweb.Extend.Nfe.Danfe.NotaFiscal> danfes, out string erro)
         {
+            SqlConnection c = new SqlConnection(connectionstring);
+            DbDataReader d;
             string query = "";
             bool retorno = false;
             erro = "OK";
@@ -552,33 +558,33 @@ namespace DAO
                             inner join SealNotaFiscalDanfeEmpresa d on a.nde_int_dest = d.nde_int_id 
                             where b.nfr_int_id is null";
 
-                cmd = new SqlCommand(query, conn);
+                cmd = new SqlCommand(query, c);
 
-                DbDataReader dr = cmd.ExecuteReader();
+                d = cmd.ExecuteReader();
                 
                 Assecontweb.Extend.Nfe.Danfe.NotaFiscal danfe;
-                while (dr.Read())
+                while (d.Read())
                 {
                     danfe = new Assecontweb.Extend.Nfe.Danfe.NotaFiscal();
                     danfe.Ide = new Assecontweb.Extend.Nfe.Danfe.IdeModel();
-                    danfe.nfd_int_id = Convert.ToInt32(dr["nfd_int_id"]);
-                    danfe.Ide.nNf = Convert.ToInt32(dr["nfd_int_nNf"]);
-                    danfe.Ide.dhEmi = Convert.ToDateTime(dr["nfd_dt_dhEmi"]).ToString("dd/MM/yyyy HH:mm");
+                    danfe.nfd_int_id = Convert.ToInt32(d["nfd_int_id"]);
+                    danfe.Ide.nNf = Convert.ToInt32(d["nfd_int_nNf"]);
+                    danfe.Ide.dhEmi = Convert.ToDateTime(d["nfd_dt_dhEmi"]).ToString("dd/MM/yyyy HH:mm");
 
-                    //danfe.nde_int_dest = Convert.ToInt32(dr["nde_int_dest"]);
+                    //danfe.nde_int_dest = Convert.ToInt32(d["nde_int_dest"]);
                     //danfe.Total = new Assecontweb.Extend.Nfe.Danfe.ICMSTotModel();
-                    //danfe.Total.vNF = Convert.ToDouble(dr["ndi_num_vProd"]);
+                    //danfe.Total.vNF = Convert.ToDouble(d["ndi_num_vProd"]);
 
                     danfe.Dest = new Assecontweb.Extend.Nfe.Danfe.DestModel();
-                    danfe.Dest.CNPJ = dr["CNPJ"] is DBNull ? null : Convert.ToString(dr["CNPJ"]);
-                    danfe.Dest.CPF = dr["CPF"] is DBNull ? null : Convert.ToString(dr["CPF"]);
+                    danfe.Dest.CNPJ = d["CNPJ"] is DBNull ? null : Convert.ToString(d["CNPJ"]);
+                    danfe.Dest.CPF = d["CPF"] is DBNull ? null : Convert.ToString(d["CPF"]);
 
                     danfes.Add(danfe);
                 }
                 
                 //foreach (Assecontweb.Extend.Nfe.Danfe.NotaFiscal d in danfes)
                 //{
-                //    dr.Close();
+                //    d.Close();
                 //    query = @"select (case when LEN(nde_des_cnpj) < 14 then nde_des_cnpj else null end) as CPF, 
 	               //                     (case when LEN(nde_des_cnpj) = 14 then nde_des_cnpj else null end) as CNPJ 
                 //                from SealNotaFiscalDanfeEmpresa where nde_int_id = @nde_int_id";
@@ -586,14 +592,14 @@ namespace DAO
                 //    cmd = new SqlCommand(query, conn);
                 //    cmd.Parameters.AddWithValue("@nde_int_id", d.nde_int_dest);
 
-                //    dr = cmd.ExecuteReader();
+                //    d = cmd.ExecuteReader();
 
                 //    Assecontweb.Extend.Nfe.Danfe.DestModel dest;
-                //    while (dr.Read())
+                //    while (d.Read())
                 //    {
                 //        dest = new Assecontweb.Extend.Nfe.Danfe.DestModel();
-                //        dest.CNPJ = dr["CNPJ"] is DBNull ? null : Convert.ToString(dr["CNPJ"]);
-                //        dest.CPF = dr["CPF"] is DBNull ? null : Convert.ToString(dr["CPF"]);
+                //        dest.CNPJ = d["CNPJ"] is DBNull ? null : Convert.ToString(d["CNPJ"]);
+                //        dest.CPF = d["CPF"] is DBNull ? null : Convert.ToString(d["CPF"]);
 
                 //        d.Dest = dest;
                 //    }
@@ -607,14 +613,16 @@ namespace DAO
             }
             finally
             {
-                //dr.Close();
-                conn.Close();
+                //d.Close();
+                c.Close();
             }
             return retorno;
         }
 
         public bool GetServicosNaoProcessados(ref List<Assecontweb.Extend.Nfe.Servico.NotaFiscal> servicos, out string erro)
         {
+            SqlConnection c = new SqlConnection(connectionstring);
+            DbDataReader d;
             string query = "";
             bool retorno = false;
             erro = "OK";
@@ -634,63 +642,63 @@ namespace DAO
                                 inner join SealNotaFiscalServicoEmpresa c on a.nse_int_tomador = c.nse_int_id 
                                 where b.nfr_int_id is null";
 
-                cmd = new SqlCommand(query, conn);
+                cmd = new SqlCommand(query, c);
 
-                DbDataReader dr = cmd.ExecuteReader();
+                d = cmd.ExecuteReader();
 
                 Assecontweb.Extend.Nfe.Servico.NotaFiscal servico;
-                while (dr.Read())
+                while (d.Read())
                 {
                     servico = new Assecontweb.Extend.Nfe.Servico.NotaFiscal();
-                    servico.nfd_int_id = Convert.ToInt32(dr["nfs_int_id"]);
-                    servico.Numero = Convert.ToInt32(dr["nfs_int_numero"]);
-                    servico.CodigoVerificacao = Convert.ToString(dr["nfs_des_codverificacao"]);
-                    servico.DataEmissao = Convert.ToDateTime(dr["nfs_dt_emissao"]).ToString();
-                    servico.NaturezaOperacao = Convert.ToInt32(dr["nfs_int_naturezaop"]);
-                    servico.RegimeEspecialTributacao = Convert.ToInt32(dr["nfs_int_regimetributacao"]);
-                    servico.OptanteSimplesNacional = Convert.ToInt32(dr["nfs_int_optantesimples"]);
-                    servico.IncentivadorCultural = Convert.ToInt32(dr["nfs_int_icentivcult"]);
-                    servico.Competencia = Convert.ToString(dr["nfs_int_competencia"]);
-                    servico.NfseSubstituida = Convert.ToInt32(dr["nfs_int_nfsesubst"]);
-                    servico.OutrasInformacoes = Convert.ToString(dr["nfs_des_outrasinformacoes"]);
+                    servico.nfd_int_id = Convert.ToInt32(d["nfs_int_id"]);
+                    servico.Numero = Convert.ToInt32(d["nfs_int_numero"]);
+                    servico.CodigoVerificacao = Convert.ToString(d["nfs_des_codverificacao"]);
+                    servico.DataEmissao = Convert.ToDateTime(d["nfs_dt_emissao"]).ToString();
+                    servico.NaturezaOperacao = Convert.ToInt32(d["nfs_int_naturezaop"]);
+                    servico.RegimeEspecialTributacao = Convert.ToInt32(d["nfs_int_regimetributacao"]);
+                    servico.OptanteSimplesNacional = Convert.ToInt32(d["nfs_int_optantesimples"]);
+                    servico.IncentivadorCultural = Convert.ToInt32(d["nfs_int_icentivcult"]);
+                    servico.Competencia = Convert.ToString(d["nfs_int_competencia"]);
+                    servico.NfseSubstituida = Convert.ToInt32(d["nfs_int_nfsesubst"]);
+                    servico.OutrasInformacoes = Convert.ToString(d["nfs_des_outrasinformacoes"]);
                     servico.Servico = new Assecontweb.Extend.Nfe.Servico.ServicoModel();
-                    servico.Servico.ItemListaServico = Convert.ToInt32(dr["nfs_int_listaservico"]);
-                    servico.Servico.CodigoCnae = Convert.ToString(dr["nfs_int_cnae"]);
-                    servico.Servico.CodigoTributacaoMunicipio = Convert.ToInt32(dr["nfs_int_tribmunici"]);
-                    servico.Servico.Discriminacao = Convert.ToString(dr["nfs_des_dicriminacao"]);
-                    servico.Servico.MunicipioPrestacaoServico = Convert.ToInt32(dr["nfs_int_municiprestserv"]);
+                    servico.Servico.ItemListaServico = Convert.ToInt32(d["nfs_int_listaservico"]);
+                    servico.Servico.CodigoCnae = Convert.ToString(d["nfs_int_cnae"]);
+                    servico.Servico.CodigoTributacaoMunicipio = Convert.ToInt32(d["nfs_int_tribmunici"]);
+                    servico.Servico.Discriminacao = Convert.ToString(d["nfs_des_dicriminacao"]);
+                    servico.Servico.MunicipioPrestacaoServico = Convert.ToInt32(d["nfs_int_municiprestserv"]);
                     servico.Servico.Valores = new Assecontweb.Extend.Nfe.Servico.ValoresModel();
-                    servico.Servico.Valores.ValorServicos = Convert.ToDouble(dr["nfs_num_vlrservico"]);
-                    servico.Servico.Valores.ValorDeducoes = Convert.ToDouble(dr["nfs_num_vlrdeducoes"]);
-                    servico.Servico.Valores.ValorCofins = Convert.ToDouble(dr["nfs_num_vlrcofins"]);
-                    servico.Servico.Valores.ValorInss = Convert.ToDouble(dr["nfs_num_vlrinss"]);
-                    servico.Servico.Valores.ValorIr = Convert.ToDouble(dr["nfs_num_vlrir"]);
-                    servico.Servico.Valores.ValorCsll = Convert.ToDouble(dr["nfs_num_vlrcsll"]);
-                    servico.Servico.Valores.IssRetido = Convert.ToDouble(dr["nfs_num_issretido"]);
-                    servico.Servico.Valores.OutrasRetencoes = Convert.ToDouble(dr["nfs_num_outrasretencoes"]);
-                    servico.Servico.Valores.BaseCalculo = Convert.ToDouble(dr["nfs_num_basecalculo"]);
-                    servico.Servico.Valores.Aliquota = Convert.ToDouble(dr["nfs_num_aliquota"]);
-                    servico.Servico.Valores.ValorLiquidoNfse = Convert.ToDouble(dr["nfs_num_vlrliquidonfe"]);
-                    servico.Servico.Valores.ValorIssRetido = Convert.ToDouble(dr["nfs_num_vlrissretido"]);
-                    servico.Servico.Valores.ValorIss = Convert.ToDouble(dr["nfs_num_vlriss"]);
-                    servico.Servico.Valores.DescontoCondicionado = Convert.ToDouble(dr["nfs_num_desccondicionado"]);
-                    servico.Servico.Valores.DescontoIncondicionado = Convert.ToDouble(dr["nfs_num_descincondicionado"]);
+                    servico.Servico.Valores.ValorServicos = Convert.ToDouble(d["nfs_num_vlrservico"]);
+                    servico.Servico.Valores.ValorDeducoes = Convert.ToDouble(d["nfs_num_vlrdeducoes"]);
+                    servico.Servico.Valores.ValorCofins = Convert.ToDouble(d["nfs_num_vlrcofins"]);
+                    servico.Servico.Valores.ValorInss = Convert.ToDouble(d["nfs_num_vlrinss"]);
+                    servico.Servico.Valores.ValorIr = Convert.ToDouble(d["nfs_num_vlrir"]);
+                    servico.Servico.Valores.ValorCsll = Convert.ToDouble(d["nfs_num_vlrcsll"]);
+                    servico.Servico.Valores.IssRetido = Convert.ToDouble(d["nfs_num_issretido"]);
+                    servico.Servico.Valores.OutrasRetencoes = Convert.ToDouble(d["nfs_num_outrasretencoes"]);
+                    servico.Servico.Valores.BaseCalculo = Convert.ToDouble(d["nfs_num_basecalculo"]);
+                    servico.Servico.Valores.Aliquota = Convert.ToDouble(d["nfs_num_aliquota"]);
+                    servico.Servico.Valores.ValorLiquidoNfse = Convert.ToDouble(d["nfs_num_vlrliquidonfe"]);
+                    servico.Servico.Valores.ValorIssRetido = Convert.ToDouble(d["nfs_num_vlrissretido"]);
+                    servico.Servico.Valores.ValorIss = Convert.ToDouble(d["nfs_num_vlriss"]);
+                    servico.Servico.Valores.DescontoCondicionado = Convert.ToDouble(d["nfs_num_desccondicionado"]);
+                    servico.Servico.Valores.DescontoIncondicionado = Convert.ToDouble(d["nfs_num_descincondicionado"]);
                     servico.OrgaoGerador = new Assecontweb.Extend.Nfe.Servico.OrgaoGeradorModel();
-                    servico.OrgaoGerador.CodigoMunicipio = Convert.ToString(dr["nfs_int_municipio"]);
-                    servico.OrgaoGerador.Uf = Convert.ToString(dr["nfs_des_ufmunicipio"]);
-                    //servico.nse_int_tomador = Convert.ToInt32(dr["nse_int_tomador"]);
+                    servico.OrgaoGerador.CodigoMunicipio = Convert.ToString(d["nfs_int_municipio"]);
+                    servico.OrgaoGerador.Uf = Convert.ToString(d["nfs_des_ufmunicipio"]);
+                    //servico.nse_int_tomador = Convert.ToInt32(d["nse_int_tomador"]);
 
                     servico.TomadorServico = new Assecontweb.Extend.Nfe.Servico.TomadorServicoModel();
                     servico.TomadorServico.IdentificadorTomador = new Assecontweb.Extend.Nfe.Servico.IdentificacaoModel();
                     servico.TomadorServico.IdentificadorTomador.CpfCnpj = new Assecontweb.Extend.Nfe.Servico.CpfCnpjModel();
-                    servico.TomadorServico.IdentificadorTomador.CpfCnpj.Cnpj = dr["CNPJ"] is DBNull ? Convert.ToString(dr["CPF"]) : Convert.ToString(dr["CNPJ"]);
+                    servico.TomadorServico.IdentificadorTomador.CpfCnpj.Cnpj = d["CNPJ"] is DBNull ? Convert.ToString(d["CPF"]) : Convert.ToString(d["CNPJ"]);
 
                     servicos.Add(servico);
                 }
 
                 //foreach (Assecontweb.Extend.Nfe.Servico.NotaFiscal s in servicos)
                 //{
-                //    dr.Close();
+                //    d.Close();
                 //    query = @"select (case when LEN(nse_des_cnpj) < 14 then nse_des_cnpj else null end) as CPF, 
 	               //                    (case when LEN(nse_des_cnpj) = 14 then nse_des_cnpj else null end) as CNPJ 
                 //                from SealNotaFiscalServicoEmpresa where nse_int_id = @nse_int_id";
@@ -698,15 +706,15 @@ namespace DAO
                 //    cmd = new SqlCommand(query, conn);
                 //    cmd.Parameters.AddWithValue("@nse_int_id", s.nse_int_tomador);
 
-                //    dr = cmd.ExecuteReader();
+                //    d = cmd.ExecuteReader();
 
                 //    Assecontweb.Extend.Nfe.Servico.TomadorServicoModel tomador;
-                //    while (dr.Read())
+                //    while (d.Read())
                 //    {
                 //        tomador = new Assecontweb.Extend.Nfe.Servico.TomadorServicoModel();
                 //        tomador.IdentificadorTomador = new Assecontweb.Extend.Nfe.Servico.IdentificacaoModel();
                 //        tomador.IdentificadorTomador.CpfCnpj = new Assecontweb.Extend.Nfe.Servico.CpfCnpjModel();
-                //        tomador.IdentificadorTomador.CpfCnpj.Cnpj = dr["CNPJ"] is DBNull ? Convert.ToString(dr["CPF"]) : Convert.ToString(dr["CNPJ"]);
+                //        tomador.IdentificadorTomador.CpfCnpj.Cnpj = d["CNPJ"] is DBNull ? Convert.ToString(d["CPF"]) : Convert.ToString(d["CNPJ"]);
 
                 //        s.TomadorServico = tomador;
                 //    }
@@ -720,14 +728,16 @@ namespace DAO
             }
             finally
             {
-                //dr.Close();
-                conn.Close();
+                //d.Close();
+                c.Close();
             }
             return retorno;
         }
 
         public bool SetServicos(List<Assecontweb.Extend.Nfe.Servico.NotaFiscal> servicos, out string erro)
         {
+            SqlConnection c = new SqlConnection(connectionstring);
+            DbDataReader d;
             string query = "";
             bool retorno = false;
             int i;
@@ -930,20 +940,22 @@ namespace DAO
             }
             finally
             {
-                //dr.Close();
-                conn.Close();
+                //d.Close();
+                c.Close();
             }
             return retorno;
         }
 
         public bool GetFechamentoDetail(DateTime inicio, DateTime fim, ref Detail detail, out string erro)
         {
+            SqlConnection c = new SqlConnection(connectionstring);
+            DbDataReader d;
             string query = "";
             bool retorno = true;
             erro = "OK";
             try
             {
-                conn.Open();
+                c.Open();
                 #region Query
                 query = @"declare @inicio datetime = @dt_inicio, 
 		                          @fim datetime = @dt_fim
@@ -1098,60 +1110,60 @@ namespace DAO
                             left join SealCliente f on d.nde_des_cnpj = f.cli_des_cnpj
 		                        ";
                 #endregion
-                cmd = new SqlCommand(query, conn);
+                cmd = new SqlCommand(query, c);
                 cmd.Parameters.AddWithValue("@dt_inicio", inicio);
                 cmd.Parameters.AddWithValue("@dt_fim", fim);
 
-                dr = cmd.ExecuteReader();
+                d = cmd.ExecuteReader();
 
-                while (dr.Read())
+                while (d.Read())
                 {
                     #region Getting Values 
                     //MSMSMSMSMSMSMS
-                    detail.DanfeFaturada.MSPrivado = Convert.ToDouble(dr["MSDanfePrivado"] is DBNull ? 0 : dr["MSDanfePrivado"]);
-                    detail.DanfeFaturada.MSLei = Convert.ToDouble(dr["MSDanfeLei"] is DBNull ? 0 : dr["MSDanfeLei"]);
-                    detail.DanfeFaturada.MSFatu = Convert.ToDouble(dr["MSDanfeFatu"] is DBNull ? 0 : dr["MSDanfeFatu"]);
+                    detail.DanfeFaturada.MSPrivado = Convert.ToDouble(d["MSDanfePrivado"] is DBNull ? 0 : d["MSDanfePrivado"]);
+                    detail.DanfeFaturada.MSLei = Convert.ToDouble(d["MSDanfeLei"] is DBNull ? 0 : d["MSDanfeLei"]);
+                    detail.DanfeFaturada.MSFatu = Convert.ToDouble(d["MSDanfeFatu"] is DBNull ? 0 : d["MSDanfeFatu"]);
 
-                    detail.DanfeFaturada.Recebidas.MSPrivado = Convert.ToDouble(dr["MSDanfePrivadoRec"] is DBNull ? 0 : dr["MSDanfePrivadoRec"]);
-                    detail.DanfeFaturada.Recebidas.MSLei = Convert.ToDouble(dr["MSDanfeLeiRec"] is DBNull ? 0 : dr["MSDanfeLeiRec"]);
-                    detail.DanfeFaturada.Recebidas.MSFatu = Convert.ToDouble(dr["MSDanfeFatuRec"] is DBNull ? 0 : dr["MSDanfeFatuRec"]);
+                    detail.DanfeFaturada.Recebidas.MSPrivado = Convert.ToDouble(d["MSDanfePrivadoRec"] is DBNull ? 0 : d["MSDanfePrivadoRec"]);
+                    detail.DanfeFaturada.Recebidas.MSLei = Convert.ToDouble(d["MSDanfeLeiRec"] is DBNull ? 0 : d["MSDanfeLeiRec"]);
+                    detail.DanfeFaturada.Recebidas.MSFatu = Convert.ToDouble(d["MSDanfeFatuRec"] is DBNull ? 0 : d["MSDanfeFatuRec"]);
 
-                    detail.DanfeFaturada.NRecebidas.MSPrivado = Convert.ToDouble(dr["MSDanfePrivadoNRec"] is DBNull ? 0 : dr["MSDanfePrivadoNRec"]);
-                    detail.DanfeFaturada.NRecebidas.MSLei = Convert.ToDouble(dr["MSDanfeLeiNRec"] is DBNull ? 0 : dr["MSDanfeLeiNRec"]);
-                    detail.DanfeFaturada.NRecebidas.MSFatu = Convert.ToDouble(dr["MSDanfeFatuNRec"] is DBNull ? 0 : dr["MSDanfeFatuNRec"]);
+                    detail.DanfeFaturada.NRecebidas.MSPrivado = Convert.ToDouble(d["MSDanfePrivadoNRec"] is DBNull ? 0 : d["MSDanfePrivadoNRec"]);
+                    detail.DanfeFaturada.NRecebidas.MSLei = Convert.ToDouble(d["MSDanfeLeiNRec"] is DBNull ? 0 : d["MSDanfeLeiNRec"]);
+                    detail.DanfeFaturada.NRecebidas.MSFatu = Convert.ToDouble(d["MSDanfeFatuNRec"] is DBNull ? 0 : d["MSDanfeFatuNRec"]);
 
-                    detail.DanfeFaturada.Contribuinte.MSPrivado = Convert.ToDouble(dr["MSDanfePrivadoContri"] is DBNull ? 0 : dr["MSDanfePrivadoContri"]);
-                    detail.DanfeFaturada.Contribuinte.MSLei = Convert.ToDouble(dr["MSDanfeLeiContri"] is DBNull ? 0 : dr["MSDanfeLeiContri"]);
-                    detail.DanfeFaturada.Contribuinte.MSFatu = Convert.ToDouble(dr["MSDanfeFatuContri"] is DBNull ? 0 : dr["MSDanfeFatuContri"]);
+                    detail.DanfeFaturada.Contribuinte.MSPrivado = Convert.ToDouble(d["MSDanfePrivadoContri"] is DBNull ? 0 : d["MSDanfePrivadoContri"]);
+                    detail.DanfeFaturada.Contribuinte.MSLei = Convert.ToDouble(d["MSDanfeLeiContri"] is DBNull ? 0 : d["MSDanfeLeiContri"]);
+                    detail.DanfeFaturada.Contribuinte.MSFatu = Convert.ToDouble(d["MSDanfeFatuContri"] is DBNull ? 0 : d["MSDanfeFatuContri"]);
 
-                    detail.DanfeFaturada.NContribuinte.MSPrivado = Convert.ToDouble(dr["MSDanfePrivadoNContri"] is DBNull ? 0 : dr["MSDanfePrivadoNContri"]);
-                    detail.DanfeFaturada.NContribuinte.MSLei = Convert.ToDouble(dr["MSDanfeLeiNContri"] is DBNull ? 0 : dr["MSDanfeLeiNContri"]);
-                    detail.DanfeFaturada.NContribuinte.MSFatu = Convert.ToDouble(dr["MSDanfeFatuNContri"] is DBNull ? 0 : dr["MSDanfeFatuNContri"]);
+                    detail.DanfeFaturada.NContribuinte.MSPrivado = Convert.ToDouble(d["MSDanfePrivadoNContri"] is DBNull ? 0 : d["MSDanfePrivadoNContri"]);
+                    detail.DanfeFaturada.NContribuinte.MSLei = Convert.ToDouble(d["MSDanfeLeiNContri"] is DBNull ? 0 : d["MSDanfeLeiNContri"]);
+                    detail.DanfeFaturada.NContribuinte.MSFatu = Convert.ToDouble(d["MSDanfeFatuNContri"] is DBNull ? 0 : d["MSDanfeFatuNContri"]);
 
                     //SPSPSPSPSPSPSP
-                    detail.DanfeFaturada.SPPrivado = Convert.ToDouble(dr["SPDanfePrivado"] is DBNull ? 0 : dr["SPDanfePrivado"]);
-                    detail.DanfeFaturada.SPLei = Convert.ToDouble(dr["SPDanfeLei"] is DBNull ? 0 : dr["SPDanfeLei"]);
-                    detail.DanfeFaturada.SPFatu = Convert.ToDouble(dr["SPDanfeFatu"] is DBNull ? 0 : dr["SPDanfeFatu"]);
+                    detail.DanfeFaturada.SPPrivado = Convert.ToDouble(d["SPDanfePrivado"] is DBNull ? 0 : d["SPDanfePrivado"]);
+                    detail.DanfeFaturada.SPLei = Convert.ToDouble(d["SPDanfeLei"] is DBNull ? 0 : d["SPDanfeLei"]);
+                    detail.DanfeFaturada.SPFatu = Convert.ToDouble(d["SPDanfeFatu"] is DBNull ? 0 : d["SPDanfeFatu"]);
 
-                    detail.DanfeFaturada.Recebidas.SPPrivado = Convert.ToDouble(dr["SPDanfePrivadoRec"] is DBNull ? 0 : dr["SPDanfePrivadoRec"]);
-                    detail.DanfeFaturada.Recebidas.SPLei = Convert.ToDouble(dr["SPDanfeLeiRec"] is DBNull ? 0 : dr["SPDanfeLeiRec"]);
-                    detail.DanfeFaturada.Recebidas.SPFatu = Convert.ToDouble(dr["SPDanfeFatuRec"] is DBNull ? 0 : dr["SPDanfeFatuRec"]);
+                    detail.DanfeFaturada.Recebidas.SPPrivado = Convert.ToDouble(d["SPDanfePrivadoRec"] is DBNull ? 0 : d["SPDanfePrivadoRec"]);
+                    detail.DanfeFaturada.Recebidas.SPLei = Convert.ToDouble(d["SPDanfeLeiRec"] is DBNull ? 0 : d["SPDanfeLeiRec"]);
+                    detail.DanfeFaturada.Recebidas.SPFatu = Convert.ToDouble(d["SPDanfeFatuRec"] is DBNull ? 0 : d["SPDanfeFatuRec"]);
 
-                    detail.DanfeFaturada.NRecebidas.SPPrivado = Convert.ToDouble(dr["SPDanfePrivadoNRec"] is DBNull ? 0 : dr["SPDanfePrivadoNRec"]);
-                    detail.DanfeFaturada.NRecebidas.SPLei = Convert.ToDouble(dr["SPDanfeLeiNRec"] is DBNull ? 0 : dr["SPDanfeLeiNRec"]);
-                    detail.DanfeFaturada.NRecebidas.SPFatu = Convert.ToDouble(dr["SPDanfeFatuNRec"] is DBNull ? 0 : dr["SPDanfeFatuNRec"]);
+                    detail.DanfeFaturada.NRecebidas.SPPrivado = Convert.ToDouble(d["SPDanfePrivadoNRec"] is DBNull ? 0 : d["SPDanfePrivadoNRec"]);
+                    detail.DanfeFaturada.NRecebidas.SPLei = Convert.ToDouble(d["SPDanfeLeiNRec"] is DBNull ? 0 : d["SPDanfeLeiNRec"]);
+                    detail.DanfeFaturada.NRecebidas.SPFatu = Convert.ToDouble(d["SPDanfeFatuNRec"] is DBNull ? 0 : d["SPDanfeFatuNRec"]);
 
-                    detail.DanfeFaturada.Contribuinte.SPPrivado = Convert.ToDouble(dr["SPDanfePrivadoContri"] is DBNull ? 0 : dr["SPDanfePrivadoContri"]);
-                    detail.DanfeFaturada.Contribuinte.SPLei = Convert.ToDouble(dr["SPDanfeLeiContri"] is DBNull ? 0 : dr["SPDanfeLeiContri"]);
-                    detail.DanfeFaturada.Contribuinte.SPFatu = Convert.ToDouble(dr["SPDanfeFatuContri"] is DBNull ? 0 : dr["SPDanfeFatuContri"]);
+                    detail.DanfeFaturada.Contribuinte.SPPrivado = Convert.ToDouble(d["SPDanfePrivadoContri"] is DBNull ? 0 : d["SPDanfePrivadoContri"]);
+                    detail.DanfeFaturada.Contribuinte.SPLei = Convert.ToDouble(d["SPDanfeLeiContri"] is DBNull ? 0 : d["SPDanfeLeiContri"]);
+                    detail.DanfeFaturada.Contribuinte.SPFatu = Convert.ToDouble(d["SPDanfeFatuContri"] is DBNull ? 0 : d["SPDanfeFatuContri"]);
 
-                    detail.DanfeFaturada.NContribuinte.SPPrivado = Convert.ToDouble(dr["SPDanfePrivadoNContri"] is DBNull ? 0 : dr["SPDanfePrivadoNContri"]);
-                    detail.DanfeFaturada.NContribuinte.SPLei = Convert.ToDouble(dr["SPDanfeLeiNContri"] is DBNull ? 0 : dr["SPDanfeLeiNContri"]);
-                    detail.DanfeFaturada.NContribuinte.SPFatu = Convert.ToDouble(dr["SPDanfeFatuNContri"] is DBNull ? 0 : dr["SPDanfeFatuNContri"]);
+                    detail.DanfeFaturada.NContribuinte.SPPrivado = Convert.ToDouble(d["SPDanfePrivadoNContri"] is DBNull ? 0 : d["SPDanfePrivadoNContri"]);
+                    detail.DanfeFaturada.NContribuinte.SPLei = Convert.ToDouble(d["SPDanfeLeiNContri"] is DBNull ? 0 : d["SPDanfeLeiNContri"]);
+                    detail.DanfeFaturada.NContribuinte.SPFatu = Convert.ToDouble(d["SPDanfeFatuNContri"] is DBNull ? 0 : d["SPDanfeFatuNContri"]);
                     #endregion
                 }
 
-                dr.Close();
+                d.Close();
                 #region Query
                 query = @"declare @inicio datetime = @dt_inicio, 
 		                          @fim datetime = @dt_fim
@@ -1319,58 +1331,59 @@ namespace DAO
                             left join SealCliente e on c.nse_des_cnpj = e.cli_des_cnpj
 		                        ";
                 #endregion
-                cmd = new SqlCommand(query, conn);
+                cmd = new SqlCommand(query, c);
                 cmd.Parameters.AddWithValue("@dt_inicio", inicio);
                 cmd.Parameters.AddWithValue("@dt_fim", fim);
 
-                dr = cmd.ExecuteReader();
+                d = cmd.ExecuteReader();
 
-                while (dr.Read())
+                while (d.Read())
                 {
                     #region Getting Values 
                     //MSMSMSMSMSMSMS
-                    detail.ServicoFaturado.MSPrivado = Convert.ToDouble(dr["MSServicoPrivado"] is DBNull ? 0 : dr["MSServicoPrivado"]);
-                    detail.ServicoFaturado.MSLei = Convert.ToDouble(dr["MSServicoLei"] is DBNull ? 0 : dr["MSServicoLei"]);
-                    detail.ServicoFaturado.MSFatu = Convert.ToDouble(dr["MSServicoFatu"] is DBNull ? 0 : dr["MSServicoFatu"]);
+                    detail.ServicoFaturado.MSPrivado = Convert.ToDouble(d["MSServicoPrivado"] is DBNull ? 0 : d["MSServicoPrivado"]);
+                    detail.ServicoFaturado.MSLei = Convert.ToDouble(d["MSServicoLei"] is DBNull ? 0 : d["MSServicoLei"]);
+                    detail.ServicoFaturado.MSFatu = Convert.ToDouble(d["MSServicoFatu"] is DBNull ? 0 : d["MSServicoFatu"]);
 
-                    detail.ServicoFaturado.Recebidas.MSPrivado = Convert.ToDouble(dr["MSServicoPrivadoRec"] is DBNull ? 0 : dr["MSServicoPrivadoRec"]);
-                    detail.ServicoFaturado.Recebidas.MSLei = Convert.ToDouble(dr["MSServicoLeiRec"] is DBNull ? 0 : dr["MSServicoLeiRec"]);
-                    detail.ServicoFaturado.Recebidas.MSFatu = Convert.ToDouble(dr["MSServicoFatuRec"] is DBNull ? 0 : dr["MSServicoFatuRec"]);
+                    detail.ServicoFaturado.Recebidas.MSPrivado = Convert.ToDouble(d["MSServicoPrivadoRec"] is DBNull ? 0 : d["MSServicoPrivadoRec"]);
+                    detail.ServicoFaturado.Recebidas.MSLei = Convert.ToDouble(d["MSServicoLeiRec"] is DBNull ? 0 : d["MSServicoLeiRec"]);
+                    detail.ServicoFaturado.Recebidas.MSFatu = Convert.ToDouble(d["MSServicoFatuRec"] is DBNull ? 0 : d["MSServicoFatuRec"]);
 
-                    detail.ServicoFaturado.NRecebidas.MSPrivado = Convert.ToDouble(dr["MSServicoPrivadoNRec"] is DBNull ? 0 : dr["MSServicoPrivadoNRec"]);
-                    detail.ServicoFaturado.NRecebidas.MSLei = Convert.ToDouble(dr["MSServicoLeiNRec"] is DBNull ? 0 : dr["MSServicoLeiNRec"]);
-                    detail.ServicoFaturado.NRecebidas.MSFatu = Convert.ToDouble(dr["MSServicoFatuNRec"] is DBNull ? 0 : dr["MSServicoFatuNRec"]);
+                    detail.ServicoFaturado.NRecebidas.MSPrivado = Convert.ToDouble(d["MSServicoPrivadoNRec"] is DBNull ? 0 : d["MSServicoPrivadoNRec"]);
+                    detail.ServicoFaturado.NRecebidas.MSLei = Convert.ToDouble(d["MSServicoLeiNRec"] is DBNull ? 0 : d["MSServicoLeiNRec"]);
+                    detail.ServicoFaturado.NRecebidas.MSFatu = Convert.ToDouble(d["MSServicoFatuNRec"] is DBNull ? 0 : d["MSServicoFatuNRec"]);
 
-                    detail.ServicoFaturado.Cumulativo.MSPrivado = Convert.ToDouble(dr["MSServicoPrivadoCum"] is DBNull ? 0 : dr["MSServicoPrivadoCum"]);
-                    detail.ServicoFaturado.Cumulativo.MSLei = Convert.ToDouble(dr["MSServicoLeiCum"] is DBNull ? 0 : dr["MSServicoLeiCum"]);
-                    detail.ServicoFaturado.Cumulativo.MSFatu = Convert.ToDouble(dr["MSServicoFatuCum"] is DBNull ? 0 : dr["MSServicoFatuCum"]);
+                    detail.ServicoFaturado.Cumulativo.MSPrivado = Convert.ToDouble(d["MSServicoPrivadoCum"] is DBNull ? 0 : d["MSServicoPrivadoCum"]);
+                    detail.ServicoFaturado.Cumulativo.MSLei = Convert.ToDouble(d["MSServicoLeiCum"] is DBNull ? 0 : d["MSServicoLeiCum"]);
+                    detail.ServicoFaturado.Cumulativo.MSFatu = Convert.ToDouble(d["MSServicoFatuCum"] is DBNull ? 0 : d["MSServicoFatuCum"]);
 
-                    detail.ServicoFaturado.NCumulativo.MSPrivado = Convert.ToDouble(dr["MSServicoPrivadoNCum"] is DBNull ? 0 : dr["MSServicoPrivadoNCum"]);
-                    detail.ServicoFaturado.NCumulativo.MSLei = Convert.ToDouble(dr["MSServicoLeiNCum"] is DBNull ? 0 : dr["MSServicoLeiNCum"]);
-                    detail.ServicoFaturado.NCumulativo.MSFatu = Convert.ToDouble(dr["MSServicoFatuNCum"] is DBNull ? 0 : dr["MSServicoFatuNCum"]);
+                    detail.ServicoFaturado.NCumulativo.MSPrivado = Convert.ToDouble(d["MSServicoPrivadoNCum"] is DBNull ? 0 : d["MSServicoPrivadoNCum"]);
+                    detail.ServicoFaturado.NCumulativo.MSLei = Convert.ToDouble(d["MSServicoLeiNCum"] is DBNull ? 0 : d["MSServicoLeiNCum"]);
+                    detail.ServicoFaturado.NCumulativo.MSFatu = Convert.ToDouble(d["MSServicoFatuNCum"] is DBNull ? 0 : d["MSServicoFatuNCum"]);
 
                     //SPSPSPSPSPSPSP
-                    detail.ServicoFaturado.SPPrivado = Convert.ToDouble(dr["SPServicoPrivado"] is DBNull ? 0 : dr["SPServicoPrivado"]);
-                    detail.ServicoFaturado.SPLei = Convert.ToDouble(dr["SPServicoLei"] is DBNull ? 0 : dr["SPServicoLei"]);
-                    detail.ServicoFaturado.SPFatu = Convert.ToDouble(dr["SPServicoFatu"] is DBNull ? 0 : dr["SPServicoFatu"]);
+                    detail.ServicoFaturado.SPPrivado = Convert.ToDouble(d["SPServicoPrivado"] is DBNull ? 0 : d["SPServicoPrivado"]);
+                    detail.ServicoFaturado.SPLei = Convert.ToDouble(d["SPServicoLei"] is DBNull ? 0 : d["SPServicoLei"]);
+                    detail.ServicoFaturado.SPFatu = Convert.ToDouble(d["SPServicoFatu"] is DBNull ? 0 : d["SPServicoFatu"]);
 
-                    detail.ServicoFaturado.Recebidas.SPPrivado = Convert.ToDouble(dr["SPServicoPrivadoRec"] is DBNull ? 0 : dr["SPServicoPrivadoRec"]);
-                    detail.ServicoFaturado.Recebidas.SPLei = Convert.ToDouble(dr["SPServicoLeiRec"] is DBNull ? 0 : dr["SPServicoLeiRec"]);
-                    detail.ServicoFaturado.Recebidas.SPFatu = Convert.ToDouble(dr["SPServicoFatuRec"] is DBNull ? 0 : dr["SPServicoFatuRec"]);
+                    detail.ServicoFaturado.Recebidas.SPPrivado = Convert.ToDouble(d["SPServicoPrivadoRec"] is DBNull ? 0 : d["SPServicoPrivadoRec"]);
+                    detail.ServicoFaturado.Recebidas.SPLei = Convert.ToDouble(d["SPServicoLeiRec"] is DBNull ? 0 : d["SPServicoLeiRec"]);
+                    detail.ServicoFaturado.Recebidas.SPFatu = Convert.ToDouble(d["SPServicoFatuRec"] is DBNull ? 0 : d["SPServicoFatuRec"]);
 
-                    detail.ServicoFaturado.NRecebidas.SPPrivado = Convert.ToDouble(dr["SPServicoPrivadoNRec"] is DBNull ? 0 : dr["SPServicoPrivadoNRec"]);
-                    detail.ServicoFaturado.NRecebidas.SPLei = Convert.ToDouble(dr["SPServicoLeiNRec"] is DBNull ? 0 : dr["SPServicoLeiNRec"]);
-                    detail.ServicoFaturado.NRecebidas.SPFatu = Convert.ToDouble(dr["SPServicoFatuNRec"] is DBNull ? 0 : dr["SPServicoFatuNRec"]);
+                    detail.ServicoFaturado.NRecebidas.SPPrivado = Convert.ToDouble(d["SPServicoPrivadoNRec"] is DBNull ? 0 : d["SPServicoPrivadoNRec"]);
+                    detail.ServicoFaturado.NRecebidas.SPLei = Convert.ToDouble(d["SPServicoLeiNRec"] is DBNull ? 0 : d["SPServicoLeiNRec"]);
+                    detail.ServicoFaturado.NRecebidas.SPFatu = Convert.ToDouble(d["SPServicoFatuNRec"] is DBNull ? 0 : d["SPServicoFatuNRec"]);
 
-                    detail.ServicoFaturado.Cumulativo.SPPrivado = Convert.ToDouble(dr["SPServicoPrivadoCum"] is DBNull ? 0 : dr["SPServicoPrivadoCum"]);
-                    detail.ServicoFaturado.Cumulativo.SPLei = Convert.ToDouble(dr["SPServicoLeiCum"] is DBNull ? 0 : dr["SPServicoLeiCum"]);
-                    detail.ServicoFaturado.Cumulativo.SPFatu = Convert.ToDouble(dr["SPServicoFatuCum"] is DBNull ? 0 : dr["SPServicoFatuCum"]);
+                    detail.ServicoFaturado.Cumulativo.SPPrivado = Convert.ToDouble(d["SPServicoPrivadoCum"] is DBNull ? 0 : d["SPServicoPrivadoCum"]);
+                    detail.ServicoFaturado.Cumulativo.SPLei = Convert.ToDouble(d["SPServicoLeiCum"] is DBNull ? 0 : d["SPServicoLeiCum"]);
+                    detail.ServicoFaturado.Cumulativo.SPFatu = Convert.ToDouble(d["SPServicoFatuCum"] is DBNull ? 0 : d["SPServicoFatuCum"]);
 
-                    detail.ServicoFaturado.NCumulativo.SPPrivado = Convert.ToDouble(dr["SPServicoPrivadoNCum"] is DBNull ? 0 : dr["SPServicoPrivadoNCum"]);
-                    detail.ServicoFaturado.NCumulativo.SPLei = Convert.ToDouble(dr["SPServicoLeiNCum"] is DBNull ? 0 : dr["SPServicoLeiNCum"]);
-                    detail.ServicoFaturado.NCumulativo.SPFatu = Convert.ToDouble(dr["SPServicoFatuNCum"] is DBNull ? 0 : dr["SPServicoFatuNCum"]);
+                    detail.ServicoFaturado.NCumulativo.SPPrivado = Convert.ToDouble(d["SPServicoPrivadoNCum"] is DBNull ? 0 : d["SPServicoPrivadoNCum"]);
+                    detail.ServicoFaturado.NCumulativo.SPLei = Convert.ToDouble(d["SPServicoLeiNCum"] is DBNull ? 0 : d["SPServicoLeiNCum"]);
+                    detail.ServicoFaturado.NCumulativo.SPFatu = Convert.ToDouble(d["SPServicoFatuNCum"] is DBNull ? 0 : d["SPServicoFatuNCum"]);
                     #endregion
                 }
+                d.Close();
             }
             catch (Exception ex)
             {
@@ -1379,21 +1392,22 @@ namespace DAO
             }
             finally
             {
-                dr.Close();
-                conn.Close();
+                c.Close();
             }
             return retorno;
         }
 
         public bool GetFechamentoConsolidado(DateTime inicio, DateTime fim, ref Consolidado conso, out string erro)
         {
+            SqlConnection c = new SqlConnection(connectionstring);
+            DbDataReader d;
             string query = "";
             bool retorno = true;
             erro = "OK";
             try
             {
                 #region Danfes Não Cumulativas
-                conn.Open();
+                c.Open();
                 #region Query Normais E Exclusão
                 query = @"declare @inicio datetime = @dt_inicio, 
 		                          @fim datetime = @dt_fim
@@ -1402,31 +1416,31 @@ namespace DAO
 	                                sum(case when c.nde_des_uf = 'SP' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) 
 					                                and (e.cli_int_id is not null)  
-				                            then a.ndi_num_vProd else 0 end) as  DanfeSPNormais, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as  DanfeSPNormais, 
 	                                sum(case when c.nde_des_uf = 'MS' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) 
 					                                and (e.cli_int_id is not null)
-				                            then a.ndi_num_vProd else 0 end) as DanfeMSNormais, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as DanfeMSNormais, 
 	                                sum(case when (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) 
 					                                and (e.cli_int_id is not null)
-				                            then a.ndi_num_vProd else 0 end) as DanfeTotNormais, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as DanfeTotNormais, 
 		                            --(-) Exclusão
 	                                sum(case when c.nde_des_uf = 'SP' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (e.cli_int_id is not null and (e.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718'))) and 
 					                                (f.nfd_int_id is null or f.crb_dt_recebimento > @fim)
-				                            then a.ndi_num_vProd else 0 end) as DanfeSPExclusao, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as DanfeSPExclusao, 
 	                                sum(case when c.nde_des_uf = 'MS' and (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (e.cli_int_id is not null and (e.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718'))) and 
 					                                (f.nfd_int_id is null or f.crb_dt_recebimento > @fim)
-				                            then a.ndi_num_vProd else 0 end) as DanfeMSExclusao, 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as DanfeMSExclusao, 
 	                                sum(case when (b.nfd_dt_dhEmi >= @inicio and b.nfd_dt_dhEmi <= @fim) and 
 					                                a.ndi_int_cfop in (6102, 5102, 6108, 6119, 5119, 6120, 5120, 6922, 5922, 5405, 6405, 6403) and 
 					                                (e.cli_int_id is not null and (e.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718'))) and 
 					                                (f.nfd_int_id is null or f.crb_dt_recebimento > @fim)
-				                            then a.ndi_num_vProd else 0 end) as DanfeTotExclusao 
+				                            then a.ndi_num_vProd + isnull(a.ndi_num_vFrete, 0) else 0 end) as DanfeTotExclusao 
                             from SealNotaFiscalDanfeItem a
                             inner join SealNotaFiscalDanfe b on a.nfd_int_id = b.nfd_int_id
                             left join SealNotaFiscalDanfeEmpresa c on b.nde_int_emit = c.nde_int_id
@@ -1436,32 +1450,32 @@ namespace DAO
 	                            select aa.nfd_int_id, ab.crb_dt_recebimento 
 	                            from SealNotaFiscalRecebida aa 
 	                            inner join SealContaReceber ab on aa.nfr_int_id = ab.nfr_int_id 
-	                            where b.nfd_int_id = aa.nfd_int_id and (ab.crb_dt_recebimento < @fim)
+	                            where b.nfd_int_id = aa.nfd_int_id and (ab.crb_dt_recebimento > @fim)
 	                            group by aa.nfd_int_id, ab.crb_dt_recebimento 
                             ) f 
 		                        ";
                 #endregion
-                cmd = new SqlCommand(query, conn);
+                cmd = new SqlCommand(query, c);
                 cmd.Parameters.AddWithValue("@dt_inicio", inicio);
                 cmd.Parameters.AddWithValue("@dt_fim", fim);
 
-                dr = cmd.ExecuteReader();
+                d = cmd.ExecuteReader();
 
-                while (dr.Read())
+                while (d.Read())
                 {
                     #region Getting Values 
                     //Danfes Não Cumulativos
-                    conso.DanfeConsolidado.Normais.SP = Convert.ToDouble(dr["DanfeSPNormais"] is DBNull ? 0 : dr["DanfeSPNormais"]);
-                    conso.DanfeConsolidado.Normais.MS = Convert.ToDouble(dr["DanfeMSNormais"] is DBNull ? 0 : dr["DanfeMSNormais"]);
-                    conso.DanfeConsolidado.Normais.Tot = Convert.ToDouble(dr["DanfeTotNormais"] is DBNull ? 0 : dr["DanfeTotNormais"]);
+                    conso.DanfeConsolidado.Normais.SP = Convert.ToDouble(d["DanfeSPNormais"] is DBNull ? 0 : d["DanfeSPNormais"]);
+                    conso.DanfeConsolidado.Normais.MS = Convert.ToDouble(d["DanfeMSNormais"] is DBNull ? 0 : d["DanfeMSNormais"]);
+                    conso.DanfeConsolidado.Normais.Tot = Convert.ToDouble(d["DanfeTotNormais"] is DBNull ? 0 : d["DanfeTotNormais"]);
 
-                    conso.DanfeConsolidado.Exclusao.SP = Convert.ToDouble(dr["DanfeSPExclusao"] is DBNull ? 0 : dr["DanfeSPExclusao"]);
-                    conso.DanfeConsolidado.Exclusao.MS = Convert.ToDouble(dr["DanfeMSExclusao"] is DBNull ? 0 : dr["DanfeMSExclusao"]);
-                    conso.DanfeConsolidado.Exclusao.Tot = Convert.ToDouble(dr["DanfeTotExclusao"] is DBNull ? 0 : dr["DanfeTotExclusao"]);
+                    conso.DanfeConsolidado.Exclusao.SP = Convert.ToDouble(d["DanfeSPExclusao"] is DBNull ? 0 : d["DanfeSPExclusao"]);
+                    conso.DanfeConsolidado.Exclusao.MS = Convert.ToDouble(d["DanfeMSExclusao"] is DBNull ? 0 : d["DanfeMSExclusao"]);
+                    conso.DanfeConsolidado.Exclusao.Tot = Convert.ToDouble(d["DanfeTotExclusao"] is DBNull ? 0 : d["DanfeTotExclusao"]);
                     #endregion
                 }
 
-                dr.Close();
+                d.Close();
                 #region Query Adição
                 query = @"declare @inicio datetime = @dt_inicio, 
 		                          @fim datetime = @dt_fim
@@ -1469,36 +1483,36 @@ namespace DAO
 	                                --(+) Adição Receita Diferida
 	                                sum(case when e.nde_des_uf = 'SP' 
 				                            then a.crb_num_valorrecebido else 0 end) as DanfeSPAdicao, 
-	                                sum(case when LTRIM(RTRIM(e.nde_des_uf)) = 'MS' 
+	                                sum(case when e.nde_des_uf = 'MS' 
 				                            then a.crb_num_valorrecebido else 0 end) as DanfeMSAdicao, 
 	                                sum(a.crb_num_valorrecebido) as DanfeTotAdicao
                             from SealContaReceber a 
                             left join SealNotaFiscalRecebida b on a.nfr_int_id = b.nfr_int_id 
                             left join SealNotaFiscalDanfe c on b.nfd_int_id = c.nfd_int_id
                             left join SealNotaFiscalDanfeEmpresa e on c.nde_int_emit = e.nde_int_id
-                            left join SealNotaFiscalDanfeEmpresa f on c.nde_int_dest = f.nde_int_id
+                            left join SealNotaFiscalDanfeEmpresa f on c.nde_int_dest = f.nde_int_id  
                             left join SealCliente g on f.nde_des_cnpj = g.cli_des_cnpj
-                            where (a.crb_dt_recebimento >= @inicio and a.crb_dt_recebimento <= @fim) and 
-                            (g.cli_int_id is not null and (g.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718')))
+                            where (a.crb_dt_recebimento between @inicio and @fim) and 
+                            (g.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718'))
 		                        ";
                 #endregion
-                cmd = new SqlCommand(query, conn);
+                cmd = new SqlCommand(query, c);
                 cmd.Parameters.AddWithValue("@dt_inicio", inicio);
                 cmd.Parameters.AddWithValue("@dt_fim", fim);
 
-                dr = cmd.ExecuteReader();
+                d = cmd.ExecuteReader();
 
-                while (dr.Read())
+                while (d.Read())
                 {
                     #region Getting Values 
                     //Danfes Não Cumulativos
-                    conso.DanfeConsolidado.Adicao.SP = Convert.ToDouble(dr["DanfeSPAdicao"] is DBNull ? 0 : dr["DanfeSPAdicao"]);
-                    conso.DanfeConsolidado.Adicao.MS = Convert.ToDouble(dr["DanfeMSAdicao"] is DBNull ? 0 : dr["DanfeMSAdicao"]);
-                    conso.DanfeConsolidado.Adicao.Tot = Convert.ToDouble(dr["DanfeTotAdicao"] is DBNull ? 0 : dr["DanfeTotAdicao"]);
+                    conso.DanfeConsolidado.Adicao.SP = Convert.ToDouble(d["DanfeSPAdicao"] is DBNull ? 0 : d["DanfeSPAdicao"]);
+                    conso.DanfeConsolidado.Adicao.MS = Convert.ToDouble(d["DanfeMSAdicao"] is DBNull ? 0 : d["DanfeMSAdicao"]);
+                    conso.DanfeConsolidado.Adicao.Tot = Convert.ToDouble(d["DanfeTotAdicao"] is DBNull ? 0 : d["DanfeTotAdicao"]);
                     #endregion
                 }
 
-                dr.Close();
+                d.Close();
                 #endregion
 
                 #region Serviços 
@@ -1563,132 +1577,127 @@ namespace DAO
                 query = @"declare @inicio datetime = @dt_inicio, 
 		                          @fim datetime = @dt_fim
                             select  --Serviços Não Cumulativo
-		                        --(+) Normais
-	                            SUM(case when ((a.nfs_des_ufmunicipio = 'SP' and b.nse_int_id is null) or a.nse_int_prestador is null) and 
-					                            (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
-					                            (e.cli_int_id is not null) and 
-					                            --(a.nfs_int_listaservico in (01880, 02119, 02135, 02186, 02194, 03093, 03115, 03450, 03468, 05991, 06009, 07285, 07315, 07323, 07331, 07366, 07390, 07412, 07439, 07447, 07455, 07471, 07498, 02496))
-					                            (a.nfs_int_listaservico not in (702, 105, 107))
-			                            then a.nfs_num_vlrservico else 0 end) as NCumSPNormais, 
-	                            SUM(case when (b.nse_des_estado = 'MS' and b.nse_int_id is not null) and 
-					                            (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
-					                            (e.cli_int_id is not null) and 
-					                            --(a.nfs_int_listaservico in (1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703))
-					                            (a.nfs_int_listaservico not in (702, 105, 107))
-			                            then a.nfs_num_vlrservico else 0 end) as NCumMSNormais, 
-	                            SUM(case when (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
-					                            (e.cli_int_id is not null) and 
-					                            --(a.nfs_int_listaservico in (1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703, 01880, 02119, 02135, 02186, 02194, 03093, 03115, 03450, 03468, 05991, 06009, 07285, 07315, 07323, 07331, 07366, 07390, 07412, 07439, 07447, 07455, 07471, 07498, 02496))
-					                            (a.nfs_int_listaservico not in (702, 105, 107))
-			                            then a.nfs_num_vlrservico else 0 end) as NCumTotNormais, 
-	                            --Serviços Cumulativo
-		                        --(+) Normais
-	                            SUM(case when ((a.nfs_des_ufmunicipio = 'SP' and b.nse_int_id is null) or a.nse_int_prestador is null) and 
-					                            (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
-					                            (e.cli_int_id is not null) and 
-					                            --(a.nfs_int_listaservico in (1015, 1023, 2682, 2798, 2917, 2918, 2690, 2879))
-					                            (a.nfs_int_listaservico in (702, 105, 107))
-			                            then a.nfs_num_vlrservico else 0 end) as CumSPNormais, 
-	                            SUM(case when (b.nse_des_estado = 'MS' and b.nse_int_id is not null) and 
-					                            (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
-					                            (e.cli_int_id is not null) and 
-					                            --(a.nfs_int_listaservico in (702, 103, 105, 107, 104, 106))
-					                            (a.nfs_int_listaservico in (702, 105, 107))
-			                            then a.nfs_num_vlrservico else 0 end) as CumMSNormais, 
-	                            SUM(case when (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
-					                            (e.cli_int_id is not null) and 
-					                            --(a.nfs_int_listaservico in (702, 103, 105, 107, 104, 106, 1015, 1023, 2682, 2798, 2917, 2918, 2690, 2879))
-					                            (a.nfs_int_listaservico in (702, 105, 107))
-			                            then a.nfs_num_vlrservico else 0 end) as CumTotNormais
-                        from SealNotaFiscalServico a
-                        left join SealNotaFiscalServicoEmpresa b on a.nse_int_prestador = b.nse_int_id 
-                        left join SealNotaFiscalServicoEmpresa c on a.nse_int_tomador = c.nse_int_id 
-                        left join SealCliente e on c.nse_des_cnpj = e.cli_des_cnpj
-                        outer apply(
-	                        select aa.nfs_int_id, ab.crb_dt_recebimento 
-	                        from SealNotaFiscalRecebida aa 
-	                        inner join SealContaReceber ab on aa.nfr_int_id = ab.nfr_int_id 
-	                        inner join SealCliente ac on ab.crb_des_cnpjorigem = ac.cli_des_cnpj 
-	                        where a.nfs_int_id = aa.nfs_int_id and (ab.crb_dt_recebimento > @fim) and 
-		                            (ab.crb_dt_emissao >= @inicio and ab.crb_dt_emissao <= @fim) and 
-		                            (ac.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718'))
-	                        group by aa.nfs_int_id, ab.crb_dt_recebimento 
-                        ) f 
+		                            --(+) Normais
+	                                SUM(case when ((a.nfs_des_ufmunicipio = 'SP' and b.nse_int_id is null) or a.nse_int_prestador is null) and 
+					                                (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
+					                                (e.cli_int_id is not null) and 
+					                                (a.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))
+			                                then a.nfs_num_vlrservico else 0 end) as NCumSPNormais, 
+	                                SUM(case when (b.nse_des_estado = 'MS' and b.nse_int_id is not null) and 
+					                                (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
+					                                (e.cli_int_id is not null) and 
+					                                (a.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))
+			                                then a.nfs_num_vlrservico else 0 end) as NCumMSNormais, 
+	                                SUM(case when (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
+					                                (e.cli_int_id is not null) and 
+					                                (a.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))
+			                                then a.nfs_num_vlrservico else 0 end) as NCumTotNormais, 
+	                                --Serviços Cumulativo
+		                            --(+) Normais
+	                                SUM(case when ((a.nfs_des_ufmunicipio = 'SP' and b.nse_int_id is null) or a.nse_int_prestador is null) and 
+					                                (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
+					                                (e.cli_int_id is not null) and 
+					                                (a.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))
+			                                then a.nfs_num_vlrservico else 0 end) as CumSPNormais, 
+	                                SUM(case when (b.nse_des_estado = 'MS' and b.nse_int_id is not null) and 
+					                                (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
+					                                (e.cli_int_id is not null) and 
+					                                (a.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))
+			                                then a.nfs_num_vlrservico else 0 end) as CumMSNormais, 
+	                                SUM(case when (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
+					                                (e.cli_int_id is not null) and 
+					                                (a.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))
+			                                then a.nfs_num_vlrservico else 0 end) as CumTotNormais
+                            from SealNotaFiscalServico a
+                            left join SealNotaFiscalServicoEmpresa b on a.nse_int_prestador = b.nse_int_id 
+                            left join SealNotaFiscalServicoEmpresa c on a.nse_int_tomador = c.nse_int_id 
+                            left join SealCliente e on c.nse_des_cnpj = e.cli_des_cnpj
+                            outer apply(
+	                            select aa.nfs_int_id, ab.crb_dt_recebimento 
+	                            from SealNotaFiscalRecebida aa 
+	                            inner join SealContaReceber ab on aa.nfr_int_id = ab.nfr_int_id 
+	                            inner join SealCliente ac on ab.crb_des_cnpjorigem = ac.cli_des_cnpj 
+	                            where a.nfs_int_id = aa.nfs_int_id and (ab.crb_dt_recebimento > @fim) and 
+		                                (ab.crb_dt_emissao >= @inicio and ab.crb_dt_emissao <= @fim) and 
+		                                (ac.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718'))
+	                            group by aa.nfs_int_id, ab.crb_dt_recebimento 
+                            ) f 
 		                        ";
                 #endregion
-                cmd = new SqlCommand(query, conn);
+                cmd = new SqlCommand(query, c);
                 cmd.Parameters.AddWithValue("@dt_inicio", inicio);
                 cmd.Parameters.AddWithValue("@dt_fim", fim);
 
-                dr = cmd.ExecuteReader();
+                d = cmd.ExecuteReader();
 
-                while (dr.Read())
+                while (d.Read())
                 {
                     #region Getting Values 
                     //Servicos Não Cumulativos
-                    conso.ServicoConsuNCum.Normais.SP = Convert.ToDouble(dr["NCumSPNormais"] is DBNull ? 0 : dr["NCumSPNormais"]);
-                    conso.ServicoConsuNCum.Normais.MS = Convert.ToDouble(dr["NCumMSNormais"] is DBNull ? 0 : dr["NCumMSNormais"]);
-                    conso.ServicoConsuNCum.Normais.Tot = Convert.ToDouble(dr["NCumTotNormais"] is DBNull ? 0 : dr["NCumTotNormais"]);
+                    conso.ServicoConsuNCum.Normais.SP = Convert.ToDouble(d["NCumSPNormais"] is DBNull ? 0 : d["NCumSPNormais"]);
+                    conso.ServicoConsuNCum.Normais.MS = Convert.ToDouble(d["NCumMSNormais"] is DBNull ? 0 : d["NCumMSNormais"]);
+                    conso.ServicoConsuNCum.Normais.Tot = Convert.ToDouble(d["NCumTotNormais"] is DBNull ? 0 : d["NCumTotNormais"]);
 
                     //Servicos Cumulativos
-                    conso.ServicoConsuCum.Normais.SP = Convert.ToDouble(dr["CumSPNormais"] is DBNull ? 0 : dr["CumSPNormais"]);
-                    conso.ServicoConsuCum.Normais.MS = Convert.ToDouble(dr["CumMSNormais"] is DBNull ? 0 : dr["CumMSNormais"]);
-                    conso.ServicoConsuCum.Normais.Tot = Convert.ToDouble(dr["CumTotNormais"] is DBNull ? 0 : dr["CumTotNormais"]);
+                    conso.ServicoConsuCum.Normais.SP = Convert.ToDouble(d["CumSPNormais"] is DBNull ? 0 : d["CumSPNormais"]);
+                    conso.ServicoConsuCum.Normais.MS = Convert.ToDouble(d["CumMSNormais"] is DBNull ? 0 : d["CumMSNormais"]);
+                    conso.ServicoConsuCum.Normais.Tot = Convert.ToDouble(d["CumTotNormais"] is DBNull ? 0 : d["CumTotNormais"]);
                     #endregion
                 }
 
-                dr.Close();
+                d.Close();
                 #region Query Exclusão
                 query = @"declare @inicio datetime = @dt_inicio, 
 		                          @fim datetime = @dt_fim
                             select  --Serviços Não Cumulativo
 		                            --(-) Exclusao Receitas Diferidas
-	                                SUM(case when (a.nfs_int_listaservico in (1880, 2119, 2135, 2186, 2194, 3093, 3115, 3450, 3468, 5991, 6009, 7285, 7315, 7323, 
-						                            7331, 7366, 7390, 7412, 7439, 7447, 7455, 7471, 7498, 2496))
+	                                SUM(case when ((a.nfs_des_ufmunicipio = 'SP' and b.nse_int_id is null) or a.nse_int_prestador is null) and 
+					                                (a.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))
 			                                    then (case when f.nfs_int_id is null or a.nfs_num_vlrservico = isnull(f.crb_num_valorrecebido, 0)
-							                               then a.nfs_num_vlrservico 
-							                               when a.nfs_num_vlrservico > isnull(f.crb_num_valorrecebido, 0)
-							                               then a.nfs_num_vlrservico - isnull(f.crb_num_valorrecebido, 0)
-							                               else 0 end) 
+							                                then a.nfs_num_vlrservico 
+							                                when a.nfs_num_vlrservico > isnull(f.crb_num_valorrecebido, 0)
+							                                then a.nfs_num_vlrservico - isnull(f.crb_num_valorrecebido, 0)
+							                                else 0 end) 
 				                                else 0 end) as NCumSPExclusao, 
-	                                SUM(case when (a.nfs_int_listaservico in (1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703))
+	                                SUM(case when a.nfs_des_ufmunicipio = 'MS' and 
+					                                (a.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))
 			                                    then (case when f.nfs_int_id is null or a.nfs_num_vlrservico = isnull(f.crb_num_valorrecebido, 0)
-							                               then a.nfs_num_vlrservico 
-							                               when a.nfs_num_vlrservico > isnull(f.crb_num_valorrecebido, 0)
-							                               then a.nfs_num_vlrservico - isnull(f.crb_num_valorrecebido, 0)
-							                               else 0 end) 
+							                                then a.nfs_num_vlrservico 
+							                                when a.nfs_num_vlrservico > isnull(f.crb_num_valorrecebido, 0)
+							                                then a.nfs_num_vlrservico - isnull(f.crb_num_valorrecebido, 0)
+							                                else 0 end) 
 				                                else 0 end) as NCumMSExclusao, 
-	                                SUM(case when (a.nfs_int_listaservico in (1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703, 
-					                                1880, 2119, 2135, 2186, 2194, 3093, 3115, 3450, 3468, 5991, 6009, 7285, 7315, 7323, 
-						                            7331, 7366, 7390, 7412, 7439, 7447, 7455, 7471, 7498, 2496))
+	                                SUM(case when (a.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))
 			                                    then (case when f.nfs_int_id is null or a.nfs_num_vlrservico = isnull(f.crb_num_valorrecebido, 0)
-							                               then a.nfs_num_vlrservico 
-							                               when a.nfs_num_vlrservico > isnull(f.crb_num_valorrecebido, 0)
-							                               then a.nfs_num_vlrservico - isnull(f.crb_num_valorrecebido, 0)
-							                               else 0 end) 
+							                                then a.nfs_num_vlrservico 
+							                                when a.nfs_num_vlrservico > isnull(f.crb_num_valorrecebido, 0)
+							                                then a.nfs_num_vlrservico - isnull(f.crb_num_valorrecebido, 0)
+							                                else 0 end) 
 				                                else 0 end) as NCumTotExclusao, 
 		                            --Serviços Cumulativo
 	                                --(-) Exclusao Receitas Diferidas
-	                                SUM(case when (a.nfs_int_listaservico in (1015, 1023, 2682, 2798, 2917, 2918, 2690, 2879))
+	                                SUM(case when ((a.nfs_des_ufmunicipio = 'SP' and b.nse_int_id is null) or a.nse_int_prestador is null) and 
+					                                (a.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))
 			                                    then (case when f.nfs_int_id is null or a.nfs_num_vlrservico = isnull(f.crb_num_valorrecebido, 0)
-							                               then a.nfs_num_vlrservico 
-							                               when a.nfs_num_vlrservico > isnull(f.crb_num_valorrecebido, 0)
-							                               then a.nfs_num_vlrservico - isnull(f.crb_num_valorrecebido, 0)
-							                               else 0 end) 
+							                                then a.nfs_num_vlrservico 
+							                                when a.nfs_num_vlrservico > isnull(f.crb_num_valorrecebido, 0)
+							                                then a.nfs_num_vlrservico - isnull(f.crb_num_valorrecebido, 0)
+							                                else 0 end) 
 				                                else 0 end) as CumSPExclusao, 
-	                                SUM(case when (a.nfs_int_listaservico in (702, 103, 105, 107, 104, 106))
+	                                SUM(case when (a.nfs_des_ufmunicipio = 'MS') and 
+					                                (a.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))
 			                                    then (case when f.nfs_int_id is null or a.nfs_num_vlrservico = isnull(f.crb_num_valorrecebido, 0)
-							                               then a.nfs_num_vlrservico 
-							                               when a.nfs_num_vlrservico > isnull(f.crb_num_valorrecebido, 0)
-							                               then a.nfs_num_vlrservico - isnull(f.crb_num_valorrecebido, 0)
-							                               else 0 end) 
+							                                then a.nfs_num_vlrservico 
+							                                when a.nfs_num_vlrservico > isnull(f.crb_num_valorrecebido, 0)
+							                                then a.nfs_num_vlrservico - isnull(f.crb_num_valorrecebido, 0)
+							                                else 0 end) 
 				                                else 0 end) as CumMSExclusao, 
-	                                SUM(case when (a.nfs_int_listaservico in (702, 103, 105, 107, 104, 106, 1015, 1023, 2682, 2798, 2917, 2918, 2690, 2879))
+	                                SUM(case when (a.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))
 			                                    then (case when f.nfs_int_id is null or a.nfs_num_vlrservico = isnull(f.crb_num_valorrecebido, 0)
-							                               then a.nfs_num_vlrservico 
-							                               when a.nfs_num_vlrservico > isnull(f.crb_num_valorrecebido, 0)
-							                               then a.nfs_num_vlrservico - isnull(f.crb_num_valorrecebido, 0)
-							                               else 0 end) 
+							                                then a.nfs_num_vlrservico 
+							                                when a.nfs_num_vlrservico > isnull(f.crb_num_valorrecebido, 0)
+							                                then a.nfs_num_vlrservico - isnull(f.crb_num_valorrecebido, 0)
+							                                else 0 end) 
 				                                else 0 end) as CumTotExclusao
                             from SealNotaFiscalServico a
                             left join SealNotaFiscalServicoEmpresa b on a.nse_int_prestador = b.nse_int_id 
@@ -1699,221 +1708,258 @@ namespace DAO
 	                            from SealNotaFiscalRecebida aa 
 	                            inner join SealContaReceber ab on aa.nfr_int_id = ab.nfr_int_id 
 	                            inner join SealCliente ac on ab.crb_des_cnpjorigem = ac.cli_des_cnpj 
-	                            where aa.nfs_int_id = a.nfs_int_id --and --(ab.crb_dt_recebimento > @fim) and 
+	                            where aa.nfs_int_id = a.nfs_int_id and (ab.crb_dt_recebimento > @fim) --and 
 		                                --(ab.crb_dt_emissao >= @inicio and ab.crb_dt_emissao <= @fim) and 
 		                                --(ac.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718'))
 	                            group by aa.nfs_int_id, ab.crb_dt_recebimento, ab.crb_num_valor 
                             ) f 
                             where (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
-	                                (e.cli_int_id is not null and (e.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718'))) and 
-	                                (f.nfs_int_id is null or f.crb_dt_recebimento > @fim or 
-	                                (a.nfs_num_vlrservico > f.crb_num_valorrecebido and 
-	                                (f.crb_dt_recebimento >= @inicio and f.crb_dt_recebimento <= @fim))) 
+	                                (e.cli_int_id is not null and (e.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718'))) --and 
+	                                --(f.nfs_int_id is null or f.crb_dt_recebimento > @fim) or 
+	                                --((a.nfs_num_vlrservico > f.crb_num_valorrecebido and 
+	                                --(f.crb_dt_recebimento >= @inicio and f.crb_dt_recebimento <= @fim))) 
 		                        ";
                 #endregion
-                cmd = new SqlCommand(query, conn);
+                cmd = new SqlCommand(query, c);
                 cmd.Parameters.AddWithValue("@dt_inicio", inicio);
                 cmd.Parameters.AddWithValue("@dt_fim", fim);
 
-                dr = cmd.ExecuteReader();
+                d = cmd.ExecuteReader();
 
-                while (dr.Read())
+                while (d.Read())
                 {
                     #region Getting Values 
                     //Servicos Não Cumulativos
-                    conso.ServicoConsuNCum.Exclusao.SP = Convert.ToDouble(dr["NCumSPExclusao"] is DBNull ? 0 : dr["NCumSPExclusao"]);
-                    conso.ServicoConsuNCum.Exclusao.MS = Convert.ToDouble(dr["NCumMSExclusao"] is DBNull ? 0 : dr["NCumMSExclusao"]);
-                    conso.ServicoConsuNCum.Exclusao.Tot = Convert.ToDouble(dr["NCumTotExclusao"] is DBNull ? 0 : dr["NCumTotExclusao"]);
+                    conso.ServicoConsuNCum.Exclusao.SP = Convert.ToDouble(d["NCumSPExclusao"] is DBNull ? 0 : d["NCumSPExclusao"]);
+                    conso.ServicoConsuNCum.Exclusao.MS = Convert.ToDouble(d["NCumMSExclusao"] is DBNull ? 0 : d["NCumMSExclusao"]);
+                    conso.ServicoConsuNCum.Exclusao.Tot = Convert.ToDouble(d["NCumTotExclusao"] is DBNull ? 0 : d["NCumTotExclusao"]);
 
                     //Servicos Cumulativos
-                    conso.ServicoConsuCum.Exclusao.SP = Convert.ToDouble(dr["CumSPExclusao"] is DBNull ? 0 : dr["CumSPExclusao"]);
-                    conso.ServicoConsuCum.Exclusao.MS = Convert.ToDouble(dr["CumMSExclusao"] is DBNull ? 0 : dr["CumMSExclusao"]);
-                    conso.ServicoConsuCum.Exclusao.Tot = Convert.ToDouble(dr["CumTotExclusao"] is DBNull ? 0 : dr["CumTotExclusao"]);
+                    conso.ServicoConsuCum.Exclusao.SP = Convert.ToDouble(d["CumSPExclusao"] is DBNull ? 0 : d["CumSPExclusao"]);
+                    conso.ServicoConsuCum.Exclusao.MS = Convert.ToDouble(d["CumMSExclusao"] is DBNull ? 0 : d["CumMSExclusao"]);
+                    conso.ServicoConsuCum.Exclusao.Tot = Convert.ToDouble(d["CumTotExclusao"] is DBNull ? 0 : d["CumTotExclusao"]);
                     #endregion
                 }
 
-                dr.Close();
+                d.Close();
                 #region Query Adição
                 query = @"declare @inicio datetime = @dt_inicio, 
 		                          @fim datetime = @dt_fim
                             select  --Serviços Não Cumulativo
 		                            --(+) Adição Receita Diferida
-	                                SUM(case when ((c.nfs_des_ufmunicipio = 'SP' and e.nse_int_id is null) or c.nse_int_prestador is null) and 
-					                                (c.nfs_int_listaservico in (01880, 02119, 02135, 02186, 02194, 03093, 
-					                                03115, 03450, 03468, 05991, 06009, 07285, 07315, 07323, 07331, 07366, 
-					                                07390, 07412, 07439, 07447, 07455, 07471, 07498, 02496))
+	                                SUM(case when (c.nse_int_prestador is null) and 
+					                              (c.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) 
 			                                then a.crb_num_valorrecebido else 0 end) as NCumSPAdicao, 
-	                                SUM(case when (e.nse_des_estado = 'MS' and e.nse_int_id is not null) and 
-					                                (c.nfs_int_listaservico in (1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703))
+	                                SUM(case when e.nse_des_estado = 'MS' and 
+					                              (c.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) 
 			                                then a.crb_num_valorrecebido else 0 end) as NCumMSAdicao, 
-	                                SUM(case when (c.nfs_int_listaservico in (1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703, 
-					                                01880, 02119, 02135, 02186, 02194, 03093, 03115, 03450, 03468, 05991, 
-					                                06009, 07285, 07315, 07323, 07331, 07366, 07390, 07412, 07439, 07447, 
-					                                07455, 07471, 07498, 02496))
+	                                SUM(case when (c.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) 
 			                                then a.crb_num_valorrecebido else 0 end) as NCumTotAdicao, 
 	                                --(+) Adição Receita Diferida
-	                                SUM(case when ((c.nfs_des_ufmunicipio = 'SP' and e.nse_int_id is null) or c.nse_int_prestador is null) and 
-					                                (c.nfs_int_listaservico in (1015, 1023, 2682, 2798, 2917, 2918, 2690, 2879))
+	                                SUM(case when (c.nse_int_prestador is null) and 
+					                              (c.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) 
 			                                then a.crb_num_valorrecebido else 0 end) as CumSPAdicao, 
-	                                SUM(case when (e.nse_des_estado = 'MS' and e.nse_int_id is not null) and 
-					                                (c.nfs_int_listaservico in (702, 103, 105, 107, 104, 106))
+	                                SUM(case when e.nse_des_estado = 'MS' and 
+					                              (c.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) 
 			                                then a.crb_num_valorrecebido else 0 end) as CumMSAdicao, 
-	                                SUM(case when (c.nfs_int_listaservico in (702, 103, 105, 107, 104, 106, 1015, 
-					                                1023, 2682, 2798, 2917, 2918, 2690, 2879))
+	                                SUM(case when (c.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) or 
+					                              a.crb_des_observacao = 'Iss retido Serv. Prestados'
 			                                then a.crb_num_valorrecebido else 0 end) as CumTotAdicao 
                             from SealContaReceber a 
                             left join SealNotaFiscalRecebida b on a.nfr_int_id = b.nfr_int_id 
                             left join SealNotaFiscalServico c on b.nfs_int_id = c.nfs_int_id
                             left join SealNotaFiscalServicoEmpresa e on c.nse_int_prestador = e.nse_int_id
-                            left join SealNotaFiscalServicoEmpresa f on c.nse_int_tomador = f.nse_int_id
-                            left join SealCliente g on f.nse_des_cnpj = g.cli_des_cnpj
-                            where (a.crb_dt_recebimento >= @inicio and a.crb_dt_recebimento <= @fim) and 
-                            (g.cli_int_id is not null and (g.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718')))
+                            left join SealCliente g on a.crb_des_cnpjorigem = g.cli_des_cnpj
+                            where (a.crb_dt_recebimento between @inicio and @fim) and 
+	                              (g.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718'))
 		                        ";
                 #endregion
-                cmd = new SqlCommand(query, conn);
+                cmd = new SqlCommand(query, c);
                 cmd.Parameters.AddWithValue("@dt_inicio", inicio);
                 cmd.Parameters.AddWithValue("@dt_fim", fim);
 
-                dr = cmd.ExecuteReader();
+                d = cmd.ExecuteReader();
 
-                while (dr.Read())
+                while (d.Read())
                 {
                     #region Getting Values 
                     //Servicos Não Cumulativos
-                    conso.ServicoConsuNCum.Adicao.SP = Convert.ToDouble(dr["NCumSPAdicao"] is DBNull ? 0 : dr["NCumSPAdicao"]);
-                    conso.ServicoConsuNCum.Adicao.MS = Convert.ToDouble(dr["NCumMSAdicao"] is DBNull ? 0 : dr["NCumMSAdicao"]);
-                    conso.ServicoConsuNCum.Adicao.Tot = Convert.ToDouble(dr["NCumTotAdicao"] is DBNull ? 0 : dr["NCumTotAdicao"]);
+                    conso.ServicoConsuNCum.Adicao.SP = Convert.ToDouble(d["NCumSPAdicao"] is DBNull ? 0 : d["NCumSPAdicao"]);
+                    conso.ServicoConsuNCum.Adicao.MS = Convert.ToDouble(d["NCumMSAdicao"] is DBNull ? 0 : d["NCumMSAdicao"]);
+                    conso.ServicoConsuNCum.Adicao.Tot = Convert.ToDouble(d["NCumTotAdicao"] is DBNull ? 0 : d["NCumTotAdicao"]);
 
                     //Servicos Cumulativos
-                    conso.ServicoConsuCum.Adicao.SP = Convert.ToDouble(dr["CumSPAdicao"] is DBNull ? 0 : dr["CumSPAdicao"]);
-                    conso.ServicoConsuCum.Adicao.MS = Convert.ToDouble(dr["CumMSAdicao"] is DBNull ? 0 : dr["CumMSAdicao"]);
-                    conso.ServicoConsuCum.Adicao.Tot = Convert.ToDouble(dr["CumTotAdicao"] is DBNull ? 0 : dr["CumTotAdicao"]);
+                    conso.ServicoConsuCum.Adicao.SP = Convert.ToDouble(d["CumSPAdicao"] is DBNull ? 0 : d["CumSPAdicao"]);
+                    conso.ServicoConsuCum.Adicao.MS = Convert.ToDouble(d["CumMSAdicao"] is DBNull ? 0 : d["CumMSAdicao"]);
+                    conso.ServicoConsuCum.Adicao.Tot = Convert.ToDouble(d["CumTotAdicao"] is DBNull ? 0 : d["CumTotAdicao"]);
                     #endregion
                 }
 
-                dr.Close();
+                d.Close();
                 #endregion
 
                 #region Retenções
                 #region Query
                 query = @"declare @inicio datetime = @dt_inicio, 
 		                          @fim datetime = @dt_fim 
-                            select sum(case when a.crb_des_observacao = 'COFINS crédito sobre impostos retidos' and 
-			                        b.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718') and 
-			                        (d.nfd_int_id is not null or 
-			                        (e.nfs_int_listaservico in (1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703, 
-					                            01880, 02119, 02135, 02186, 02194, 03093, 03115, 03450, 03468, 05991, 
-					                            06009, 07285, 07315, 07323, 07331, 07366, 07390, 07412, 07439, 07447, 
-					                            07455, 07471, 07498, 02496)))
-		                           then a.crb_num_valorrecebido else 0 end) as CofinsPublicoNCum, 
-	                           sum(case when a.crb_des_observacao = 'COFINS crédito sobre impostos retidos' and 
-			                        b.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE') and 
-			                        (d.nfd_int_id is not null or 
-			                        (e.nfs_int_listaservico in (1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703, 
-					                            01880, 02119, 02135, 02186, 02194, 03093, 03115, 03450, 03468, 05991, 
-					                            06009, 07285, 07315, 07323, 07331, 07366, 07390, 07412, 07439, 07447, 
-					                            07455, 07471, 07498, 02496)))
-		                           then a.crb_num_valorrecebido else 0 end) as CofinsPrivadoNCum,
-	                           sum(case when a.crb_des_observacao = 'PIS crédito sobre impostos retidos' and 
-			                        b.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718') and 
-			                        (d.nfd_int_id is not null or 
-			                        (e.nfs_int_listaservico in (1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703, 
-					                            01880, 02119, 02135, 02186, 02194, 03093, 03115, 03450, 03468, 05991, 
-					                            06009, 07285, 07315, 07323, 07331, 07366, 07390, 07412, 07439, 07447, 
-					                            07455, 07471, 07498, 02496)))
-		                           then a.crb_num_valorrecebido else 0 end) as PisPublicoNCum, 
-	                           sum(case when a.crb_des_observacao = 'PIS crédito sobre impostos retidos' and 
-			                        b.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE') and 
-			                        (d.nfd_int_id is not null or 
-			                        (e.nfs_int_listaservico in (1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703, 
-					                            01880, 02119, 02135, 02186, 02194, 03093, 03115, 03450, 03468, 05991, 
-					                            06009, 07285, 07315, 07323, 07331, 07366, 07390, 07412, 07439, 07447, 
-					                            07455, 07471, 07498, 02496)))
-		                           then a.crb_num_valorrecebido else 0 end) as PisPrivadoNCum, 
-	                           sum(case when a.crb_des_observacao = 'IR crédito sobre impostos retidos' and 
-			                        b.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718') and 
-			                        (d.nfd_int_id is not null or 
-			                        (e.nfs_int_listaservico in (1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703, 
-					                            01880, 02119, 02135, 02186, 02194, 03093, 03115, 03450, 03468, 05991, 
-					                            06009, 07285, 07315, 07323, 07331, 07366, 07390, 07412, 07439, 07447, 
-					                            07455, 07471, 07498, 02496)))
-		                           then a.crb_num_valorrecebido else 0 end) as IrPublicoNCum, 
-	                           sum(case when a.crb_des_observacao = 'IR crédito sobre impostos retidos' and 
-			                        b.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE') and 
-			                        (d.nfd_int_id is not null or 
-			                        (e.nfs_int_listaservico in (1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703, 
-					                            01880, 02119, 02135, 02186, 02194, 03093, 03115, 03450, 03468, 05991, 
-					                            06009, 07285, 07315, 07323, 07331, 07366, 07390, 07412, 07439, 07447, 
-					                            07455, 07471, 07498, 02496)))
-		                           then a.crb_num_valorrecebido else 0 end) as IrPrivadoNCum,
-
-	                           sum(case when a.crb_des_observacao = 'COFINS crédito sobre impostos retidos' and 
-			                        b.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718') and 
-			                        (e.nfs_int_listaservico in (702, 103, 105, 107, 104, 106, 1015, 
-					                            1023, 2682, 2798, 2917, 2918, 2690, 2879))
-		                           then a.crb_num_valorrecebido else 0 end) as CofinsPublicoCum, 
-	                           sum(case when a.crb_des_observacao = 'COFINS crédito sobre impostos retidos' and 
-			                        b.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE') and 
-			                        (e.nfs_int_listaservico in (702, 103, 105, 107, 104, 106, 1015, 
-					                            1023, 2682, 2798, 2917, 2918, 2690, 2879))
-		                           then a.crb_num_valorrecebido else 0 end) as CofinsPrivadoCum,
-	                           sum(case when a.crb_des_observacao = 'PIS crédito sobre impostos retidos' and 
-			                        b.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718') and 
-			                        (e.nfs_int_listaservico in (702, 103, 105, 107, 104, 106, 1015, 
-					                            1023, 2682, 2798, 2917, 2918, 2690, 2879))
-		                           then a.crb_num_valorrecebido else 0 end) as PisPublicoCum, 
-	                           sum(case when a.crb_des_observacao = 'PIS crédito sobre impostos retidos' and 
-			                        b.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE') and 
-			                        (e.nfs_int_listaservico in (702, 103, 105, 107, 104, 106, 1015, 
-					                            1023, 2682, 2798, 2917, 2918, 2690, 2879))
-		                           then a.crb_num_valorrecebido else 0 end) as PisPrivadoCum, 
-	   
-	                           sum(case when a.crb_des_observacao = 'IR crédito sobre impostos retidos' and 
-			                        b.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718') and 
-			                        (e.nfs_int_listaservico in (702, 103, 105, 107, 104, 106, 1015, 
-					                            1023, 2682, 2798, 2917, 2918, 2690, 2879))
-		                           then a.crb_num_valorrecebido else 0 end) as IrPublicoCum, 
-	                           sum(case when a.crb_des_observacao = 'IR crédito sobre impostos retidos' and 
-			                        b.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE') and 
-			                        (e.nfs_int_listaservico in (702, 103, 105, 107, 104, 106, 1015, 
-					                            1023, 2682, 2798, 2917, 2918, 2690, 2879))
-		                           then a.crb_num_valorrecebido else 0 end) as IrPrivadoCum 
-                        from SealContaReceber a 
-                        inner join SealCliente b on a.crb_des_cnpjorigem = b.cli_des_cnpj
-                        inner join SealNotaFiscalRecebida c on a.nfr_int_id = c.nfr_int_id 
-                        left join SealNotaFiscalDanfe d on c.nfd_int_id = d.nfd_int_id
-                        left join SealNotaFiscalServico e on c.nfs_int_id = e.nfs_int_id 
-                        where a.crb_dt_recebimento >= @inicio and a.crb_dt_recebimento <= @fim 
+                            select  --Não Cumulativos
+		                            --PIS
+		                            sum(case when a.crb_des_observacao = 'PIS crédito sobre impostos retidos' and 
+					                              b.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718') and 
+					                              (d.nfd_int_id is not null or e.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) 
+				                             then a.crb_num_valorrecebido else 0 end) as PisPublicoNCum, 
+	                                sum(case when a.crb_des_observacao = 'PIS crédito sobre impostos retidos' and 
+					                              b.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE') and 
+					                              (d.nfd_int_id is not null or e.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) 
+		                                     then a.crb_num_valorrecebido else 0 end) as PisPrivadoNCum, 
+		                            --CSSL
+		                            sum(case when a.crb_des_observacao = 'CSSL crédito sobre impostos retidos' and 
+					                             b.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718') and 
+					                             (d.nfd_int_id is not null or e.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) 
+				                            then a.crb_num_valorrecebido else 0 end) as CsslPublicoNCum, 
+		                            sum(case when a.crb_des_observacao = 'CSSL crédito sobre impostos retidos' and 
+					                             b.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE') and 
+					                             (d.nfd_int_id is not null or e.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) 
+				                             then a.crb_num_valorrecebido else 0 end) as CsslPrivadoNCum,
+		                            --COFINS
+		                            sum(case when a.crb_des_observacao = 'COFINS crédito sobre impostos retidos' and 
+					                             b.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718') and 
+					                             (d.nfd_int_id is not null or e.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) 
+				                            then a.crb_num_valorrecebido else 0 end) as CofinsPublicoNCum, 
+		                            sum(case when a.crb_des_observacao = 'COFINS crédito sobre impostos retidos' and 
+					                             b.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE') and 
+					                             (d.nfd_int_id is not null or e.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) 
+				                             then a.crb_num_valorrecebido else 0 end) as CofinsPrivadoNCum,
+		                            --IR
+		                            sum(case when a.crb_des_observacao = 'IR crédito sobre impostos retidos' and 
+					                              b.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718') and 
+					                              (d.nfd_int_id is not null or e.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) 
+				                             then a.crb_num_valorrecebido else 0 end) as IrPublicoNCum, 
+		                            sum(case when a.crb_des_observacao = 'IR crédito sobre impostos retidos' and 
+					                              b.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE') and 
+					                              (d.nfd_int_id is not null or e.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) 
+				                             then a.crb_num_valorrecebido else 0 end) as IrPrivadoNCum,
+		                            --INSS
+		                            sum(case when a.crb_des_observacao = 'INSS crédito sobre impostos retidos' and 
+					                              b.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718') and 
+					                              (d.nfd_int_id is not null or e.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) 
+				                             then a.crb_num_valorrecebido else 0 end) as InssPublicoNCum, 
+		                            sum(case when a.crb_des_observacao = 'INSS crédito sobre impostos retidos' and 
+					                              b.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE') and 
+					                              (d.nfd_int_id is not null or e.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) 
+				                             then a.crb_num_valorrecebido else 0 end) as InssPrivadoNCum,
+		                            --ISS
+		                            sum(case when a.crb_des_observacao = 'Iss retido Serv. Prestados' and 
+					                              b.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718') --and 
+					                              --(d.nfd_int_id is not null or e.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) 
+				                             then a.crb_num_valorrecebido else 0 end) as IssPublicoNCum, 
+		                            sum(case when a.crb_des_observacao = 'Iss retido Serv. Prestados' and 
+					                              b.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE') --and 
+					                              --(d.nfd_int_id is not null or e.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)) 
+				                             then a.crb_num_valorrecebido else 0 end) as IssPrivadoNCum, 
+		                            --Cumulativos
+		                            --PIS
+		                            sum(case when a.crb_des_observacao = 'PIS crédito sobre impostos retidos' and 
+					                              b.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718') and 
+					                              e.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)
+				                             then a.crb_num_valorrecebido else 0 end) as PisPublicoCum, 
+	                                sum(case when a.crb_des_observacao = 'PIS crédito sobre impostos retidos' and 
+					                              b.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE') and 
+					                              e.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)
+		                                     then a.crb_num_valorrecebido else 0 end) as PisPrivadoCum, 
+		                            --CSSL
+		                            sum(case when a.crb_des_observacao = 'CSSL crédito sobre impostos retidos' and 
+					                             b.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718') and 
+					                              e.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)
+				                            then a.crb_num_valorrecebido else 0 end) as CsslPublicoCum, 
+		                            sum(case when a.crb_des_observacao = 'CSSL crédito sobre impostos retidos' and 
+					                             b.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE') and 
+					                             e.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)
+				                             then a.crb_num_valorrecebido else 0 end) as CsslPrivadoCum,
+		                            --COFINS
+		                            sum(case when a.crb_des_observacao = 'COFINS crédito sobre impostos retidos' and 
+					                             b.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718') and 
+					                             e.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)
+				                            then a.crb_num_valorrecebido else 0 end) as CofinsPublicoCum, 
+		                            sum(case when a.crb_des_observacao = 'COFINS crédito sobre impostos retidos' and 
+					                             b.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE') and 
+					                             e.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)
+				                             then a.crb_num_valorrecebido else 0 end) as CofinsPrivadoCum,
+		                            --IR
+		                            sum(case when a.crb_des_observacao = 'IR crédito sobre impostos retidos' and 
+					                              b.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718') and 
+					                              e.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)
+				                             then a.crb_num_valorrecebido else 0 end) as IrPublicoCum, 
+		                            sum(case when a.crb_des_observacao = 'IR crédito sobre impostos retidos' and 
+					                              b.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE') and 
+					                              e.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)
+				                             then a.crb_num_valorrecebido else 0 end) as IrPrivadoCum,
+		                            --INSS
+		                            sum(case when a.crb_des_observacao = 'INSS crédito sobre impostos retidos' and 
+					                              b.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718') and 
+					                              e.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)
+				                             then a.crb_num_valorrecebido else 0 end) as InssPublicoCum, 
+		                            sum(case when a.crb_des_observacao = 'INSS crédito sobre impostos retidos' and 
+					                              b.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE') and 
+					                              e.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918)
+				                             then a.crb_num_valorrecebido else 0 end) as InssPrivadoCum,
+		                            --ISS
+		                            sum(case when a.crb_des_observacao = 'Iss retido Serv. Prestados' and 
+					                              b.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718') --and 
+					                              --e.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918) 
+				                             then a.crb_num_valorrecebido else 0 end) as IssPublicoCum, 
+		                            sum(case when a.crb_des_observacao = 'Iss retido Serv. Prestados' and 
+					                              b.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE') --and 
+					                              --e.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918) 
+				                             then a.crb_num_valorrecebido else 0 end) as IssPrivadoCum
+                            from SealContaReceber a 
+                            inner join SealCliente b on a.crb_des_cnpjorigem = b.cli_des_cnpj
+                            left join SealNotaFiscalRecebida c on a.nfr_int_id = c.nfr_int_id 
+                            left join SealNotaFiscalDanfe d on c.nfd_int_id = d.nfd_int_id
+                            left join SealNotaFiscalServico e on c.nfs_int_id = e.nfs_int_id 
+                            where a.crb_dt_recebimento >= @inicio and a.crb_dt_recebimento <= @fim 
 		                        ";
                 #endregion
-                cmd = new SqlCommand(query, conn);
+                cmd = new SqlCommand(query, c);
                 cmd.Parameters.AddWithValue("@dt_inicio", inicio);
                 cmd.Parameters.AddWithValue("@dt_fim", fim);
 
-                dr = cmd.ExecuteReader();
+                d = cmd.ExecuteReader();
 
-                while (dr.Read())
+                while (d.Read())
                 {
                     #region Getting Values 
                     //Retenções Não Cumulativos
-                    conso.RetencaoConsuNCum.CofinsPrivado = Convert.ToDouble(dr["CofinsPrivadoNCum"] is DBNull ? 0 : dr["CofinsPrivadoNCum"]);
-                    conso.RetencaoConsuNCum.CofinsPublico = Convert.ToDouble(dr["CofinsPublicoNCum"] is DBNull ? 0 : dr["CofinsPublicoNCum"]);
-                    conso.RetencaoConsuNCum.PisPrivado = Convert.ToDouble(dr["PisPrivadoNCum"] is DBNull ? 0 : dr["PisPrivadoNCum"]);
-                    conso.RetencaoConsuNCum.PisPublico = Convert.ToDouble(dr["PisPublicoNCum"] is DBNull ? 0 : dr["PisPublicoNCum"]);
-                    conso.RetencaoConsuNCum.IrPrivado = Convert.ToDouble(dr["IrPrivadoNCum"] is DBNull ? 0 : dr["IrPrivadoNCum"]);
-                    conso.RetencaoConsuNCum.IrPublico = Convert.ToDouble(dr["IrPublicoNCum"] is DBNull ? 0 : dr["IrPublicoNCum"]);
+                    conso.RetencaoConsuNCum.PisPrivado = Convert.ToDouble(d["PisPrivadoNCum"] is DBNull ? 0 : d["PisPrivadoNCum"]);
+                    conso.RetencaoConsuNCum.PisPublico = Convert.ToDouble(d["PisPublicoNCum"] is DBNull ? 0 : d["PisPublicoNCum"]);
+                    conso.RetencaoConsuNCum.CsslPrivado = Convert.ToDouble(d["CsslPrivadoNCum"] is DBNull ? 0 : d["CsslPrivadoNCum"]);
+                    conso.RetencaoConsuNCum.CsslPublico = Convert.ToDouble(d["CsslPublicoNCum"] is DBNull ? 0 : d["CsslPublicoNCum"]);
+                    conso.RetencaoConsuNCum.CofinsPrivado = Convert.ToDouble(d["CofinsPrivadoNCum"] is DBNull ? 0 : d["CofinsPrivadoNCum"]);
+                    conso.RetencaoConsuNCum.CofinsPublico = Convert.ToDouble(d["CofinsPublicoNCum"] is DBNull ? 0 : d["CofinsPublicoNCum"]);
+                    conso.RetencaoConsuNCum.IrPrivado = Convert.ToDouble(d["IrPrivadoNCum"] is DBNull ? 0 : d["IrPrivadoNCum"]);
+                    conso.RetencaoConsuNCum.IrPublico = Convert.ToDouble(d["IrPublicoNCum"] is DBNull ? 0 : d["IrPublicoNCum"]);
+                    conso.RetencaoConsuNCum.InssPrivado = Convert.ToDouble(d["InssPrivadoNCum"] is DBNull ? 0 : d["InssPrivadoNCum"]);
+                    conso.RetencaoConsuNCum.InssPublico = Convert.ToDouble(d["InssPublicoNCum"] is DBNull ? 0 : d["InssPublicoNCum"]);
+                    conso.RetencaoConsuNCum.IssPrivado = Convert.ToDouble(d["IssPrivadoNCum"] is DBNull ? 0 : d["IssPrivadoNCum"]);
+                    conso.RetencaoConsuNCum.IssPublico = Convert.ToDouble(d["IssPublicoNCum"] is DBNull ? 0 : d["IssPublicoNCum"]);
 
                     //Retenções Cumulativos
-                    conso.RetencaoConsuCum.CofinsPrivado = Convert.ToDouble(dr["CofinsPrivadoCum"] is DBNull ? 0 : dr["CofinsPrivadoCum"]);
-                    conso.RetencaoConsuCum.CofinsPublico = Convert.ToDouble(dr["CofinsPublicoCum"] is DBNull ? 0 : dr["CofinsPublicoCum"]);
-                    conso.RetencaoConsuCum.PisPrivado = Convert.ToDouble(dr["PisPrivadoCum"] is DBNull ? 0 : dr["PisPrivadoCum"]);
-                    conso.RetencaoConsuCum.PisPublico = Convert.ToDouble(dr["PisPublicoCum"] is DBNull ? 0 : dr["PisPublicoCum"]);
-                    conso.RetencaoConsuCum.IrPrivado = Convert.ToDouble(dr["IrPrivadoCum"] is DBNull ? 0 : dr["IrPrivadoCum"]);
-                    conso.RetencaoConsuCum.IrPublico = Convert.ToDouble(dr["IrPublicoCum"] is DBNull ? 0 : dr["IrPublicoCum"]);
+                    conso.RetencaoConsuCum.PisPrivado = Convert.ToDouble(d["PisPrivadoCum"] is DBNull ? 0 : d["PisPrivadoCum"]);
+                    conso.RetencaoConsuCum.PisPublico = Convert.ToDouble(d["PisPublicoCum"] is DBNull ? 0 : d["PisPublicoCum"]);
+                    conso.RetencaoConsuCum.CsslPrivado = Convert.ToDouble(d["CsslPrivadoCum"] is DBNull ? 0 : d["CsslPrivadoCum"]);
+                    conso.RetencaoConsuCum.CsslPublico = Convert.ToDouble(d["CsslPublicoCum"] is DBNull ? 0 : d["CsslPublicoCum"]);
+                    conso.RetencaoConsuCum.CofinsPrivado = Convert.ToDouble(d["CofinsPrivadoCum"] is DBNull ? 0 : d["CofinsPrivadoCum"]);
+                    conso.RetencaoConsuCum.CofinsPublico = Convert.ToDouble(d["CofinsPublicoCum"] is DBNull ? 0 : d["CofinsPublicoCum"]);
+                    conso.RetencaoConsuCum.IrPrivado = Convert.ToDouble(d["IrPrivadoCum"] is DBNull ? 0 : d["IrPrivadoCum"]);
+                    conso.RetencaoConsuCum.IrPublico = Convert.ToDouble(d["IrPublicoCum"] is DBNull ? 0 : d["IrPublicoCum"]);
+                    conso.RetencaoConsuCum.InssPrivado = Convert.ToDouble(d["InssPrivadoCum"] is DBNull ? 0 : d["InssPrivadoCum"]);
+                    conso.RetencaoConsuCum.InssPublico = Convert.ToDouble(d["InssPublicoCum"] is DBNull ? 0 : d["InssPublicoCum"]);
+                    conso.RetencaoConsuCum.IssPrivado = Convert.ToDouble(d["IssPrivadoCum"] is DBNull ? 0 : d["IssPrivadoCum"]);
+                    conso.RetencaoConsuCum.IssPublico = Convert.ToDouble(d["IssPublicoCum"] is DBNull ? 0 : d["IssPublicoCum"]);
                     #endregion
                 }
                 #endregion
+                d.Close();
             }
             catch (Exception ex)
             {
@@ -1922,8 +1968,7 @@ namespace DAO
             }
             finally
             {
-                dr.Close();
-                conn.Close();
+                c.Close();
             }
             return retorno;
         }
@@ -1959,7 +2004,7 @@ namespace DAO
             }
             finally
             {
-                //dr.Close();
+                //d.Close();
                 conn.Close();
             }
             return retorno;
@@ -1999,7 +2044,7 @@ namespace DAO
             }
             finally
             {
-                //dr.Close();
+                //d.Close();
                 conn.Close();
             }
             return retorno;
@@ -2036,7 +2081,7 @@ namespace DAO
             }
             finally
             {
-                //dr.Close();
+                //d.Close();
                 conn.Close();
             }
             return retorno;
@@ -2076,7 +2121,7 @@ namespace DAO
             }
             finally
             {
-                //dr.Close();
+                //d.Close();
                 conn.Close();
             }
             return retorno;
@@ -2135,7 +2180,7 @@ namespace DAO
                 cmd.Parameters.AddWithValue("@rec", rec);
                 cmd.Parameters.AddWithValue("@ctb", ctb);
 
-                DbDataReader dr = cmd.ExecuteReader();
+                DbDataReader d = cmd.ExecuteReader();
                 retorno.Load(dr);
             }
             catch (Exception ex)
@@ -2144,7 +2189,7 @@ namespace DAO
             }
             finally
             {
-                //dr.Close();
+                //d.Close();
                 conn.Close();
             }
             return retorno;
@@ -2216,7 +2261,7 @@ namespace DAO
                 cmd.Parameters.AddWithValue("@lei", lei);
                 cmd.Parameters.AddWithValue("@rec", rec);
 
-                DbDataReader dr = cmd.ExecuteReader();
+                DbDataReader d = cmd.ExecuteReader();
                 retorno.Load(dr);
             }
             catch (Exception ex)
@@ -2225,7 +2270,7 @@ namespace DAO
             }
             finally
             {
-                //dr.Close();
+                //d.Close();
                 conn.Close();
             }
             return retorno;
@@ -2303,7 +2348,7 @@ namespace DAO
                 cmd.Parameters.AddWithValue("@uf", uf);
                 cmd.Parameters.AddWithValue("@exc", exc);
 
-                DbDataReader dr = cmd.ExecuteReader();
+                DbDataReader d = cmd.ExecuteReader();
                 retorno.Load(dr);
             }
             catch (Exception ex)
@@ -2312,7 +2357,7 @@ namespace DAO
             }
             finally
             {
-                //dr.Close();
+                //d.Close();
                 conn.Close();
             }
             return retorno;
@@ -2437,7 +2482,7 @@ namespace DAO
                 cmd.Parameters.AddWithValue("@cum", cum);
                 cmd.Parameters.AddWithValue("@exc", exc);
 
-                DbDataReader dr = cmd.ExecuteReader();
+                DbDataReader d = cmd.ExecuteReader();
                 retorno.Load(dr);
             }
             catch (Exception ex)
@@ -2446,7 +2491,7 @@ namespace DAO
             }
             finally
             {
-                //dr.Close();
+                //d.Close();
                 conn.Close();
             }
             return retorno;
@@ -2487,7 +2532,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -2496,7 +2541,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -2535,7 +2580,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -2544,7 +2589,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -2601,7 +2646,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -2610,7 +2655,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -2647,7 +2692,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -2656,7 +2701,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -2693,7 +2738,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -2702,7 +2747,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -2740,7 +2785,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -2749,7 +2794,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -2786,7 +2831,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -2795,7 +2840,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -2833,7 +2878,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -2842,7 +2887,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -2881,7 +2926,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -2890,7 +2935,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -2928,7 +2973,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -2937,7 +2982,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -2975,7 +3020,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -2984,7 +3029,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3016,7 +3061,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3025,7 +3070,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3056,7 +3101,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3065,7 +3110,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3096,7 +3141,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3105,7 +3150,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3142,7 +3187,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3151,7 +3196,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3188,7 +3233,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3197,7 +3242,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3233,7 +3278,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3242,7 +3287,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3279,7 +3324,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3288,7 +3333,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3326,7 +3371,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3335,7 +3380,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3373,7 +3418,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3382,7 +3427,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3421,7 +3466,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3430,7 +3475,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3469,7 +3514,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3478,7 +3523,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3517,7 +3562,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3526,7 +3571,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3558,7 +3603,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        //cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3567,7 +3612,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3598,7 +3643,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        //cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3607,7 +3652,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3638,7 +3683,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        //cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3647,7 +3692,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3678,7 +3723,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        //cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3687,7 +3732,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3718,7 +3763,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        //cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3727,7 +3772,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3758,7 +3803,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        //cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3767,7 +3812,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3799,7 +3844,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        //cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3808,7 +3853,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3839,7 +3884,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        //cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3848,7 +3893,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3879,7 +3924,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        //cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3888,7 +3933,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3919,7 +3964,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        //cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3928,7 +3973,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3959,7 +4004,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        //cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -3968,7 +4013,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;
@@ -3999,7 +4044,7 @@ namespace DAO
         //        cmd.Parameters.AddWithValue("@fim", fim);
         //        //cmd.Parameters.AddWithValue("@uf", uf);
 
-        //        DbDataReader dr = cmd.ExecuteReader();
+        //        DbDataReader d = cmd.ExecuteReader();
         //        retorno.Load(dr);
         //    }
         //    catch (Exception ex)
@@ -4008,7 +4053,7 @@ namespace DAO
         //    }
         //    finally
         //    {
-        //        //dr.Close();
+        //        //d.Close();
         //        conn.Close();
         //    }
         //    return retorno;

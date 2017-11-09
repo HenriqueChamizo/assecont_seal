@@ -88,7 +88,11 @@ namespace Assecontweb.Extend
             IExcelDataReader reader = ExcelReaderFactory.CreateOpenXmlReader(new StreamReader(path).BaseStream);
             reader.IsFirstRowAsColumnNames = true;
             DataSet ds = reader.AsDataSet(false);
-            DataTable dt = ds.Tables[sheet];
+            DataTable dt;
+            if (ds.Tables.Contains(sheet))
+                dt = ds.Tables[sheet];
+            else
+                dt = ds.Tables[0];
 
             return dt;
         }
@@ -303,13 +307,13 @@ namespace Assecontweb.Extend
     {
         public List<ContaReceber> contas { get; set; }
 
-        public FileContaReceber(string filePath, string fileSheet = null)
+        public FileContaReceber(string filePath, bool antigo = false, string fileSheet = null)
             :base(filePath, fileSheet)
         {
-            contas = GetContas();
+            contas = GetContas(antigo);
         }
 
-        public List<ContaReceber> GetContas()
+        public List<ContaReceber> GetContas(bool antigo)
         {
             contas = new List<ContaReceber>();
             ContaReceber conta;
@@ -320,59 +324,144 @@ namespace Assecontweb.Extend
             string cliente = "";
             string documentoOrigem = "";
             string codigo = "";
-            conta = new ContaReceber();
-            foreach (DataRow row in dt.Rows)
+            if (antigo)
             {
                 try
                 {
-                    string old = ccliente;
-                    ccliente = (row[dt.Columns["Cliente"].Ordinal] is DBNull ? old : row[dt.Columns["Cliente"].Ordinal]).ToString().Replace("\r", "").Replace("\n", "").Replace("\\", "").Trim();
-                    if (old != ccliente)
+                    foreach (DataRow row in dt.Rows)
                     {
-                        if (ccliente.Trim() != "Sub-total:")
+                        string old = ccliente;
+                        ccliente = (row[dt.Columns["Cliente"].Ordinal] is DBNull ? old : row[dt.Columns["Cliente"].Ordinal]).ToString().Replace("\r", "").Replace("\n", "").Replace("\\", "").Trim();
+                        if (old != ccliente)
                         {
-                            string[] split = ccliente.Split(new string[] { "CNPJ: " }, StringSplitOptions.None);
-                            cliente = split[0].ToString().Replace("\r", "").Replace("\n", "").Replace("\\", "").Trim();
+                            if (ccliente.Trim() != "Sub-total:")
+                            {
+                                string[] split = ccliente.Split(new string[] { "CNPJ: " }, StringSplitOptions.None);
+                                cliente = split[0].ToString().Replace("\r", "").Replace("\n", "").Replace("\\", "").Trim();
 
-                            string[] split2 = split[1].Split(new string[] { "(" }, StringSplitOptions.None);
-                            documentoOrigem = split2[0].ToString().Replace("\r", "").Replace("\n", "").Replace("\\", "").Trim();
+                                string[] split2 = split[1].Split(new string[] { "(" }, StringSplitOptions.None);
+                                documentoOrigem = split2[0].ToString().Replace("\r", "").Replace("\n", "").Replace("\\", "").Trim();
 
-                            codigo = split2[1].Replace("(", "").Replace(")", "").Replace(" ", "");
+                                codigo = split2[1].Replace("(", "").Replace(")", "").Replace(" ", "");
+                            }
+                            else
+                            {
+                                cliente = "";
+                                documentoOrigem = "";
+                                codigo = "";
+                                continue;
+                            }
                         }
                         else
                         {
-                            cliente = "";
-                            documentoOrigem = "";
-                            codigo = "";
-                            continue;
+                            conta = new ContaReceber();
+                            conta.cliente = cliente;
+                            conta.documentoOrigem = documentoOrigem;
+                            conta.codigo = codigo;
+                            conta.docOrig = (row[dt.Columns["Doc Origem"].Ordinal] is DBNull ? "" : row[dt.Columns["Doc Origem"].Ordinal]).ToString();
+                            conta.notaFiscal = (row[dt.Columns["N.Fiscal"].Ordinal] is DBNull ? "" : row[dt.Columns["N.Fiscal"].Ordinal]).ToString();
+                            conta.prest = (row[dt.Columns["Parc."].Ordinal] is DBNull ? "" : row[dt.Columns["Parc."].Ordinal]).ToString();
+                            conta.emissao = Convert.ToDateTime((row[dt.Columns["Emissão"].Ordinal] is DBNull ? DateTime.MinValue : row[dt.Columns["Emissão"].Ordinal]));
+                            conta.vencimento = Convert.ToDateTime((row[dt.Columns["Vencto."].Ordinal] is DBNull ? DateTime.MinValue : row[dt.Columns["Vencto."].Ordinal]));
+                            conta.valor = Convert.ToDouble((row[dt.Columns["Valor Original"].Ordinal] is DBNull ? 0 : row[dt.Columns["Valor Original"].Ordinal]));
+                            conta.desconto = Convert.ToDouble((row[dt.Columns["Desconto"].Ordinal] is DBNull ? 0 : row[dt.Columns["Desconto"].Ordinal]));
+                            conta.juros = Convert.ToDouble((row[dt.Columns["Juros"].Ordinal] is DBNull ? 0 : row[dt.Columns["Juros"].Ordinal]));
+                            conta.valorRecebido = Convert.ToDouble((row[dt.Columns["Valor"].Ordinal] is DBNull ? 0 : row[dt.Columns["Valor"].Ordinal]));
+                            conta.dataRecto = Convert.ToDateTime((row[dt.Columns["Data Recto"].Ordinal] is DBNull ? DateTime.MinValue : row[dt.Columns["Data Recto"].Ordinal]));
+                            conta.forma = (row[dt.Columns["Tipo"].Ordinal] is DBNull ? "" : row[dt.Columns["Tipo"].Ordinal]).ToString();
+                            conta.descricao = (row["Banco"] is DBNull ? "" : row["Banco"]).ToString();
+                            contas.Add(conta);
                         }
+                        //conta.cliente = (row[dt.Columns["Cliente"].Ordinal] is DBNull ? "" : row[dt.Columns["Cliente"].Ordinal]).ToString().Replace("\r", "").Replace("\n", "").Replace("\\", "").Trim();
+                        //conta.documentoOrigem = (row[dt.Columns["Documento Origem"].Ordinal] is DBNull ? "" : row[dt.Columns["Documento Origem"].Ordinal]).ToString();
+                        //conta.codigo = (row[dt.Columns["Código"].Ordinal] is DBNull ? "" : row[dt.Columns["Código"].Ordinal]).ToString();
                     }
-                    else
+                }
+                catch (Exception ex)
+                {
+                    string hehe = ex.Message;
+                }
+            }
+            else
+            {
+                try
+                {
+                    foreach (DataRow row in dt.Rows)
                     {
                         conta = new ContaReceber();
-                        conta.cliente = cliente;
-                        conta.documentoOrigem = documentoOrigem;
-                        conta.codigo = codigo;
-                        conta.docOrig = (row[dt.Columns["Doc Origem"].Ordinal] is DBNull ? "" : row[dt.Columns["Doc Origem"].Ordinal]).ToString();
-                        conta.notaFiscal = (row[dt.Columns["N.Fiscal"].Ordinal] is DBNull ? "" : row[dt.Columns["N.Fiscal"].Ordinal]).ToString();
-                        conta.prest = (row[dt.Columns["Parc."].Ordinal] is DBNull ? "" : row[dt.Columns["Parc."].Ordinal]).ToString();
+                        conta.cliente = (row[dt.Columns["Cliente"].Ordinal] is DBNull ? "" : row[dt.Columns["Cliente"].Ordinal]).ToString().Replace("\r", "").Replace("\n", "").Replace("\\", "").Trim();
+
+                        if (dt.Columns.Contains("Documento Origem"))
+                            conta.documentoOrigem = (row[dt.Columns["Documento Origem"].Ordinal] is DBNull ? "" : row[dt.Columns["Documento Origem"].Ordinal]).ToString();
+                        else if (dt.Columns.Contains("DocumentoOrigem"))
+                            conta.documentoOrigem = (row[dt.Columns["DocumentoOrigem"].Ordinal] is DBNull ? "" : row[dt.Columns["DocumentoOrigem"].Ordinal]).ToString();
+
+                        if (dt.Columns.Contains("Código"))
+                            conta.codigo = (row[dt.Columns["Código"].Ordinal] is DBNull ? "" : row[dt.Columns["Código"].Ordinal]).ToString();
+                        else if (dt.Columns.Contains("Codigo"))
+                            conta.codigo = (row[dt.Columns["Codigo"].Ordinal] is DBNull ? "" : row[dt.Columns["Codigo"].Ordinal]).ToString();
+
+                        if (dt.Columns.Contains("Doc Origem"))
+                            conta.docOrig = (row[dt.Columns["Doc Origem"].Ordinal] is DBNull ? "" : row[dt.Columns["Doc Origem"].Ordinal]).ToString();
+                        else if (dt.Columns.Contains("Doc"))
+                            conta.docOrig = (row[dt.Columns["Doc"].Ordinal] is DBNull ? "" : row[dt.Columns["Doc"].Ordinal]).ToString();
+
+                        if (dt.Columns.Contains("N.Fiscal"))
+                            conta.notaFiscal = (row[dt.Columns["N.Fiscal"].Ordinal] is DBNull ? "" : row[dt.Columns["N.Fiscal"].Ordinal]).ToString();
+                        else if (dt.Columns.Contains("N. Fiscal"))
+                            conta.notaFiscal = (row[dt.Columns["N. Fiscal"].Ordinal] is DBNull ? "" : row[dt.Columns["N. Fiscal"].Ordinal]).ToString();
+
+                        if (dt.Columns.Contains("Parc."))
+                            conta.prest = (row[dt.Columns["Parc."].Ordinal] is DBNull ? "" : row[dt.Columns["Parc."].Ordinal]).ToString();
+                        else if (dt.Columns.Contains("Parc"))
+                            conta.prest = (row[dt.Columns["Parc"].Ordinal] is DBNull ? "" : row[dt.Columns["Parc"].Ordinal]).ToString();
+
                         conta.emissao = Convert.ToDateTime((row[dt.Columns["Emissão"].Ordinal] is DBNull ? DateTime.MinValue : row[dt.Columns["Emissão"].Ordinal]));
-                        conta.vencimento = Convert.ToDateTime((row[dt.Columns["Vencto."].Ordinal] is DBNull ? DateTime.MinValue : row[dt.Columns["Vencto."].Ordinal]));
-                        conta.valor = Convert.ToDouble((row[dt.Columns["Valor Original"].Ordinal] is DBNull ? 0 : row[dt.Columns["Valor Original"].Ordinal]));
-                        conta.desconto = Convert.ToDouble((row[dt.Columns["Desconto"].Ordinal] is DBNull ? 0 : row[dt.Columns["Desconto"].Ordinal]));
+
+                        if (dt.Columns.Contains("Vencto."))
+                            conta.vencimento = Convert.ToDateTime((row[dt.Columns["Vencto."].Ordinal] is DBNull ? DateTime.MinValue : row[dt.Columns["Vencto."].Ordinal]));
+                        else if (dt.Columns.Contains("Vencto"))
+                            conta.vencimento = Convert.ToDateTime((row[dt.Columns["Vencto"].Ordinal] is DBNull ? DateTime.MinValue : row[dt.Columns["Vencto"].Ordinal]));
+
+                        if (dt.Columns.Contains("Valor Original"))
+                            conta.valor = Convert.ToDouble((row[dt.Columns["Valor Original"].Ordinal] is DBNull ? 0 : row[dt.Columns["Valor Original"].Ordinal]));
+                        else if(dt.Columns.Contains("Valor"))
+                            conta.valor = Convert.ToDouble((row[dt.Columns["Valor"].Ordinal] is DBNull ? 0 : row[dt.Columns["Valor"].Ordinal]));
+
+                        if (dt.Columns.Contains("Desconto"))
+                            conta.desconto = Convert.ToDouble((row[dt.Columns["Desconto"].Ordinal] is DBNull ? 0 : row[dt.Columns["Desconto"].Ordinal]));
+                        else if (dt.Columns.Contains("Desc"))
+                            conta.desconto = Convert.ToDouble((row[dt.Columns["Desc"].Ordinal] is DBNull ? 0 : row[dt.Columns["Desc"].Ordinal]));
+
                         conta.juros = Convert.ToDouble((row[dt.Columns["Juros"].Ordinal] is DBNull ? 0 : row[dt.Columns["Juros"].Ordinal]));
-                        conta.valorRecebido = Convert.ToDouble((row[dt.Columns["Valor"].Ordinal] is DBNull ? 0 : row[dt.Columns["Valor"].Ordinal]));
-                        conta.dataRecto = Convert.ToDateTime((row[dt.Columns["Data Recto"].Ordinal] is DBNull ? DateTime.MinValue : row[dt.Columns["Data Recto"].Ordinal]));
-                        conta.forma = (row[dt.Columns["Tipo"].Ordinal] is DBNull ? "" : row[dt.Columns["Tipo"].Ordinal]).ToString();
-                        conta.descricao = (row["Banco"] is DBNull ? "" : row["Banco"]).ToString();
+
+                        if (dt.Columns.Contains("Valor Pgo"))
+                            conta.valorRecebido = Convert.ToDouble((row[dt.Columns["Valor Pgo"].Ordinal] is DBNull ? 0 : row[dt.Columns["Valor Pgo"].Ordinal]));
+                        else if (dt.Columns.Contains("Vr. Recebido"))
+                            conta.valorRecebido = Convert.ToDouble((row[dt.Columns["Vr. Recebido"].Ordinal] is DBNull ? 0 : row[dt.Columns["Vr. Recebido"].Ordinal]));
+                        else if (dt.Columns.Contains("Valor"))
+                            conta.valorRecebido = Convert.ToDouble((row[dt.Columns["Valor"].Ordinal] is DBNull ? 0 : row[dt.Columns["Valor"].Ordinal]));
+
+                        if (dt.Columns.Contains("Data Recto"))
+                            conta.dataRecto = Convert.ToDateTime((row[dt.Columns["Data Recto"].Ordinal] is DBNull ? DateTime.MinValue : row[dt.Columns["Data Recto"].Ordinal]));
+                        else if (dt.Columns.Contains("Data"))
+                            conta.dataRecto = Convert.ToDateTime((row[dt.Columns["Data"].Ordinal] is DBNull ? DateTime.MinValue : row[dt.Columns["Data"].Ordinal]));
+
+                        if (dt.Columns.Contains("Forma"))
+                            conta.forma = (row[dt.Columns["Forma"].Ordinal] is DBNull ? "" : row[dt.Columns["Forma"].Ordinal]).ToString();
+                        else if (dt.Columns.Contains("Tipo"))
+                            conta.forma = (row[dt.Columns["Tipo"].Ordinal] is DBNull ? "" : row[dt.Columns["Tipo"].Ordinal]).ToString();
+
+                        if (dt.Columns.Contains("Banco"))
+                            conta.descricao = (row["Banco"] is DBNull ? "" : row["Banco"]).ToString();
+                        else
+                            conta.descricao = (row[14] is DBNull ? "" : row[14]).ToString();
                         contas.Add(conta);
                     }
-                    //conta.cliente = (row[dt.Columns["Cliente"].Ordinal] is DBNull ? "" : row[dt.Columns["Cliente"].Ordinal]).ToString().Replace("\r", "").Replace("\n", "").Replace("\\", "").Trim();
-                    //conta.documentoOrigem = (row[dt.Columns["Documento Origem"].Ordinal] is DBNull ? "" : row[dt.Columns["Documento Origem"].Ordinal]).ToString();
-                    //conta.codigo = (row[dt.Columns["Código"].Ordinal] is DBNull ? "" : row[dt.Columns["Código"].Ordinal]).ToString();
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
-                    string hehe = ex.Message + "HEHE";
+                    string hehe = ex.Message;
                 }
             }
             return contas;
@@ -408,7 +497,13 @@ namespace Assecontweb.Extend
             {
                 #region NotaFiscal
                 DataTable dt = ds.Tables["infNFe"];
-                DataColumn dtid = dt.Columns["id"];
+                DataColumn dtid;
+                if (dt.Columns.Contains("id"))
+                    dtid = dt.Columns["id"];
+                else if (dt.Columns.Contains("NFe_Id"))
+                    dtid = dt.Columns["NFe_Id"];
+                else
+                    dtid = new DataColumn();
                 notafiscal.chave = dtid.Table.Rows[0].ItemArray[1].ToString().Replace("NFe", "");
 
                 Nfe.Danfe.IdeModel ide = new Nfe.Danfe.IdeModel();
@@ -474,7 +569,8 @@ namespace Assecontweb.Extend
                 }
 
                 total = (Nfe.Danfe.ICMSTotModel)preencheObjXML(total, ds.Tables["ICMSTot"]);
-                prot = (Nfe.Danfe.InfProt)preencheObjXML(prot, ds.Tables["infProt"]);
+                if (ds.Tables.Contains("infProt"))
+                    prot = (Nfe.Danfe.InfProt)preencheObjXML(prot, ds.Tables["infProt"]);
 
                 //NotaFiscal notafiscal = new NotaFiscal();
 
@@ -1020,7 +1116,8 @@ namespace Assecontweb.Extend
         private object preencheIDE(DataTable dt, int i = 0)
         {
             Nfe.Danfe.IdeModel ide = new Nfe.Danfe.IdeModel();
-            ide.cDV = Convert.ToInt32(dt.Rows[i]["cDV"]);
+            if (dt.Columns.Contains("cDV"))
+                ide.cDV = Convert.ToInt32(dt.Rows[i]["cDV"]);
 
             if (dt.Columns.Contains("cMunFG"))
                 ide.cMunFG = Convert.ToInt32(dt.Rows[i]["cMunFG"]);

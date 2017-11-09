@@ -141,14 +141,15 @@
             this.lblConsulMSSNCumSaldo = new System.Windows.Forms.Label();
             this.lblConsulTotSNCumSaldo = new System.Windows.Forms.Label();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label114 = new System.Windows.Forms.Label();
+            this.label115 = new System.Windows.Forms.Label();
+            this.label116 = new System.Windows.Forms.Label();
             this.lblConsulCumIrPrivado = new System.Windows.Forms.Label();
             this.lblConsulCumIrPublico = new System.Windows.Forms.Label();
             this.lblConsulCumCofinsPrivado = new System.Windows.Forms.Label();
             this.lblConsulCumCofinsPublico = new System.Windows.Forms.Label();
             this.lblConsulCumPisPrivado = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.lblConsulCumPisPublico = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.lblConsulTotSCumRbRecDif = new System.Windows.Forms.Label();
             this.lblConsulMSSCumRbRecDif = new System.Windows.Forms.Label();
@@ -293,6 +294,7 @@
             this.importarTxtsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excluirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reprocessarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.dateTimeInicio = new System.Windows.Forms.DateTimePicker();
@@ -307,9 +309,26 @@
             this.lblCliImport = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.reprocessarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label113 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.lblCssl = new System.Windows.Forms.Label();
+            this.lblConsulNCumCsslPrivado = new System.Windows.Forms.Label();
+            this.lblConsulNCumCsslPublico = new System.Windows.Forms.Label();
+            this.lblIss = new System.Windows.Forms.Label();
+            this.lblConsulNCumIssPrivado = new System.Windows.Forms.Label();
+            this.lblConsulNCumIssPublico = new System.Windows.Forms.Label();
+            this.lblInss = new System.Windows.Forms.Label();
+            this.lblConsulNCumInssPrivado = new System.Windows.Forms.Label();
+            this.lblConsulNCumInssPublico = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblConsulCumIssPrivado = new System.Windows.Forms.Label();
+            this.lblConsulCumIssPublico = new System.Windows.Forms.Label();
+            this.label120 = new System.Windows.Forms.Label();
+            this.lblConsulCumInssPrivado = new System.Windows.Forms.Label();
+            this.lblConsulCumInssPublico = new System.Windows.Forms.Label();
+            this.label126 = new System.Windows.Forms.Label();
+            this.lblConsulCumCsslPrivado = new System.Windows.Forms.Label();
+            this.lblConsulCumCsslPublico = new System.Windows.Forms.Label();
             this.tabControlPrincipal.SuspendLayout();
             this.tabMatrix.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -1731,26 +1750,66 @@
             // 
             // groupBox8
             // 
+            this.groupBox8.Controls.Add(this.label126);
+            this.groupBox8.Controls.Add(this.lblConsulCumCsslPrivado);
+            this.groupBox8.Controls.Add(this.lblConsulCumCsslPublico);
+            this.groupBox8.Controls.Add(this.label8);
+            this.groupBox8.Controls.Add(this.lblConsulCumIssPrivado);
+            this.groupBox8.Controls.Add(this.lblConsulCumIssPublico);
+            this.groupBox8.Controls.Add(this.label120);
+            this.groupBox8.Controls.Add(this.lblConsulCumInssPrivado);
+            this.groupBox8.Controls.Add(this.lblConsulCumInssPublico);
+            this.groupBox8.Controls.Add(this.label114);
+            this.groupBox8.Controls.Add(this.label115);
+            this.groupBox8.Controls.Add(this.label116);
             this.groupBox8.Controls.Add(this.lblConsulCumIrPrivado);
             this.groupBox8.Controls.Add(this.lblConsulCumIrPublico);
             this.groupBox8.Controls.Add(this.lblConsulCumCofinsPrivado);
             this.groupBox8.Controls.Add(this.lblConsulCumCofinsPublico);
             this.groupBox8.Controls.Add(this.lblConsulCumPisPrivado);
-            this.groupBox8.Controls.Add(this.label8);
             this.groupBox8.Controls.Add(this.lblConsulCumPisPublico);
-            this.groupBox8.Controls.Add(this.label10);
-            this.groupBox8.Location = new System.Drawing.Point(547, 104);
+            this.groupBox8.Location = new System.Drawing.Point(629, 181);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(371, 80);
+            this.groupBox8.Size = new System.Drawing.Size(294, 143);
             this.groupBox8.TabIndex = 75;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Retenções Cumulativas";
+            // 
+            // label114
+            // 
+            this.label114.AutoSize = true;
+            this.label114.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label114.Location = new System.Drawing.Point(6, 73);
+            this.label114.Name = "label114";
+            this.label114.Size = new System.Drawing.Size(21, 15);
+            this.label114.TabIndex = 78;
+            this.label114.Text = "IR";
+            // 
+            // label115
+            // 
+            this.label115.AutoSize = true;
+            this.label115.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label115.Location = new System.Drawing.Point(6, 54);
+            this.label115.Name = "label115";
+            this.label115.Size = new System.Drawing.Size(47, 15);
+            this.label115.TabIndex = 77;
+            this.label115.Text = "Cofins";
+            // 
+            // label116
+            // 
+            this.label116.AutoSize = true;
+            this.label116.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label116.Location = new System.Drawing.Point(6, 16);
+            this.label116.Name = "label116";
+            this.label116.Size = new System.Drawing.Size(29, 15);
+            this.label116.TabIndex = 76;
+            this.label116.Text = "PIS";
             // 
             // lblConsulCumIrPrivado
             // 
             this.lblConsulCumIrPrivado.AutoSize = true;
             this.lblConsulCumIrPrivado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConsulCumIrPrivado.Location = new System.Drawing.Point(258, 20);
+            this.lblConsulCumIrPrivado.Location = new System.Drawing.Point(65, 73);
             this.lblConsulCumIrPrivado.Name = "lblConsulCumIrPrivado";
             this.lblConsulCumIrPrivado.Size = new System.Drawing.Size(50, 15);
             this.lblConsulCumIrPrivado.TabIndex = 75;
@@ -1760,7 +1819,7 @@
             // 
             this.lblConsulCumIrPublico.AutoSize = true;
             this.lblConsulCumIrPublico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConsulCumIrPublico.Location = new System.Drawing.Point(258, 43);
+            this.lblConsulCumIrPublico.Location = new System.Drawing.Point(158, 73);
             this.lblConsulCumIrPublico.Name = "lblConsulCumIrPublico";
             this.lblConsulCumIrPublico.Size = new System.Drawing.Size(50, 15);
             this.lblConsulCumIrPublico.TabIndex = 74;
@@ -1770,7 +1829,7 @@
             // 
             this.lblConsulCumCofinsPrivado.AutoSize = true;
             this.lblConsulCumCofinsPrivado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConsulCumCofinsPrivado.Location = new System.Drawing.Point(161, 20);
+            this.lblConsulCumCofinsPrivado.Location = new System.Drawing.Point(65, 54);
             this.lblConsulCumCofinsPrivado.Name = "lblConsulCumCofinsPrivado";
             this.lblConsulCumCofinsPrivado.Size = new System.Drawing.Size(50, 15);
             this.lblConsulCumCofinsPrivado.TabIndex = 73;
@@ -1783,7 +1842,7 @@
             // 
             this.lblConsulCumCofinsPublico.AutoSize = true;
             this.lblConsulCumCofinsPublico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConsulCumCofinsPublico.Location = new System.Drawing.Point(161, 43);
+            this.lblConsulCumCofinsPublico.Location = new System.Drawing.Point(158, 54);
             this.lblConsulCumCofinsPublico.Name = "lblConsulCumCofinsPublico";
             this.lblConsulCumCofinsPublico.Size = new System.Drawing.Size(50, 15);
             this.lblConsulCumCofinsPublico.TabIndex = 72;
@@ -1796,7 +1855,7 @@
             // 
             this.lblConsulCumPisPrivado.AutoSize = true;
             this.lblConsulCumPisPrivado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConsulCumPisPrivado.Location = new System.Drawing.Point(67, 20);
+            this.lblConsulCumPisPrivado.Location = new System.Drawing.Point(65, 16);
             this.lblConsulCumPisPrivado.Name = "lblConsulCumPisPrivado";
             this.lblConsulCumPisPrivado.Size = new System.Drawing.Size(50, 15);
             this.lblConsulCumPisPrivado.TabIndex = 71;
@@ -1805,21 +1864,11 @@
             this.lblConsulCumPisPrivado.MouseEnter += new System.EventHandler(this.lbl_MouseEnter);
             this.lblConsulCumPisPrivado.MouseLeave += new System.EventHandler(this.lbl_MouseLeave);
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(6, 20);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(55, 15);
-            this.label8.TabIndex = 70;
-            this.label8.Text = "Privado";
-            // 
             // lblConsulCumPisPublico
             // 
             this.lblConsulCumPisPublico.AutoSize = true;
             this.lblConsulCumPisPublico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConsulCumPisPublico.Location = new System.Drawing.Point(67, 43);
+            this.lblConsulCumPisPublico.Location = new System.Drawing.Point(158, 16);
             this.lblConsulCumPisPublico.Name = "lblConsulCumPisPublico";
             this.lblConsulCumPisPublico.Size = new System.Drawing.Size(50, 15);
             this.lblConsulCumPisPublico.TabIndex = 69;
@@ -1827,16 +1876,6 @@
             this.lblConsulCumPisPublico.DoubleClick += new System.EventHandler(this.lbl_DoubleClick);
             this.lblConsulCumPisPublico.MouseEnter += new System.EventHandler(this.lbl_MouseEnter);
             this.lblConsulCumPisPublico.MouseLeave += new System.EventHandler(this.lbl_MouseLeave);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(6, 43);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(55, 15);
-            this.label10.TabIndex = 68;
-            this.label10.Text = "Público";
             // 
             // groupBox7
             // 
@@ -2383,6 +2422,15 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.lblIss);
+            this.groupBox3.Controls.Add(this.lblConsulNCumIssPrivado);
+            this.groupBox3.Controls.Add(this.lblConsulNCumIssPublico);
+            this.groupBox3.Controls.Add(this.lblInss);
+            this.groupBox3.Controls.Add(this.lblConsulNCumInssPrivado);
+            this.groupBox3.Controls.Add(this.lblConsulNCumInssPublico);
+            this.groupBox3.Controls.Add(this.lblCssl);
+            this.groupBox3.Controls.Add(this.lblConsulNCumCsslPrivado);
+            this.groupBox3.Controls.Add(this.lblConsulNCumCsslPublico);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.lblConsulNCumIrPrivado);
             this.groupBox3.Controls.Add(this.lblConsulNCumIrPublico);
@@ -2394,9 +2442,9 @@
             this.groupBox3.Controls.Add(this.label96);
             this.groupBox3.Controls.Add(this.lblConsulNCumPisPublico);
             this.groupBox3.Controls.Add(this.label99);
-            this.groupBox3.Location = new System.Drawing.Point(547, 3);
+            this.groupBox3.Location = new System.Drawing.Point(629, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(371, 95);
+            this.groupBox3.Size = new System.Drawing.Size(294, 155);
             this.groupBox3.TabIndex = 52;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Retenções Não Cumulativas";
@@ -2405,7 +2453,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(258, 16);
+            this.label3.Location = new System.Drawing.Point(6, 89);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(21, 15);
             this.label3.TabIndex = 74;
@@ -2415,7 +2463,7 @@
             // 
             this.lblConsulNCumIrPrivado.AutoSize = true;
             this.lblConsulNCumIrPrivado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConsulNCumIrPrivado.Location = new System.Drawing.Point(258, 41);
+            this.lblConsulNCumIrPrivado.Location = new System.Drawing.Point(65, 89);
             this.lblConsulNCumIrPrivado.Name = "lblConsulNCumIrPrivado";
             this.lblConsulNCumIrPrivado.Size = new System.Drawing.Size(50, 15);
             this.lblConsulNCumIrPrivado.TabIndex = 73;
@@ -2425,7 +2473,7 @@
             // 
             this.lblConsulNCumIrPublico.AutoSize = true;
             this.lblConsulNCumIrPublico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConsulNCumIrPublico.Location = new System.Drawing.Point(258, 64);
+            this.lblConsulNCumIrPublico.Location = new System.Drawing.Point(158, 89);
             this.lblConsulNCumIrPublico.Name = "lblConsulNCumIrPublico";
             this.lblConsulNCumIrPublico.Size = new System.Drawing.Size(50, 15);
             this.lblConsulNCumIrPublico.TabIndex = 72;
@@ -2435,7 +2483,7 @@
             // 
             this.label107.AutoSize = true;
             this.label107.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label107.Location = new System.Drawing.Point(161, 16);
+            this.label107.Location = new System.Drawing.Point(6, 70);
             this.label107.Name = "label107";
             this.label107.Size = new System.Drawing.Size(47, 15);
             this.label107.TabIndex = 71;
@@ -2445,7 +2493,7 @@
             // 
             this.label108.AutoSize = true;
             this.label108.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label108.Location = new System.Drawing.Point(67, 16);
+            this.label108.Location = new System.Drawing.Point(6, 32);
             this.label108.Name = "label108";
             this.label108.Size = new System.Drawing.Size(29, 15);
             this.label108.TabIndex = 70;
@@ -2455,7 +2503,7 @@
             // 
             this.lblConsulNCumCofinsPrivado.AutoSize = true;
             this.lblConsulNCumCofinsPrivado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConsulNCumCofinsPrivado.Location = new System.Drawing.Point(161, 41);
+            this.lblConsulNCumCofinsPrivado.Location = new System.Drawing.Point(65, 70);
             this.lblConsulNCumCofinsPrivado.Name = "lblConsulNCumCofinsPrivado";
             this.lblConsulNCumCofinsPrivado.Size = new System.Drawing.Size(50, 15);
             this.lblConsulNCumCofinsPrivado.TabIndex = 67;
@@ -2468,7 +2516,7 @@
             // 
             this.lblConsulNCumCofinsPublico.AutoSize = true;
             this.lblConsulNCumCofinsPublico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConsulNCumCofinsPublico.Location = new System.Drawing.Point(161, 64);
+            this.lblConsulNCumCofinsPublico.Location = new System.Drawing.Point(158, 70);
             this.lblConsulNCumCofinsPublico.Name = "lblConsulNCumCofinsPublico";
             this.lblConsulNCumCofinsPublico.Size = new System.Drawing.Size(50, 15);
             this.lblConsulNCumCofinsPublico.TabIndex = 65;
@@ -2481,7 +2529,7 @@
             // 
             this.lblConsulNCumPisPrivado.AutoSize = true;
             this.lblConsulNCumPisPrivado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConsulNCumPisPrivado.Location = new System.Drawing.Point(67, 41);
+            this.lblConsulNCumPisPrivado.Location = new System.Drawing.Point(65, 32);
             this.lblConsulNCumPisPrivado.Name = "lblConsulNCumPisPrivado";
             this.lblConsulNCumPisPrivado.Size = new System.Drawing.Size(50, 15);
             this.lblConsulNCumPisPrivado.TabIndex = 56;
@@ -2494,7 +2542,7 @@
             // 
             this.label96.AutoSize = true;
             this.label96.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label96.Location = new System.Drawing.Point(6, 41);
+            this.label96.Location = new System.Drawing.Point(65, 11);
             this.label96.Name = "label96";
             this.label96.Size = new System.Drawing.Size(55, 15);
             this.label96.TabIndex = 55;
@@ -2504,7 +2552,7 @@
             // 
             this.lblConsulNCumPisPublico.AutoSize = true;
             this.lblConsulNCumPisPublico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConsulNCumPisPublico.Location = new System.Drawing.Point(67, 64);
+            this.lblConsulNCumPisPublico.Location = new System.Drawing.Point(158, 32);
             this.lblConsulNCumPisPublico.Name = "lblConsulNCumPisPublico";
             this.lblConsulNCumPisPublico.Size = new System.Drawing.Size(50, 15);
             this.lblConsulNCumPisPublico.TabIndex = 54;
@@ -2517,7 +2565,7 @@
             // 
             this.label99.AutoSize = true;
             this.label99.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label99.Location = new System.Drawing.Point(6, 64);
+            this.label99.Location = new System.Drawing.Point(158, 11);
             this.label99.Name = "label99";
             this.label99.Size = new System.Drawing.Size(55, 15);
             this.label99.TabIndex = 53;
@@ -3578,6 +3626,15 @@
             this.excluirToolStripMenuItem.Text = "Excluir";
             this.excluirToolStripMenuItem.Click += new System.EventHandler(this.excluirToolStripMenuItem_Click);
             // 
+            // reprocessarToolStripMenuItem
+            // 
+            this.reprocessarToolStripMenuItem.Name = "reprocessarToolStripMenuItem";
+            this.reprocessarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.R)));
+            this.reprocessarToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.reprocessarToolStripMenuItem.Text = "Reprocessar";
+            this.reprocessarToolStripMenuItem.Click += new System.EventHandler(this.reprocessarToolStripMenuItem_Click);
+            // 
             // label34
             // 
             this.label34.AutoSize = true;
@@ -3719,15 +3776,6 @@
             // 
             this.timer1.Interval = 500;
             // 
-            // reprocessarToolStripMenuItem
-            // 
-            this.reprocessarToolStripMenuItem.Name = "reprocessarToolStripMenuItem";
-            this.reprocessarToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-            | System.Windows.Forms.Keys.R)));
-            this.reprocessarToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
-            this.reprocessarToolStripMenuItem.Text = "Reprocessar";
-            this.reprocessarToolStripMenuItem.Click += new System.EventHandler(this.reprocessarToolStripMenuItem_Click);
-            // 
             // label113
             // 
             this.label113.AutoSize = true;
@@ -3747,6 +3795,192 @@
             this.lblStatus.Size = new System.Drawing.Size(62, 13);
             this.lblStatus.TabIndex = 13;
             this.lblStatus.Text = "Sistema OK";
+            // 
+            // lblCssl
+            // 
+            this.lblCssl.AutoSize = true;
+            this.lblCssl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCssl.Location = new System.Drawing.Point(6, 51);
+            this.lblCssl.Name = "lblCssl";
+            this.lblCssl.Size = new System.Drawing.Size(42, 15);
+            this.lblCssl.TabIndex = 77;
+            this.lblCssl.Text = "CSSL";
+            // 
+            // lblConsulNCumCsslPrivado
+            // 
+            this.lblConsulNCumCsslPrivado.AutoSize = true;
+            this.lblConsulNCumCsslPrivado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConsulNCumCsslPrivado.Location = new System.Drawing.Point(65, 51);
+            this.lblConsulNCumCsslPrivado.Name = "lblConsulNCumCsslPrivado";
+            this.lblConsulNCumCsslPrivado.Size = new System.Drawing.Size(50, 15);
+            this.lblConsulNCumCsslPrivado.TabIndex = 76;
+            this.lblConsulNCumCsslPrivado.Text = "R$ 0,00";
+            // 
+            // lblConsulNCumCsslPublico
+            // 
+            this.lblConsulNCumCsslPublico.AutoSize = true;
+            this.lblConsulNCumCsslPublico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConsulNCumCsslPublico.Location = new System.Drawing.Point(158, 51);
+            this.lblConsulNCumCsslPublico.Name = "lblConsulNCumCsslPublico";
+            this.lblConsulNCumCsslPublico.Size = new System.Drawing.Size(50, 15);
+            this.lblConsulNCumCsslPublico.TabIndex = 75;
+            this.lblConsulNCumCsslPublico.Text = "R$ 0,00";
+            // 
+            // lblIss
+            // 
+            this.lblIss.AutoSize = true;
+            this.lblIss.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIss.Location = new System.Drawing.Point(6, 126);
+            this.lblIss.Name = "lblIss";
+            this.lblIss.Size = new System.Drawing.Size(29, 15);
+            this.lblIss.TabIndex = 83;
+            this.lblIss.Text = "ISS";
+            this.lblIss.Visible = false;
+            // 
+            // lblConsulNCumIssPrivado
+            // 
+            this.lblConsulNCumIssPrivado.AutoSize = true;
+            this.lblConsulNCumIssPrivado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConsulNCumIssPrivado.Location = new System.Drawing.Point(65, 126);
+            this.lblConsulNCumIssPrivado.Name = "lblConsulNCumIssPrivado";
+            this.lblConsulNCumIssPrivado.Size = new System.Drawing.Size(50, 15);
+            this.lblConsulNCumIssPrivado.TabIndex = 82;
+            this.lblConsulNCumIssPrivado.Text = "R$ 0,00";
+            this.lblConsulNCumIssPrivado.Visible = false;
+            // 
+            // lblConsulNCumIssPublico
+            // 
+            this.lblConsulNCumIssPublico.AutoSize = true;
+            this.lblConsulNCumIssPublico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConsulNCumIssPublico.Location = new System.Drawing.Point(158, 126);
+            this.lblConsulNCumIssPublico.Name = "lblConsulNCumIssPublico";
+            this.lblConsulNCumIssPublico.Size = new System.Drawing.Size(50, 15);
+            this.lblConsulNCumIssPublico.TabIndex = 81;
+            this.lblConsulNCumIssPublico.Text = "R$ 0,00";
+            this.lblConsulNCumIssPublico.Visible = false;
+            // 
+            // lblInss
+            // 
+            this.lblInss.AutoSize = true;
+            this.lblInss.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInss.Location = new System.Drawing.Point(6, 107);
+            this.lblInss.Name = "lblInss";
+            this.lblInss.Size = new System.Drawing.Size(39, 15);
+            this.lblInss.TabIndex = 80;
+            this.lblInss.Text = "INSS";
+            // 
+            // lblConsulNCumInssPrivado
+            // 
+            this.lblConsulNCumInssPrivado.AutoSize = true;
+            this.lblConsulNCumInssPrivado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConsulNCumInssPrivado.Location = new System.Drawing.Point(65, 107);
+            this.lblConsulNCumInssPrivado.Name = "lblConsulNCumInssPrivado";
+            this.lblConsulNCumInssPrivado.Size = new System.Drawing.Size(50, 15);
+            this.lblConsulNCumInssPrivado.TabIndex = 79;
+            this.lblConsulNCumInssPrivado.Text = "R$ 0,00";
+            // 
+            // lblConsulNCumInssPublico
+            // 
+            this.lblConsulNCumInssPublico.AutoSize = true;
+            this.lblConsulNCumInssPublico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConsulNCumInssPublico.Location = new System.Drawing.Point(158, 107);
+            this.lblConsulNCumInssPublico.Name = "lblConsulNCumInssPublico";
+            this.lblConsulNCumInssPublico.Size = new System.Drawing.Size(50, 15);
+            this.lblConsulNCumInssPublico.TabIndex = 78;
+            this.lblConsulNCumInssPublico.Text = "R$ 0,00";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(6, 110);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(29, 15);
+            this.label8.TabIndex = 89;
+            this.label8.Text = "ISS";
+            this.label8.Visible = false;
+            // 
+            // lblConsulCumIssPrivado
+            // 
+            this.lblConsulCumIssPrivado.AutoSize = true;
+            this.lblConsulCumIssPrivado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConsulCumIssPrivado.Location = new System.Drawing.Point(65, 110);
+            this.lblConsulCumIssPrivado.Name = "lblConsulCumIssPrivado";
+            this.lblConsulCumIssPrivado.Size = new System.Drawing.Size(50, 15);
+            this.lblConsulCumIssPrivado.TabIndex = 88;
+            this.lblConsulCumIssPrivado.Text = "R$ 0,00";
+            this.lblConsulCumIssPrivado.Visible = false;
+            // 
+            // lblConsulCumIssPublico
+            // 
+            this.lblConsulCumIssPublico.AutoSize = true;
+            this.lblConsulCumIssPublico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConsulCumIssPublico.Location = new System.Drawing.Point(158, 110);
+            this.lblConsulCumIssPublico.Name = "lblConsulCumIssPublico";
+            this.lblConsulCumIssPublico.Size = new System.Drawing.Size(50, 15);
+            this.lblConsulCumIssPublico.TabIndex = 87;
+            this.lblConsulCumIssPublico.Text = "R$ 0,00";
+            this.lblConsulCumIssPublico.Visible = false;
+            // 
+            // label120
+            // 
+            this.label120.AutoSize = true;
+            this.label120.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label120.Location = new System.Drawing.Point(6, 91);
+            this.label120.Name = "label120";
+            this.label120.Size = new System.Drawing.Size(39, 15);
+            this.label120.TabIndex = 86;
+            this.label120.Text = "INSS";
+            // 
+            // lblConsulCumInssPrivado
+            // 
+            this.lblConsulCumInssPrivado.AutoSize = true;
+            this.lblConsulCumInssPrivado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConsulCumInssPrivado.Location = new System.Drawing.Point(65, 91);
+            this.lblConsulCumInssPrivado.Name = "lblConsulCumInssPrivado";
+            this.lblConsulCumInssPrivado.Size = new System.Drawing.Size(50, 15);
+            this.lblConsulCumInssPrivado.TabIndex = 85;
+            this.lblConsulCumInssPrivado.Text = "R$ 0,00";
+            // 
+            // lblConsulCumInssPublico
+            // 
+            this.lblConsulCumInssPublico.AutoSize = true;
+            this.lblConsulCumInssPublico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConsulCumInssPublico.Location = new System.Drawing.Point(158, 91);
+            this.lblConsulCumInssPublico.Name = "lblConsulCumInssPublico";
+            this.lblConsulCumInssPublico.Size = new System.Drawing.Size(50, 15);
+            this.lblConsulCumInssPublico.TabIndex = 84;
+            this.lblConsulCumInssPublico.Text = "R$ 0,00";
+            // 
+            // label126
+            // 
+            this.label126.AutoSize = true;
+            this.label126.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label126.Location = new System.Drawing.Point(6, 35);
+            this.label126.Name = "label126";
+            this.label126.Size = new System.Drawing.Size(42, 15);
+            this.label126.TabIndex = 92;
+            this.label126.Text = "CSSL";
+            // 
+            // lblConsulCumCsslPrivado
+            // 
+            this.lblConsulCumCsslPrivado.AutoSize = true;
+            this.lblConsulCumCsslPrivado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConsulCumCsslPrivado.Location = new System.Drawing.Point(65, 35);
+            this.lblConsulCumCsslPrivado.Name = "lblConsulCumCsslPrivado";
+            this.lblConsulCumCsslPrivado.Size = new System.Drawing.Size(50, 15);
+            this.lblConsulCumCsslPrivado.TabIndex = 91;
+            this.lblConsulCumCsslPrivado.Text = "R$ 0,00";
+            // 
+            // lblConsulCumCsslPublico
+            // 
+            this.lblConsulCumCsslPublico.AutoSize = true;
+            this.lblConsulCumCsslPublico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblConsulCumCsslPublico.Location = new System.Drawing.Point(158, 35);
+            this.lblConsulCumCsslPublico.Name = "lblConsulCumCsslPublico";
+            this.lblConsulCumCsslPublico.Size = new System.Drawing.Size(50, 15);
+            this.lblConsulCumCsslPublico.TabIndex = 90;
+            this.lblConsulCumCsslPublico.Text = "R$ 0,00";
             // 
             // Principal
             // 
@@ -3976,9 +4210,7 @@
         private System.Windows.Forms.Label lblConsulCumCofinsPrivado;
         private System.Windows.Forms.Label lblConsulCumCofinsPublico;
         private System.Windows.Forms.Label lblConsulCumPisPrivado;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblConsulCumPisPublico;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblConsulCumIrPrivado;
         private System.Windows.Forms.Label lblConsulCumIrPublico;
         private System.Windows.Forms.Label label3;
@@ -4081,6 +4313,27 @@
         private System.Windows.Forms.ToolStripMenuItem reprocessarToolStripMenuItem;
         private System.Windows.Forms.Label label113;
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Label label114;
+        private System.Windows.Forms.Label label115;
+        private System.Windows.Forms.Label label116;
+        private System.Windows.Forms.Label label126;
+        private System.Windows.Forms.Label lblConsulCumCsslPrivado;
+        private System.Windows.Forms.Label lblConsulCumCsslPublico;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblConsulCumIssPrivado;
+        private System.Windows.Forms.Label lblConsulCumIssPublico;
+        private System.Windows.Forms.Label label120;
+        private System.Windows.Forms.Label lblConsulCumInssPrivado;
+        private System.Windows.Forms.Label lblConsulCumInssPublico;
+        private System.Windows.Forms.Label lblIss;
+        private System.Windows.Forms.Label lblConsulNCumIssPrivado;
+        private System.Windows.Forms.Label lblConsulNCumIssPublico;
+        private System.Windows.Forms.Label lblInss;
+        private System.Windows.Forms.Label lblConsulNCumInssPrivado;
+        private System.Windows.Forms.Label lblConsulNCumInssPublico;
+        private System.Windows.Forms.Label lblCssl;
+        private System.Windows.Forms.Label lblConsulNCumCsslPrivado;
+        private System.Windows.Forms.Label lblConsulNCumCsslPublico;
     }
 }
 
