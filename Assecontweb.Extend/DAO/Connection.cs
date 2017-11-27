@@ -22,6 +22,7 @@ namespace DAO
         }
 
         public Connection(string server = "200.170.88.138", string database = "assecont2", string user = "assecont5272", string password = "*h6prMvr")
+        //public Connection(string server = "LOCALHOST", string database = "AssecontWeb", string user = "sa", string password = "assecont2017")
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
 

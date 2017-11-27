@@ -547,7 +547,7 @@ namespace DAO
             erro = "OK";
             try
             {
-                conn.Open();
+                c.Open();
 
                 query = @"select a.nfd_int_id,a.nfd_int_nNf,a.nfd_dt_dhEmi,
 	                               (case when LEN(nde_des_cnpj) < 14 then nde_des_cnpj else null end) as CPF, 
@@ -628,7 +628,7 @@ namespace DAO
             erro = "OK";
             try
             {
-                conn.Open();
+                c.Open();
 
                 query = @"select a.nfs_int_id,a.nfs_int_numero,a.nfs_des_codverificacao,a.nfs_dt_emissao,a.nfs_int_naturezaop,a.nfs_int_regimetributacao,a.nfs_int_optantesimples,a.nfs_int_icentivcult
                                 ,a.nfs_int_competencia,a.nfs_int_nfsesubst,a.nfs_des_outrasinformacoes,a.nfs_int_listaservico,a.nfs_int_cnae,a.nfs_int_tribmunici,a.nfs_des_dicriminacao,a.nfs_int_municiprestserv
@@ -2181,7 +2181,7 @@ namespace DAO
                 cmd.Parameters.AddWithValue("@ctb", ctb);
 
                 DbDataReader d = cmd.ExecuteReader();
-                retorno.Load(dr);
+                retorno.Load(d);
             }
             catch (Exception ex)
             {
@@ -2209,16 +2209,16 @@ namespace DAO
 		                            @p_rec int = @rec  -- 0 = false, 1 = true, 2 = null
 
                             select a.nfs_int_numero as Nota, 
-	                               case when d.nfs_int_id is null then 'Não' else 'Sim' end as Recebida, 
-	                               CONVERT(DATE, a.nfs_dt_emissao) as Emissão, 
-	                               case when e.cli_des_grupo = 'CONTRIBUINTE' or e.cli_des_grupo = 'NÃO CONTRIBUINTE' then 'Privado' else 'Publico' end as Destinatario, 
-	                               REPLACE(CONVERT(varchar(100), SUM(a.nfs_num_vlrservico)), '.', ',') as Valor 
+	                                case when d.nfs_int_id is null then 'Não' else 'Sim' end as Recebida, 
+	                                CONVERT(DATE, a.nfs_dt_emissao) as Emissão, 
+	                                case when e.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE') then 'Privado' else 'Publico' end as Destinatario, 
+	                                REPLACE(CONVERT(varchar(100), SUM(a.nfs_num_vlrservico)), '.', ',') as Valor 
                             from SealNotaFiscalServico a
                             left join SealNotaFiscalServicoEmpresa b on a.nse_int_prestador = b.nse_int_id 
                             left join SealNotaFiscalServicoEmpresa c on a.nse_int_tomador = c.nse_int_id 
                             outer apply(
 	                            select aa.nfs_int_id, ab.crb_dt_recebimento, 
-		                               SUM(ab.crb_num_valorrecebido) as crb_num_valorrecebido
+		                                SUM(ab.crb_num_valorrecebido) as crb_num_valorrecebido
 	                            from SealNotaFiscalRecebida aa 
 	                            inner join SealContaReceber ab on aa.nfr_int_id = ab.nfr_int_id
 	                            where aa.nfs_int_id = a.nfs_int_id 
@@ -2226,31 +2226,27 @@ namespace DAO
                             ) d
                             left join SealCliente e on c.nse_des_cnpj = e.cli_des_cnpj 
                             where (e.cli_int_id is not null) and 
-                            ((@p_uf = 0 and 
-	                            (b.nse_des_estado = 'MS' and b.nse_int_id is not null) and 
-	                            ((@p_cum = 0 and (a.nfs_int_listaservico in (1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703))) or 
-	                             (@p_cum = 1 and (a.nfs_int_listaservico in (702, 103, 105, 107, 104, 106))) or 
-	                             (@p_cum = 2 and (a.nfs_int_listaservico in (702, 103, 105, 107, 104, 106, 1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703))))) or   
-                            (@p_uf = 1 and 
-	                            ((a.nfs_des_ufmunicipio = 'SP' and b.nse_int_id is null) or a.nse_int_prestador is null) and 
-	                            ((@p_cum = 0 and (a.nfs_int_listaservico in (01880, 02119, 02135, 02186, 02194, 03093, 03115, 03450, 03468, 05991, 06009, 07285, 07315, 07323, 07331, 07366, 
-												                            07390, 07412, 07439, 07447, 07455, 07471, 07498, 02496))) or 
-	                             (@p_cum = 1 and (a.nfs_int_listaservico in (1015, 1023, 2682, 2798, 2917, 2918, 2690, 2879))) or 
-	                             (@p_cum = 2 and (a.nfs_int_listaservico in (1015, 1023, 2682, 2798, 2917, 2918, 2690, 2879, 01880, 02119, 02135, 02186, 02194, 03093, 03115, 03450, 03468, 
-												                            05991, 06009, 07285, 07315, 07323, 07331, 07366, 07390, 07412, 07439, 07447, 07455, 07471, 07498, 02496))))) or  
-                            (@p_uf = 2 and 
-	                            ((@p_cum = 0 and (a.nfs_int_listaservico in (1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703, 01880, 02119, 02135, 02186, 02194, 03093, 03115, 03450, 03468, 05991, 
-					                            06009, 07285, 07315, 07323, 07331, 07366, 07390, 07412, 07439, 07447, 07455, 07471, 07498, 02496))) or 
-	                             (@p_cum = 1 and (a.nfs_int_listaservico in (702, 103, 105, 107, 104, 106, 1015, 1023, 2682, 2798, 2917, 2918, 2690, 2879))) or 
-	                             (@p_cum = 2 and (a.nfs_int_listaservico in (1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703, 01880, 02119, 02135, 02186, 02194, 03093, 03115, 03450, 03468, 05991, 
-					                            06009, 07285, 07315, 07323, 07331, 07366, 07390, 07412, 07439, 07447, 07455, 07471, 07498, 02496, 702, 103, 105, 107, 104, 106, 1015, 1023, 2682, 2798, 2917, 2918, 2690, 2879)))))) and 
-                            (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
-                            ((@p_lei = 0 and (e.cli_int_id is not null and (e.cli_des_grupo = 'CONTRIBUINTE' or e.cli_des_grupo = 'NÃO CONTRIBUINTE'))) or 
-                             (@p_lei = 1 and (e.cli_int_id is not null and (e.cli_des_grupo = 'CONTRIB - Lei 9718' or e.cli_des_grupo = 'Ñ CONTRIB - Lei 9718'))) or
-                             (@p_lei = 2 and (e.cli_int_id is not null))) and 
-                            ((@p_rec = 0 and (d.nfs_int_id is null)) or 
-                             (@p_rec = 1 and (d.nfs_int_id is not null)) or 
-                             (@p_rec = 2))
+	                              ((@p_uf = 0 and 
+			                            (b.nse_des_estado = 'MS' and b.nse_int_id is not null) and 
+			                            ((@p_cum = 0 and (a.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))) or 
+			                             (@p_cum = 1 and (a.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))) or 
+			                             (@p_cum = 2))) or   
+	                               (@p_uf = 1 and 
+			                            ((a.nfs_des_ufmunicipio = 'SP' and b.nse_int_id is null) or a.nse_int_prestador is null) and 
+			                            ((@p_cum = 0 and (a.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))) or 
+			                             (@p_cum = 1 and (a.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))) or 
+			                             (@p_cum = 2))) or  
+	                               (@p_uf = 2 and 
+			                            ((@p_cum = 0 and (a.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))) or 
+			                             (@p_cum = 1 and (a.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))) or 
+			                             (@p_cum = 2)))) and 
+	                               (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
+	                               ((@p_lei = 0 and (e.cli_int_id is not null and (e.cli_des_grupo = 'CONTRIBUINTE' or e.cli_des_grupo = 'NÃO CONTRIBUINTE'))) or 
+		                            (@p_lei = 1 and (e.cli_int_id is not null and (e.cli_des_grupo = 'CONTRIB - Lei 9718' or e.cli_des_grupo = 'Ñ CONTRIB - Lei 9718'))) or
+		                            (@p_lei = 2 and (e.cli_int_id is not null))) and 
+	                               ((@p_rec = 0 and (d.nfs_int_id is null)) or 
+		                            (@p_rec = 1 and (d.nfs_int_id is not null)) or 
+		                            (@p_rec = 2))
                             group by a.nfs_int_numero, d.nfs_int_id, a.nfs_dt_emissao, d.crb_dt_recebimento, e.cli_des_grupo ";
 
                 cmd = new SqlCommand(query, conn);
@@ -2383,9 +2379,9 @@ namespace DAO
 	                                case when e.cli_des_grupo in ('CONTRIBUINTE', 'NÃO CONTRIBUINTE') then 'Privado' else 'Publico' end as Destinatario, 
 	                                'R$ ' + REPLACE(CONVERT(varchar(100), CONVERT(MONEY, SUM(a.nfs_num_vlrservico))), '.', ',') as 'Valor Serviço', 
 	                                'R$ ' + REPLACE(CONVERT(varchar(100), CONVERT(MONEY, SUM(isnull((case when f.crb_dt_recebimento >= @inicio and f.crb_dt_recebimento <= @fim 
-																		                                  then f.crb_num_valorrecebido else 0 end), 0)))), '.', ',') as 'Valor Recebido', 
+																		                                    then f.crb_num_valorrecebido else 0 end), 0)))), '.', ',') as 'Valor Recebido', 
 	                                'R$ ' + REPLACE(CONVERT(varchar(100), CONVERT(MONEY, SUM(a.nfs_num_vlrservico - isnull((case when f.crb_dt_recebimento >= @inicio and f.crb_dt_recebimento <= @fim 
-																		                                  then f.crb_num_valorrecebido else 0 end), 0)))), '.', ',') as 'Valor Excluido' 
+																		                                    then f.crb_num_valorrecebido else 0 end), 0)))), '.', ',') as 'Valor Excluido' 
                                 from SealNotaFiscalServico a
                                 left join SealNotaFiscalServicoEmpresa b on a.nse_int_prestador = b.nse_int_id 
                                 left join SealNotaFiscalServicoEmpresa c on a.nse_int_tomador = c.nse_int_id 
@@ -2401,33 +2397,25 @@ namespace DAO
 	                                group by aa.nfs_int_id, ab.crb_dt_recebimento, ab.crb_num_valor 
                                 ) f 	     
                                 where (a.nfs_dt_emissao >= @inicio and a.nfs_dt_emissao <= @fim) and 
-	                                  ((@p_exc = 0 and (e.cli_int_id is not null)) or 
-	                                   (@p_exc = 1 and (e.cli_int_id is not null and 
+	                                    ((@p_exc = 0 and (e.cli_int_id is not null)) or 
+	                                     (@p_exc = 1 and (e.cli_int_id is not null and 
 						                                (e.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718') and 
 						                                (f.nfs_int_id is null or f.crb_dt_recebimento > @fim or 
-						                                 (a.nfs_num_vlrservico > f.crb_num_valorrecebido and 
-						                                  (f.crb_dt_recebimento >= @inicio and f.crb_dt_recebimento <= @fim)))))) or 
-	                                   (@p_exc = 2 and (e.cli_int_id is null))) and 
-	                                  ((@p_uf = 0 and (b.nse_des_estado = 'MS' and b.nse_int_id is not null) and 
-		                                ((@p_cum = 0 and (a.nfs_int_listaservico in (1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703))) or 
-	                                     (@p_cum = 1 and (a.nfs_int_listaservico in (702, 103, 105, 107, 104, 106))) or 
-	                                     (@p_cum = 2 and (a.nfs_int_listaservico in (702, 103, 105, 107, 104, 106, 1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703))))) or 
-	                                   (@p_uf = 1 and ((a.nfs_des_ufmunicipio = 'SP' and b.nse_int_id is null) or a.nse_int_prestador is null) and 
-		                                ((@p_cum = 0 and (a.nfs_int_listaservico in (1880, 2119, 2135, 2186, 2194, 3093, 3115, 3450, 3468, 5991, 6009, 7285, 
-														                                7315, 7323, 7331, 7366, 7390, 7412, 7439, 7447, 7455, 7471, 7498, 2496))) or 
-		                                 (@p_cum = 1 and (a.nfs_int_listaservico in (1015, 1023, 2682, 2798, 2917, 2918, 2690, 2879))) or 
-		                                 (@p_cum = 2 and (a.nfs_int_listaservico in (1880, 2119, 2135, 2186, 2194, 3093, 3115, 3450, 3468, 5991, 6009, 7285, 
-														                                7315, 7323, 7331, 7366, 7390, 7412, 7439, 7447, 7455, 7471, 7498, 2496, 
-														                                1015, 1023, 2682, 2798, 2917, 2918, 2690, 2879))))) or 
-	                                   (@p_uf = 2 and 
-		                                ((@p_cum = 0 and (a.nfs_int_listaservico in (1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703 , 1880, 2119, 2135, 2186, 
-														                                2194, 3093, 3115, 3450, 3468, 5991, 6009, 7285, 7315, 7323, 7331, 7366, 7390, 
-														                                7412, 7439, 7447, 7455, 7471, 7498, 2496))) or 
-		                                 (@p_cum = 1 and (a.nfs_int_listaservico in (702, 103, 105, 107, 104, 106, 1015, 1023, 2682, 2798, 2917, 2918, 2690, 2879))) or 
-		                                 (@p_cum = 2 and (a.nfs_int_listaservico in (702, 103, 105, 107, 104, 106, 1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 
-														                                703 , 1880, 2119, 2135, 2186, 2194, 3093, 3115, 3450, 3468, 5991, 6009, 7285, 
-														                                7315, 7323, 7331, 7366, 7390, 7412, 7439, 7447, 7455, 7471, 7498, 2496, 1015, 
-														                                1023, 2682, 2798, 2917, 2918, 2690, 2879))))))
+						                                    (a.nfs_num_vlrservico > f.crb_num_valorrecebido and 
+						                                    (f.crb_dt_recebimento >= @inicio and f.crb_dt_recebimento <= @fim)))))) or 
+	                                     (@p_exc = 2 and (e.cli_int_id is null))) and 
+	                                    ((@p_uf = 0 and (b.nse_des_estado = 'MS' and b.nse_int_id is not null) and 
+				                            ((@p_cum = 0 and (a.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))) or 
+				                             (@p_cum = 1 and (a.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))) or 
+				                             (@p_cum = 2))) or 
+	                                     (@p_uf = 1 and ((a.nfs_des_ufmunicipio = 'SP' and b.nse_int_id is null) or a.nse_int_prestador is null) and 
+				                            ((@p_cum = 0 and (a.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))) or 
+		                                     (@p_cum = 1 and (a.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))) or 
+		                                     (@p_cum = 2))) or 
+	                                     (@p_uf = 2 and 
+				                            ((@p_cum = 0 and (a.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))) or 
+		                                     (@p_cum = 1 and (a.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))) or 
+		                                     (@p_cum = 2))))
                                 group by a.nfs_int_numero, f.nfs_int_id, a.nfs_dt_emissao, e.cli_des_grupo ";
                 }
                 else
@@ -2453,25 +2441,17 @@ namespace DAO
                             where (a.crb_dt_recebimento >= @inicio and a.crb_dt_recebimento <= @fim) and 
 	                                (g.cli_int_id is not null and (g.cli_des_grupo in ('CONTRIB - Lei 9718', 'Ñ CONTRIB - Lei 9718'))) and 
 	                                ((@p_uf = 0 and (e.nse_des_estado = 'MS' and e.nse_int_id is not null) and 
-			                            ((@p_cum = 0 and (c.nfs_int_listaservico in (1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703))) or 
-			                                (@p_cum = 1 and (c.nfs_int_listaservico in (702, 103, 105, 107, 104, 106))) or 
-			                                (@p_cum = 2 and (c.nfs_int_listaservico in (702, 103, 105, 107, 104, 106, 1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703))))) or 
-	                                (@p_uf = 1 and ((c.nfs_des_ufmunicipio = 'SP' and e.nse_int_id is null) or c.nse_int_prestador is null) and 
-			                            ((@p_cum = 0 and (c.nfs_int_listaservico in (1880, 2119, 2135, 2186, 2194, 3093, 3115, 3450, 3468, 5991, 6009, 7285, 
-														                                7315, 7323, 7331, 7366, 7390, 7412, 7439, 7447, 7455, 7471, 7498, 2496))) or 
-			                                (@p_cum = 1 and (c.nfs_int_listaservico in (1015, 1023, 2682, 2798, 2917, 2918, 2690, 2879))) or 
-			                                (@p_cum = 2 and (c.nfs_int_listaservico in (1880, 2119, 2135, 2186, 2194, 3093, 3115, 3450, 3468, 5991, 6009, 7285, 
-														                                7315, 7323, 7331, 7366, 7390, 7412, 7439, 7447, 7455, 7471, 7498, 2496, 
-														                                1015, 1023, 2682, 2798, 2917, 2918, 2690, 2879))))) or 
-	                                (@p_uf = 2 and 
-		                                ((@p_cum = 0 and (c.nfs_int_listaservico in (1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 703 , 1880, 2119, 2135, 2186, 
-														                                2194, 3093, 3115, 3450, 3468, 5991, 6009, 7285, 7315, 7323, 7331, 7366, 7390, 
-														                                7412, 7439, 7447, 7455, 7471, 7498, 2496))) or 
-		                                    (@p_cum = 1 and (c.nfs_int_listaservico in (702, 103, 105, 107, 104, 106, 1015, 1023, 2682, 2798, 2917, 2918, 2690, 2879))) or 
-		                                    (@p_cum = 2 and (c.nfs_int_listaservico in (702, 103, 105, 107, 104, 106, 1402, 2801, 3201, 1701, 1009, 1406, 1401, 1706, 
-														                                703 , 1880, 2119, 2135, 2186, 2194, 3093, 3115, 3450, 3468, 5991, 6009, 7285, 
-														                                7315, 7323, 7331, 7366, 7390, 7412, 7439, 7447, 7455, 7471, 7498, 2496, 1015, 
-														                                1023, 2682, 2798, 2917, 2918, 2690, 2879))))))
+			                            ((@p_cum = 0 and (c.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))) or 
+			                             (@p_cum = 1 and (c.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))) or 
+			                             (@p_cum = 2))) or 
+	                                 (@p_uf = 1 and ((c.nfs_des_ufmunicipio = 'SP' and e.nse_int_id is null) or c.nse_int_prestador is null) and 
+			                            ((@p_cum = 0 and (c.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))) or 
+			                             (@p_cum = 1 and (c.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))) or 
+			                             (@p_cum = 2))) or 
+	                                 (@p_uf = 2 and 
+		                                ((@p_cum = 0 and (c.nfs_int_listaservico not in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))) or 
+		                                 (@p_cum = 1 and (c.nfs_int_listaservico in (702, 1015, 1023, 105, 2798, 2836, 107, 2917, 2918))) or 
+		                                 (@p_cum = 2))))
                             group by c.nfs_int_numero, c.nfs_dt_emissao, a.crb_dt_recebimento, e.nse_des_estado, g.cli_des_grupo";
                 }
 

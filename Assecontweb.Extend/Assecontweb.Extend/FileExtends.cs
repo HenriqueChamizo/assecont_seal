@@ -110,47 +110,51 @@ namespace Assecontweb.Extend
             string rua = "tc:Rua>";
             //string Signature = "tc:Endereco>";
 
-            if (!textxml.Contains(rua))
+            try
             {
-                while (textxml.Contains(endereco))
+                if (!textxml.Contains(rua))
                 {
-                    //if (!string.IsNullOrEmpty(textexmlNovo))
-                    //{
-                    //    textControle = textxml;
-                    //    textxml = textexmlNovo;
-                    //}
-                    int intprimeiro = textxml.IndexOf(endereco);
-                    int intprimeirook = intprimeiro + endereco.Length;
-                    string xmlprimeiro = textxml.Substring(0, intprimeirook);
-                    textxml = textxml.Replace(xmlprimeiro, "");
-                    textexmlNovo += xmlprimeiro;
+                    while (textxml.Contains(endereco))
+                    {
+                        //if (!string.IsNullOrEmpty(textexmlNovo))
+                        //{
+                        //    textControle = textxml;
+                        //    textxml = textexmlNovo;
+                        //}
+                        int intprimeiro = textxml.IndexOf(endereco);
+                        int intprimeirook = intprimeiro + endereco.Length;
+                        string xmlprimeiro = textxml.Substring(0, intprimeirook);
+                        textxml = textxml.Replace(xmlprimeiro, "");
+                        textexmlNovo += xmlprimeiro;
 
-                    int intsegundo = textxml.IndexOf(endereco);
-                    int intsegundook = intsegundo + endereco.Length;
-                    string xmlsegundo = textxml.Substring(intsegundo, intsegundook);
-                    string xmlsegundook = xmlsegundo.Replace(endereco, rua);
-                    textxml = textxml.Replace(xmlsegundo, xmlsegundook);
+                        int intsegundo = textxml.IndexOf(endereco);
+                        int intsegundook = intsegundo + endereco.Length;
+                        string xmlsegundo = textxml.Substring(intsegundo, intsegundook);
+                        string xmlsegundook = xmlsegundo.Replace(endereco, rua);
+                        textxml = textxml.Replace(xmlsegundo, xmlsegundook);
 
-                    int intterceiro = textxml.IndexOf(endereco);
-                    int intterceirook = intterceiro + endereco.Length;
-                    string xmlterceiro = textxml.Substring(intterceiro, intterceirook);
-                    string xmlterceirook = xmlterceiro.Replace(endereco, rua);
-                    textxml = textxml.Replace(xmlterceiro, xmlterceirook);
+                        int intterceiro = textxml.IndexOf(endereco);
+                        int intterceirook = intterceiro + endereco.Length;
+                        string xmlterceiro = textxml.Substring(intterceiro, intterceirook);
+                        string xmlterceirook = xmlterceiro.Replace(endereco, rua);
+                        textxml = textxml.Replace(xmlterceiro, xmlterceirook);
 
-                    int intultimo = textxml.IndexOf(endereco);
-                    int intultimook = intultimo + endereco.Length;
-                    string xmlultimo = textxml.Substring(0, intultimook);
-                    textxml = textxml.Replace(xmlultimo, "");
-                    textexmlNovo += xmlultimo;
+                        int intultimo = textxml.IndexOf(endereco);
+                        int intultimook = intultimo + endereco.Length;
+                        string xmlultimo = textxml.Substring(0, intultimook);
+                        textxml = textxml.Replace(xmlultimo, "");
+                        textexmlNovo += xmlultimo;
+                    }
+                    string xml = textexmlNovo + textxml;
+                    StringReader xmlSR = new StringReader(xml.Replace("?<", "<"));
+                    ds.ReadXml(xmlSR, XmlReadMode.Auto);
                 }
-                string xml = textexmlNovo + textxml;
-                StringReader xmlSR = new StringReader(xml.Replace("?<", "<"));
-                ds.ReadXml(xmlSR, XmlReadMode.Auto);
+                else
+                    ds.ReadXml(path, XmlReadMode.Auto);
+                return ds;
             }
-            else
-                ds.ReadXml(path, XmlReadMode.Auto);
+            catch { return null; }
             //ds.ReadXml(path, XmlReadMode.Auto);
-            return ds;
         }
 
         public DataSet GetDataSetTxt()
@@ -484,137 +488,140 @@ namespace Assecontweb.Extend
             DataSet ds = this.GetDataSetXml();
             this.notafiscal = new Nfe.Danfe.NotaFiscal();
             this.notafiscal.idFornecedor = -1;
-            if (string.IsNullOrEmpty(ds.Prefix) &&
-                ds.Tables.Contains("infNFe") &&
-                ds.Tables.Contains("ide") &&
-                ds.Tables.Contains("emit") &&
-                ds.Tables.Contains("enderEmit") &&
-                ds.Tables.Contains("dest") &&
-                ds.Tables.Contains("enderDest") &&
-                ds.Tables.Contains("prod") &&
-                (ds.Tables.Contains("transportadora") || ds.Tables.Contains("transp")) &&
-                ds.Tables.Contains("vol"))
+            if (ds != null)
             {
-                #region NotaFiscal
-                DataTable dt = ds.Tables["infNFe"];
-                DataColumn dtid;
-                if (dt.Columns.Contains("id"))
-                    dtid = dt.Columns["id"];
-                else if (dt.Columns.Contains("NFe_Id"))
-                    dtid = dt.Columns["NFe_Id"];
-                else
-                    dtid = new DataColumn();
-                notafiscal.chave = dtid.Table.Rows[0].ItemArray[1].ToString().Replace("NFe", "");
-
-                Nfe.Danfe.IdeModel ide = new Nfe.Danfe.IdeModel();
-                Nfe.Danfe.EmitModel emitente = new Nfe.Danfe.EmitModel();
-                Nfe.Danfe.enderEmitModel enderEmit = new Nfe.Danfe.enderEmitModel();
-                Nfe.Danfe.DestModel dest = new Nfe.Danfe.DestModel();
-
-                Nfe.Danfe.enderDestModel enderDest = new Nfe.Danfe.enderDestModel();
-                Nfe.Danfe.ICMSTotModel total = new Nfe.Danfe.ICMSTotModel();
-                Nfe.Danfe.InfProt prot = new Nfe.Danfe.InfProt();
-                IList<Nfe.Danfe.detModel> itens = new List<Nfe.Danfe.detModel>();
-                List<Nfe.Danfe.Duplicata> cobr = new List<Nfe.Danfe.Duplicata>();
-                Nfe.Danfe.TranspModel transport = new Nfe.Danfe.TranspModel();
-                Nfe.Danfe.InfAdicModel inf = new Nfe.Danfe.InfAdicModel();
-
-                ///
-                // preenchendo o Ide da nota
-                //
-                ide = (Nfe.Danfe.IdeModel)preencheObjXML(ide, ds.Tables["ide"]);
-                //
-                // Prenchendo o Emitente da nota
-                //
-                emitente = (Nfe.Danfe.EmitModel)preencheObjXML(emitente, ds.Tables["emit"], ds.Tables["enderEmit"]);
-                enderEmit = (Nfe.Danfe.enderEmitModel)preencheObjXML(enderEmit, ds.Tables["enderEmit"]);
-                emitente.enderEmit = enderEmit;
-                //
-                // Prenchendo o destinatario da nota
-                //
-                dest = (Nfe.Danfe.DestModel)preencheObjXML(dest, ds.Tables["dest"], ds.Tables["enderDest"]);
-                enderDest = (Nfe.Danfe.enderDestModel)preencheObjXML(enderDest, ds.Tables["enderDest"]);
-                dest.enderDest = enderDest;
-                //
-                // preenchendo os produtos da nota
-                //
-                itens = (List<Nfe.Danfe.detModel>)preencheObjXML(itens, ds.Tables["prod"], null);
-                // falta importar os impostos ... 
-
-                //
-                // Preenchendo cobrança
-                //
-                try { cobr = (List<Nfe.Danfe.Duplicata>)preencheObjXML(cobr, ds.Tables["dup"], null); }
-                catch { };
-
-                //
-                // Preenchendo os dados da transportadora
-                //
-
-                try
+                if (string.IsNullOrEmpty(ds.Prefix) &&
+                    ds.Tables.Contains("infNFe") &&
+                    ds.Tables.Contains("ide") &&
+                    ds.Tables.Contains("emit") &&
+                    ds.Tables.Contains("enderEmit") &&
+                    ds.Tables.Contains("dest") &&
+                    ds.Tables.Contains("enderDest") &&
+                    ds.Tables.Contains("prod") &&
+                    (ds.Tables.Contains("transportadora") || ds.Tables.Contains("transp")) &&
+                    ds.Tables.Contains("vol"))
                 {
-                    if (ds.Tables.Contains("transportadora"))
-                        transport = (Nfe.Danfe.TranspModel)preencheObjXML(transport, ds.Tables["transportadora"]);
+                    #region NotaFiscal
+                    DataTable dt = ds.Tables["infNFe"];
+                    DataColumn dtid;
+                    if (dt.Columns.Contains("id"))
+                        dtid = dt.Columns["id"];
+                    else if (dt.Columns.Contains("NFe_Id"))
+                        dtid = dt.Columns["NFe_Id"];
                     else
-                        transport = (Nfe.Danfe.TranspModel)preencheObjXML(transport, ds.Tables["transp"]);
-                }
-                catch { };
-                try { transport = (Nfe.Danfe.TranspModel)preencheObjXML(transport, ds.Tables["vol"]); }
-                catch { };
+                        dtid = new DataColumn();
+                    notafiscal.chave = dtid.Table.Rows[0].ItemArray[1].ToString().Replace("NFe", "");
 
-                if (ds.Tables.Contains("infAdic"))
-                {
-                    try { inf = (Nfe.Danfe.InfAdicModel)preencheObjXML(inf, ds.Tables["infAdic"]); }
+                    Nfe.Danfe.IdeModel ide = new Nfe.Danfe.IdeModel();
+                    Nfe.Danfe.EmitModel emitente = new Nfe.Danfe.EmitModel();
+                    Nfe.Danfe.enderEmitModel enderEmit = new Nfe.Danfe.enderEmitModel();
+                    Nfe.Danfe.DestModel dest = new Nfe.Danfe.DestModel();
+
+                    Nfe.Danfe.enderDestModel enderDest = new Nfe.Danfe.enderDestModel();
+                    Nfe.Danfe.ICMSTotModel total = new Nfe.Danfe.ICMSTotModel();
+                    Nfe.Danfe.InfProt prot = new Nfe.Danfe.InfProt();
+                    IList<Nfe.Danfe.detModel> itens = new List<Nfe.Danfe.detModel>();
+                    List<Nfe.Danfe.Duplicata> cobr = new List<Nfe.Danfe.Duplicata>();
+                    Nfe.Danfe.TranspModel transport = new Nfe.Danfe.TranspModel();
+                    Nfe.Danfe.InfAdicModel inf = new Nfe.Danfe.InfAdicModel();
+
+                    ///
+                    // preenchendo o Ide da nota
+                    //
+                    ide = (Nfe.Danfe.IdeModel)preencheObjXML(ide, ds.Tables["ide"]);
+                    //
+                    // Prenchendo o Emitente da nota
+                    //
+                    emitente = (Nfe.Danfe.EmitModel)preencheObjXML(emitente, ds.Tables["emit"], ds.Tables["enderEmit"]);
+                    enderEmit = (Nfe.Danfe.enderEmitModel)preencheObjXML(enderEmit, ds.Tables["enderEmit"]);
+                    emitente.enderEmit = enderEmit;
+                    //
+                    // Prenchendo o destinatario da nota
+                    //
+                    dest = (Nfe.Danfe.DestModel)preencheObjXML(dest, ds.Tables["dest"], ds.Tables["enderDest"]);
+                    enderDest = (Nfe.Danfe.enderDestModel)preencheObjXML(enderDest, ds.Tables["enderDest"]);
+                    dest.enderDest = enderDest;
+                    //
+                    // preenchendo os produtos da nota
+                    //
+                    itens = (List<Nfe.Danfe.detModel>)preencheObjXML(itens, ds.Tables["prod"], null);
+                    // falta importar os impostos ... 
+
+                    //
+                    // Preenchendo cobrança
+                    //
+                    try { cobr = (List<Nfe.Danfe.Duplicata>)preencheObjXML(cobr, ds.Tables["dup"], null); }
                     catch { };
+
+                    //
+                    // Preenchendo os dados da transportadora
+                    //
+
+                    try
+                    {
+                        if (ds.Tables.Contains("transportadora"))
+                            transport = (Nfe.Danfe.TranspModel)preencheObjXML(transport, ds.Tables["transportadora"]);
+                        else
+                            transport = (Nfe.Danfe.TranspModel)preencheObjXML(transport, ds.Tables["transp"]);
+                    }
+                    catch { };
+                    try { transport = (Nfe.Danfe.TranspModel)preencheObjXML(transport, ds.Tables["vol"]); }
+                    catch { };
+
+                    if (ds.Tables.Contains("infAdic"))
+                    {
+                        try { inf = (Nfe.Danfe.InfAdicModel)preencheObjXML(inf, ds.Tables["infAdic"]); }
+                        catch { };
+                    }
+
+                    total = (Nfe.Danfe.ICMSTotModel)preencheObjXML(total, ds.Tables["ICMSTot"]);
+                    if (ds.Tables.Contains("infProt"))
+                        prot = (Nfe.Danfe.InfProt)preencheObjXML(prot, ds.Tables["infProt"]);
+
+                    //NotaFiscal notafiscal = new NotaFiscal();
+
+                    int idFornecedor = 0;
+                    try
+                    {
+                        idFornecedor = 0;//consultaIDViaCNPJ(emitente.CNPJ, emitente.xNome);
+                        if (idFornecedor == 0)
+                            throw new Exception(" O Fornecedor ( " + notafiscal.Emit.xNome + " )  não esta cadastrado na base de dados.");
+                    }
+                    catch (Exception)
+                    {
+                        idFornecedor = 0;
+                    }
+
+                    int idGrupo = 0;
+                    try
+                    {
+                        idGrupo = 0;// consultaIDGrupoViaCNPJ(cnpj, dest.xNome);
+
+                        if (idGrupo == 0)
+                            throw new Exception(" O Destnatário ( " + notafiscal.Emit.xNome + " )  não esta cadastrado na base de dados.");
+                    }
+                    catch (Exception)
+                    {
+                        idGrupo = 0;
+                    }
+
+
+                    notafiscal.idFornecedor = idFornecedor;
+                    notafiscal.idGrupo = idGrupo;
+                    notafiscal.Ide = ide;
+                    notafiscal.Emit = emitente;
+                    notafiscal.Dest = dest;
+                    notafiscal.Itens = (List<Nfe.Danfe.detModel>)itens;
+                    notafiscal.Cobranca = cobr;
+                    notafiscal.Transp = transport;
+                    notafiscal.Total = total;
+                    notafiscal.InfAdic = inf;
+                    notafiscal.Prot = prot;
+                    #endregion
                 }
-
-                total = (Nfe.Danfe.ICMSTotModel)preencheObjXML(total, ds.Tables["ICMSTot"]);
-                if (ds.Tables.Contains("infProt"))
-                    prot = (Nfe.Danfe.InfProt)preencheObjXML(prot, ds.Tables["infProt"]);
-
-                //NotaFiscal notafiscal = new NotaFiscal();
-
-                int idFornecedor = 0;
-                try
-                {
-                    idFornecedor = 0;//consultaIDViaCNPJ(emitente.CNPJ, emitente.xNome);
-                    if (idFornecedor == 0)
-                        throw new Exception(" O Fornecedor ( " + notafiscal.Emit.xNome + " )  não esta cadastrado na base de dados.");
-                }
-                catch (Exception)
-                {
-                    idFornecedor = 0;
-                }
-
-                int idGrupo = 0;
-                try
-                {
-                    idGrupo = 0;// consultaIDGrupoViaCNPJ(cnpj, dest.xNome);
-
-                    if (idGrupo == 0)
-                        throw new Exception(" O Destnatário ( " + notafiscal.Emit.xNome + " )  não esta cadastrado na base de dados.");
-                }
-                catch (Exception)
-                {
-                    idGrupo = 0;
-                }
-
-
-                notafiscal.idFornecedor = idFornecedor;
-                notafiscal.idGrupo = idGrupo;
-                notafiscal.Ide = ide;
-                notafiscal.Emit = emitente;
-                notafiscal.Dest = dest;
-                notafiscal.Itens = (List<Nfe.Danfe.detModel>)itens;
-                notafiscal.Cobranca = cobr;
-                notafiscal.Transp = transport;
-                notafiscal.Total = total;
-                notafiscal.InfAdic = inf;
-                notafiscal.Prot = prot;
-                #endregion
+                else
+                    dataset = ds;
             }
-            else
-                dataset = ds;
 
             notafiscal.xmlImportado = this.path;
             notafiscal.xmlConteudo = System.IO.File.ReadAllText(this.path);

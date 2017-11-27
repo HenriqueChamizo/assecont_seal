@@ -10,6 +10,7 @@ namespace DAO
     {
         public DanfeFatu DanfeFaturada { get; set; }
         public ServicoFatu ServicoFaturado { get; set; }
+        public bool finalizado { get; set; }
 
         public Detail()
         {
@@ -97,6 +98,7 @@ namespace DAO
         public ServicoConsu ServicoConsuCum { get; set; }
         public RetencaoConsu RetencaoConsuNCum { get; set; }
         public RetencaoConsu RetencaoConsuCum { get; set; }
+        public bool finalizado { get; set; }
 
         public Consolidado()
         {

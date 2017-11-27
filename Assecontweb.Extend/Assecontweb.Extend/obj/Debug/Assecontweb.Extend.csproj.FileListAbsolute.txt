@@ -78,7 +78,6 @@ C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\
 C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Excel.dll
 C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\ICSharpCode.SharpZipLib.dll
 C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Assecontweb.Extend\bin\Debug\Wr.Classes.dll
-C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.csprojResolveAssemblyReference.cache
 C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.FrmDiferimento.resources
 C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.FrmNfe.resources
 C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Assecontweb.Extend\obj\Debug\Assecontweb.Extend.csproj.GenerateResource.Cache

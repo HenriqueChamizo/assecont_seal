@@ -102,3 +102,5 @@ C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Diferimento\obj\Debug\Diferim
 C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Diferimento\obj\Debug\pt-BR\Diferimento.resources.dll
 C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.exe
 C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Diferimento\obj\Debug\Diferimento.pdb
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Diferimento\bin\Debug\EPPlus.dll
+C:\Disco D\GitHub\assecont_seal\Assecontweb.Extend\Diferimento\bin\Debug\EPPlus.xml

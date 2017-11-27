@@ -1,5 +1,6 @@
 ﻿using Assecontweb.Extend;
 using Assecontweb.Extend.CFechamento;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,6 +46,8 @@ namespace Diferimento
         DAO.Detail detail;
         DAO.Consolidado conso;
         string erro;
+        bool periodoFinalizado = false;
+
         public Principal()
         {
             InitializeComponent();
@@ -57,7 +60,8 @@ namespace Diferimento
             DateTime fim = System.Convert.ToDateTime(DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month) + "/" + DateTime.Now.Month.ToString() + "/" + DateTime.Now.Year.ToString());
             dateTimeInicio.Value = inicio;
             dateTimeFim.Value = fim;
-            //CarregarDetail();
+            
+
             timer1.Start();
             timer1.Tick += Timer1_Tick;
         }
@@ -241,17 +245,32 @@ namespace Diferimento
             status = StatusPrincipal.SistemaOK;
         }
 
+        private void ReprocessarCalculo()
+        {
+            status = StatusPrincipal.Reprocessando;
+            DAO.CalculoDAO cDAO = new DAO.CalculoDAO();
+            if (cDAO.SetCalculoByPeriodo(dateTimeInicio.Value, dateTimeFim.Value, out string erro))
+            {
+                Task task = new Task(CarregarDetail);
+                task.Start();
+            }
+            else
+                MessageBox.Show("Erro no reprocessamento do calculo", "Erro Calculo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            status = StatusPrincipal.SistemaOK;
+        }
+
         private void CarregarDetail()
         {
             statusdados = StatusDadosPrincipal.Detail;
             status = StatusPrincipal.Processando;
             erro = "";
-            DAO.NfeDAO cDao = new DAO.NfeDAO();
+            //DAO.NfeDAO cDao = new DAO.NfeDAO();
+            DAO.CalculoDAO cDao = new DAO.CalculoDAO();
             detail = new DAO.Detail();
             
             CarregarFiles();
-            //cDao.GetFechamentoDetail(dateTimeInicio.Value, dateTimeFim.Value, ref detail, out erro);
-            if (!cDao.GetFechamentoDetail(dateTimeInicio.Value, dateTimeFim.Value, ref detail, out erro))
+            //if (!cDao.GetFechamentoDetail(dateTimeInicio.Value, dateTimeFim.Value, ref detail, out erro))
+            if (!cDao.GetCalculoDetail(ref detail, dateTimeInicio.Value, dateTimeFim.Value, out erro))
                 MessageBox.Show("Erro ao calcular fechamento", "Erro de Calculo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             status = StatusPrincipal.Carregando;
 
@@ -324,12 +343,13 @@ namespace Diferimento
             statusdados = StatusDadosPrincipal.Consolidado;
             status = StatusPrincipal.Processando;
             erro = "";
-            DAO.NfeDAO cDao = new DAO.NfeDAO();
+            //DAO.NfeDAO cDao = new DAO.NfeDAO();
+            DAO.CalculoDAO cDao = new DAO.CalculoDAO();
             conso = new DAO.Consolidado();
 
             CarregarFiles();
-            //cDao.GetFechamentoConsolidado(dateTimeInicio.Value, dateTimeFim.Value, ref conso, out erro);
-            if (!cDao.GetFechamentoConsolidado(dateTimeInicio.Value, dateTimeFim.Value, ref conso, out erro))
+            //if (!cDao.GetFechamentoConsolidado(dateTimeInicio.Value, dateTimeFim.Value, ref conso, out erro))
+            if (!cDao.GetCalculoConsolidado(ref conso, dateTimeInicio.Value, dateTimeFim.Value, out erro))
                 MessageBox.Show("Erro ao calcular fechamento", "Erro de Calculo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             status = StatusPrincipal.Carregando;
 
@@ -426,6 +446,7 @@ namespace Diferimento
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
+            finalizarPeriodoToolStripMenuItem.Visible = !periodoFinalizado;
             switch (status)
             {
                 case StatusPrincipal.SistemaOK:
@@ -439,6 +460,16 @@ namespace Diferimento
                     {
                         if (detail != null)
                         {
+                            periodoFinalizado = detail.finalizado;
+                            if (detail.finalizado) {
+                                lblStatusPeriodo.Text = "Finalizado";
+                                lblStatusPeriodo.ForeColor = Color.Red;
+                            }
+                            else
+                            {
+                                lblStatusPeriodo.Text = "Em Aberto";
+                                lblStatusPeriodo.ForeColor = Color.LimeGreen;
+                            }
                             #region Danfes
                             //MSMSMSMSMSMSMS
                             lblDetailMSDanfPrivado.Text = detail.DanfeFaturada.MSPrivado.ToString("C", nfi).Replace("R$ ", "");
@@ -550,6 +581,17 @@ namespace Diferimento
                     {
                         if (conso != null)
                         {
+                            periodoFinalizado = conso.finalizado;
+                            if (conso.finalizado)
+                            {
+                                lblStatusPeriodo.Text = "Finalizado";
+                                lblStatusPeriodo.ForeColor = Color.Red;
+                            }
+                            else
+                            {
+                                lblStatusPeriodo.Text = "Em Aberto";
+                                lblStatusPeriodo.ForeColor = Color.LimeGreen;
+                            }
                             #region Danfes
                             lblConsulSPDanfNorm.Text = conso.DanfeConsolidado.Normais.SP.ToString("C", nfi).Replace("R$ ", "");
                             lblConsulMSDanfNorm.Text = conso.DanfeConsolidado.Normais.MS.ToString("C", nfi).Replace("R$ ", "");
@@ -676,31 +718,30 @@ namespace Diferimento
 
         private void DataPeriodoValueChanged()
         {
-            Cursor = Cursors.WaitCursor;
-
-            if (tabControlPrincipal.SelectedIndex == 0)
+            if (status != StatusPrincipal.Processando)
             {
-                //Matrix
-                Task task = new Task(CarregarDetail);
-                task.Start();
-                //CarregarDetail();
+                if (tabControlPrincipal.SelectedIndex == 0)
+                {
+                    //Matrix
+                    Task task = new Task(CarregarDetail);
+                    task.Start();
+                    //CarregarDetail();
+                }
+                else if (tabControlPrincipal.SelectedIndex == 1)
+                {
+                    //Consolidado
+                    Task task = new Task(CarregarConsolidado);
+                    task.Start();
+                    //CarregarConsolidado();
+                }
+                else if (tabControlPrincipal.SelectedIndex == 2)
+                {
+                    //Diferimento (Criando)
+                    //CarregarConsolidado();
+                }
+                else
+                    MessageBox.Show("Erro na lista de Tabs", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if (tabControlPrincipal.SelectedIndex == 1)
-            {
-                //Consolidado
-                Task task = new Task(CarregarConsolidado);
-                task.Start();
-                //CarregarConsolidado();
-            }
-            else if (tabControlPrincipal.SelectedIndex == 2)
-            {
-                //Diferimento (Criando)
-                //CarregarConsolidado();
-            }
-            else
-                MessageBox.Show("Erro na lista de Tabs", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            Cursor = Cursors.Default;
         }
 
         private void lbl_MouseEnter(object sender, EventArgs e)
@@ -717,660 +758,663 @@ namespace Diferimento
 
         private void lbl_DoubleClick(object sender, EventArgs e)
         {
-            Label l = sender as Label;
-            DAO.NfeDAO nDAO = new DAO.NfeDAO();
-            DataTable table;
-            FrmRelatorio frm;
-            string erro = "";
-            switch (l.Name)
+            if (!periodoFinalizado)
             {
-                #region Detalhado -- MS -- Danfes
-                //Privado
-                case "lblDetailMSDanfPrivado":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 0, 2, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSDanfPrivadoRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 0, 1, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSDanfPrivadoNRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 0, 0, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSDanfPrivadoContri":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 0, 2, 1, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSDanfPrivadoNContri":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 0, 2, 0, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                //Lei
-                case "lblDetailMSDanfLei":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 1, 2, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSDanfLeiRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 1, 1, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSDanfLeiNRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 1, 0, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSDanfLeiContri":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 1, 2, 1, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSDanfLeiNContri":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 1, 2, 0, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                //Tot
-                case "lblDetailMSDanfTot":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 2, 2, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSDanfTotRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 2, 1, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSDanfTotNRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 2, 0, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSDanfTotContri":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 2, 2, 1, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSDanfTotNContri":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 2, 2, 0, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                #endregion
-                #region Detalhado -- SP -- Danfes
-                //Privado
-                case "lblDetailSPDanfPrivado":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 0, 2, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPDanfPrivadoRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 0, 1, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPDanfPrivadoNRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 0, 0, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPDanfPrivadoContri":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 0, 2, 1, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPDanfPrivadoNContri":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 0, 2, 0, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                //Lei
-                case "lblDetailSPDanfLei":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 1, 2, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPDanfLeiRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 1, 1, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPDanfLeiNRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 1, 0, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPDanfLeiContri":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 1, 2, 1, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPDanfLeiNContri":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 1, 2, 0, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                //Tot
-                case "lblDetailSPDanfTot":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 2, 2, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPDanfTotRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 2, 1, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPDanfTotNRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 2, 0, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPDanfTotContri":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 2, 2, 1, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPDanfTotNContri":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 2, 2, 0, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                #endregion
-                
-                #region Detalhado -- MS -- Servicos
-                //Privado
-                case "lblDetailMSServPrivado":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 0, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSServPrivadoRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 0, 1, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSServPrivadoNRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 0, 0, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSServPrivadoCum":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 1, 0, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSServPrivadoNCum":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 0, 0, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                //Lei
-                case "lblDetailMSServLei":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 1, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSServLeiRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 1, 1, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSServLeiNRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 1, 0, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSServLeiCum":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 1, 1, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSServLeiNCum":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 0, 1, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                //Tot
-                case "lblDetailMSServTot":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 2, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSServTotRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 2, 1, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSServTotNRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 2, 0, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSServTotCum":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 1, 2, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailMSServTotNCum":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 0, 2, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                #endregion
-                #region Detalhado -- MS -- Servicos
-                //Privado
-                case "lblDetailSPServPrivado":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 0, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPServPrivadoRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 0, 1, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPServPrivadoNRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 0, 0, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPServPrivadoCum":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 1, 0, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPServPrivadoNCum":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 0, 0, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                //Lei
-                case "lblDetailSPServLei":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 1, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPServLeiRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 1, 1, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPServLeiNRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 1, 0, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPServLeiCum":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 1, 1, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPServLeiNCum":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 0, 1, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                //Tot
-                case "lblDetailSPServTot":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 2, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPServTotRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 2, 1, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPServTotNRec":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 2, 0, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPServTotCum":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 1, 2, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblDetailSPServTotNCum":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 0, 2, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                #endregion
-                
-                
-                #region Consolidado -- Danfes
-                //SP
-                case "lblConsulSPDanfNorm":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 1, 0, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblConsulSPDanfRecDif":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 1, 1, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblConsulSPDanfRbRecDif":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                //MS
-                case "lblConsulMSDanfNorm":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 0, 0, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblConsulMSDanfRecDif":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 0, 1, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblConsulMSDanfRbRecDif":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                //Tot
-                case "lblConsulTotDanfNorm":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 2, 0, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblConsulTotDanfRecDif":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 2, 1, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblConsulSPTotDanfRbRecDif":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 2, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                #endregion
-                #region Consolidado -- Serviços -- Não Cumulativo
-                //SP
-                case "lblConsulSPSNCumNorm":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 0, 0, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblConsulSPSNCumRecDif":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 0, 1, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblConsulSPSNCumRbRecDif":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 0, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                //MS
-                case "lblConsulMSSNCumNorm":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 0, 0, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblConsulMSSNCumRecDif":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 0, 1, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblConsulMSSNCumRbRecDif":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 0, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                //Tot
-                case "lblConsulTotSNCumNorm":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 2, 0, 0, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblConsulTotSNCumRecDif":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 2, 0, 1, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblConsulTotSNCumRbRecDif":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 2, 0, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                #endregion
-                #region Consolidado -- Serviços -- Cumulativo
-                //SP
-                case "lblConsulSPSCumNorm":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 1, 0, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblConsulSPSCumRecDif":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 1, 1, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblConsulSPSCumRbRecDif":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 1, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                //MS
-                case "lblConsulMSSCumNorm":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 1, 0, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblConsulMSSCumRecDif":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 1, 1, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblConsulMSSCumRbRecDif":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 1, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                //Tot
-                case "lblConsulTotSCumNorm":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 2, 1, 0, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblConsulTotSCumRecDif":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 2, 1, 1, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
-                case "lblConsulTotSCumRbRecDif":
-                    this.Cursor = Cursors.WaitCursor;
-                    table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 2, 1, 2, out erro);
-                    frm = new FrmRelatorio(table);
-                    this.Cursor = Cursors.Default;
-                    frm.ShowDialog();
-                    break;
+                Label l = sender as Label;
+                DAO.NfeDAO nDAO = new DAO.NfeDAO();
+                DataTable table;
+                FrmRelatorio frm;
+                string erro = "";
+                switch (l.Name)
+                {
+                    #region Detalhado -- MS -- Danfes
+                    //Privado
+                    case "lblDetailMSDanfPrivado":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 0, 2, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSDanfPrivadoRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 0, 1, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSDanfPrivadoNRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 0, 0, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSDanfPrivadoContri":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 0, 2, 1, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSDanfPrivadoNContri":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 0, 2, 0, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    //Lei
+                    case "lblDetailMSDanfLei":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 1, 2, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSDanfLeiRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 1, 1, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSDanfLeiNRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 1, 0, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSDanfLeiContri":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 1, 2, 1, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSDanfLeiNContri":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 1, 2, 0, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    //Tot
+                    case "lblDetailMSDanfTot":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 2, 2, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSDanfTotRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 2, 1, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSDanfTotNRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 2, 0, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSDanfTotContri":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 2, 2, 1, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSDanfTotNContri":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 2, 2, 0, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
                     #endregion
+                    #region Detalhado -- SP -- Danfes
+                    //Privado
+                    case "lblDetailSPDanfPrivado":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 0, 2, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPDanfPrivadoRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 0, 1, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPDanfPrivadoNRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 0, 0, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPDanfPrivadoContri":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 0, 2, 1, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPDanfPrivadoNContri":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 0, 2, 0, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    //Lei
+                    case "lblDetailSPDanfLei":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 1, 2, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPDanfLeiRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 1, 1, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPDanfLeiNRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 1, 0, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPDanfLeiContri":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 1, 2, 1, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPDanfLeiNContri":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 1, 2, 0, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    //Tot
+                    case "lblDetailSPDanfTot":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 2, 2, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPDanfTotRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 2, 1, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPDanfTotNRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 2, 0, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPDanfTotContri":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 2, 2, 1, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPDanfTotNContri":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 2, 2, 0, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    #endregion
+
+                    #region Detalhado -- MS -- Servicos
+                    //Privado
+                    case "lblDetailMSServPrivado":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 0, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSServPrivadoRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 0, 1, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSServPrivadoNRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 0, 0, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSServPrivadoCum":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 1, 0, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSServPrivadoNCum":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 0, 0, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    //Lei
+                    case "lblDetailMSServLei":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 1, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSServLeiRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 1, 1, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSServLeiNRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 1, 0, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSServLeiCum":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 1, 1, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSServLeiNCum":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 0, 1, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    //Tot
+                    case "lblDetailMSServTot":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 2, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSServTotRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 2, 1, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSServTotNRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 2, 0, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSServTotCum":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 1, 2, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailMSServTotNCum":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 0, 2, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    #endregion
+                    #region Detalhado -- SP -- Servicos
+                    //Privado
+                    case "lblDetailSPServPrivado":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 0, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPServPrivadoRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 0, 1, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPServPrivadoNRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 0, 0, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPServPrivadoCum":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 1, 0, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPServPrivadoNCum":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 0, 0, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    //Lei
+                    case "lblDetailSPServLei":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 1, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPServLeiRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 1, 1, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPServLeiNRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 1, 0, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPServLeiCum":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 1, 1, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPServLeiNCum":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 0, 1, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    //Tot
+                    case "lblDetailSPServTot":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 2, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPServTotRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 2, 1, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPServTotNRec":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 2, 0, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPServTotCum":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 1, 2, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblDetailSPServTotNCum":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 0, 2, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    #endregion
+
+
+                    #region Consolidado -- Danfes
+                    //SP
+                    case "lblConsulSPDanfNorm":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 1, 0, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblConsulSPDanfRecDif":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 1, 1, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblConsulSPDanfRbRecDif":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    //MS
+                    case "lblConsulMSDanfNorm":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 0, 0, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblConsulMSDanfRecDif":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 0, 1, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblConsulMSDanfRbRecDif":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    //Tot
+                    case "lblConsulTotDanfNorm":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 2, 0, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblConsulTotDanfRecDif":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 2, 1, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblConsulSPTotDanfRbRecDif":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 2, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    #endregion
+                    #region Consolidado -- Serviços -- Não Cumulativo
+                    //SP
+                    case "lblConsulSPSNCumNorm":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 0, 0, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblConsulSPSNCumRecDif":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 0, 1, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblConsulSPSNCumRbRecDif":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 0, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    //MS
+                    case "lblConsulMSSNCumNorm":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 0, 0, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblConsulMSSNCumRecDif":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 0, 1, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblConsulMSSNCumRbRecDif":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 0, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    //Tot
+                    case "lblConsulTotSNCumNorm":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 2, 0, 0, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblConsulTotSNCumRecDif":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 2, 0, 1, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblConsulTotSNCumRbRecDif":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 2, 0, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    #endregion
+                    #region Consolidado -- Serviços -- Cumulativo
+                    //SP
+                    case "lblConsulSPSCumNorm":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 1, 0, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblConsulSPSCumRecDif":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 1, 1, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblConsulSPSCumRbRecDif":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 1, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    //MS
+                    case "lblConsulMSSCumNorm":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 1, 0, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblConsulMSSCumRecDif":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 1, 1, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblConsulMSSCumRbRecDif":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 1, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    //Tot
+                    case "lblConsulTotSCumNorm":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 2, 1, 0, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblConsulTotSCumRecDif":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 2, 1, 1, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                    case "lblConsulTotSCumRbRecDif":
+                        this.Cursor = Cursors.WaitCursor;
+                        table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 2, 1, 2, out erro);
+                        frm = new FrmRelatorio(table);
+                        this.Cursor = Cursors.Default;
+                        frm.ShowDialog();
+                        break;
+                        #endregion
+                }
             }
         }
 
@@ -1388,6 +1432,513 @@ namespace Diferimento
         {
             Task task = new Task(Reprocessar);
             task.Start();
+        }
+
+        private void reprocessarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Task task = new Task(ReprocessarCalculo);
+            task.Start();
+        }
+
+        private void finalizarPeriodoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!periodoFinalizado)
+            {
+                FolderBrowserDialog open = new FolderBrowserDialog();
+                open.Description = "Salvar Relatórios";
+
+                DialogResult dr = open.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+                    status = StatusPrincipal.Processando;
+                    if (!string.IsNullOrEmpty(open.SelectedPath))
+                    {
+                        CreateFilesRelatorios(open.SelectedPath);
+                        DAO.CalculoDAO cDao = new DAO.CalculoDAO();
+                        if (!cDao.SetCloseCalculoByPeriodo(dateTimeInicio.Value, dateTimeFim.Value, out string erro))
+                            MessageBox.Show("Erro ao fechar periodo", "Erro Periodo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                    MessageBox.Show("Por favor, selecione um local onde será salvo os relatórios.");
+
+                if (tabControlPrincipal.SelectedIndex == 0)
+                {
+                    //Matrix
+                    Task t = new Task(CarregarDetail);
+                    t.Start();
+                    //CarregarDetail();
+                }
+                else if (tabControlPrincipal.SelectedIndex == 1)
+                {
+                    //Consolidado
+                    Task t = new Task(CarregarConsolidado);
+                    t.Start();
+                    //CarregarConsolidado();
+                }
+            }
+        }
+
+        public void CreateFilesRelatorios(string path)
+        {
+            DAO.NfeDAO nDAO = new DAO.NfeDAO();
+            DataTable table;
+
+            #region Detail
+            DataSet DetailMSDanfe = new DataSet();
+            #region Privado
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 0, 2, 2, out erro);
+            table.TableName = "Privadas Total";
+            DetailMSDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 0, 1, 2, out erro);
+            table.TableName = "Privadas Recebidas";
+            DetailMSDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 0, 0, 2, out erro);
+            table.TableName = "Privadas Não Recebidas";
+            DetailMSDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 0, 2, 1, out erro);
+            table.TableName = "Privadas Contribuinte";
+            DetailMSDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 0, 2, 0, out erro);
+            table.TableName = "Privadas Não Contribuinte";
+            DetailMSDanfe.Tables.Add(table);
+            #endregion
+            #region Lei
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 1, 2, 2, out erro);
+            table.TableName = "Lei Total";
+            DetailMSDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 1, 1, 2, out erro);
+            table.TableName = "Lei Recebidas";
+            DetailMSDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 1, 0, 2, out erro);
+            table.TableName = "Lei Não Recebidas";
+            DetailMSDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 1, 2, 1, out erro);
+            table.TableName = "Lei Contribuinte";
+            DetailMSDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 1, 2, 0, out erro);
+            table.TableName = "Lei Não Contribuinte";
+            DetailMSDanfe.Tables.Add(table);
+            #endregion
+            #region Total
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 2, 2, 2, out erro);
+            table.TableName = "Total Geral";
+            DetailMSDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 2, 1, 2, out erro);
+            table.TableName = "Total Recebidas";
+            DetailMSDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 2, 0, 2, out erro);
+            table.TableName = "Total Não Recebidas";
+            DetailMSDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 2, 2, 1, out erro);
+            table.TableName = "Total Contribuinte";
+            DetailMSDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "MS", 2, 2, 0, out erro);
+            table.TableName = "Total Não Contribuinte";
+            DetailMSDanfe.Tables.Add(table);
+            #endregion
+            CreateExcelByDataSet(path, "Detalhes-Danfes-MS.xlsx", DetailMSDanfe);
+
+            DataSet DetailSPDanfe = new DataSet();
+            #region Privado
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 0, 2, 2, out erro);
+            table.TableName = "Privadas Total";
+            DetailSPDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 0, 1, 2, out erro);
+            table.TableName = "Privadas Recebidas";
+            DetailSPDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 0, 0, 2, out erro);
+            table.TableName = "Privadas Não Recebidas";
+            DetailSPDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 0, 2, 1, out erro);
+            table.TableName = "Privadas Contribuinte";
+            DetailSPDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 0, 2, 0, out erro);
+            table.TableName = "Privadas Não Contribuinte";
+            DetailSPDanfe.Tables.Add(table);
+            #endregion
+            #region Lei
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 1, 2, 2, out erro);
+            table.TableName = "Lei Total";
+            DetailSPDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 1, 1, 2, out erro);
+            table.TableName = "Lei Recebidas";
+            DetailSPDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 1, 0, 2, out erro);
+            table.TableName = "Lei Não Recebidas";
+            DetailSPDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 1, 2, 1, out erro);
+            table.TableName = "Lei Contribuinte";
+            DetailSPDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 1, 2, 0, out erro);
+            table.TableName = "Lei Não Contribuinte";
+            DetailSPDanfe.Tables.Add(table);
+            #endregion
+            #region Total
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 2, 2, 2, out erro);
+            table.TableName = "Total Geral";
+            DetailSPDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 2, 1, 2, out erro);
+            table.TableName = "Total Recebidas";
+            DetailSPDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 2, 0, 2, out erro);
+            table.TableName = "Total Não Recebidas";
+            DetailSPDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 2, 2, 1, out erro);
+            table.TableName = "Total Contribuinte";
+            DetailSPDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailDanfes(dateTimeInicio.Value, dateTimeFim.Value, "SP", 2, 2, 0, out erro);
+            table.TableName = "Total Não Contribuinte";
+            DetailSPDanfe.Tables.Add(table);
+            #endregion
+            CreateExcelByDataSet(path, "Detalhes-Danfes-SP.xlsx", DetailSPDanfe);
+
+            DataSet DetailMSServico = new DataSet();
+            #region Privado
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 0, 2, out erro);
+            table.TableName = "Privadas Total";
+            DetailMSServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 0, 1, out erro);
+            table.TableName = "Privadas Recebidas";
+            DetailMSServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 0, 0, out erro);
+            table.TableName = "Privadas Não Recebidas";
+            DetailMSServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 1, 0, 2, out erro);
+            table.TableName = "Privadas Cumulativo";
+            DetailMSServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 0, 0, 2, out erro);
+            table.TableName = "Privadas Não Cumulativo";
+            DetailMSServico.Tables.Add(table);
+            #endregion
+            #region Lei
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 1, 2, out erro);
+            table.TableName = "Lei Total";
+            DetailMSServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 1, 1, out erro);
+            table.TableName = "Lei Recebidas";
+            DetailMSServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 1, 0, out erro);
+            table.TableName = "Lei Não Recebidas";
+            DetailMSServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 1, 1, 2, out erro);
+            table.TableName = "Lei Cumulativo";
+            DetailMSServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 0, 1, 2, out erro);
+            table.TableName = "Lei Não Cumulativo";
+            DetailMSServico.Tables.Add(table);
+            #endregion
+            #region Total
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 2, 2, out erro);
+            table.TableName = "Total Geral";
+            DetailMSServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 2, 1, out erro);
+            table.TableName = "Total Recebidas";
+            DetailMSServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, 2, 0, out erro);
+            table.TableName = "Total Não Recebidas";
+            DetailMSServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 1, 2, 2, out erro);
+            table.TableName = "Total Cumulativo";
+            DetailMSServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 0, 2, 2, out erro);
+            table.TableName = "Total Não Cumulativo";
+            DetailMSServico.Tables.Add(table);
+            #endregion
+            CreateExcelByDataSet(path, "Detalhes-Serviços-MS.xlsx", DetailMSServico);
+
+            DataSet DetailSPServico = new DataSet();
+            #region Privado
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 0, 2, out erro);
+            table.TableName = "Privadas Total";
+            DetailSPServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 0, 1, out erro);
+            table.TableName = "Privadas Recebidas";
+            DetailSPServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 0, 0, out erro);
+            table.TableName = "Privadas Não Recebidas";
+            DetailSPServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 1, 0, 2, out erro);
+            table.TableName = "Privadas Cumulativo";
+            DetailSPServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 0, 0, 2, out erro);
+            table.TableName = "Privadas Não Cumulativo";
+            DetailSPServico.Tables.Add(table);
+            #endregion
+            #region Lei
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 1, 2, out erro);
+            table.TableName = "Lei Total";
+            DetailSPServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 1, 1, out erro);
+            table.TableName = "Lei Recebidas";
+            DetailSPServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 1, 0, out erro);
+            table.TableName = "Lei Não Recebidas";
+            DetailSPServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 1, 1, 2, out erro);
+            table.TableName = "Lei Cumulativo";
+            DetailSPServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 0, 1, 2, out erro);
+            table.TableName = "Lei Não Cumulativo";
+            DetailSPServico.Tables.Add(table);
+            #endregion
+            #region Total
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 2, 2, out erro);
+            table.TableName = "Total Geral";
+            DetailSPServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 2, 1, out erro);
+            table.TableName = "Total Recebidas";
+            DetailSPServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, 2, 0, out erro);
+            table.TableName = "Total Não Recebidas";
+            DetailSPServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 1, 2, 2, out erro);
+            table.TableName = "Total Contribuinte";
+            DetailSPServico.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetDetailServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 0, 2, 2, out erro);
+            table.TableName = "Total Não Contribuinte";
+            DetailSPServico.Tables.Add(table);
+            #endregion
+            CreateExcelByDataSet(path, "Detalhes-Serviços-SP.xlsx", DetailSPServico);
+            #endregion
+
+            #region Consolidado
+            DataSet ConsolMSDanfe = new DataSet();
+            #region MS
+            table = new DataTable();
+            table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 0, 2, out erro);
+            table.TableName = "Normais MS";
+            ConsolMSDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 0, 1, out erro);
+            table.TableName = "Excluisão MS";
+            ConsolMSDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 0, 0, out erro);
+            table.TableName = "Adição MS";
+            ConsolMSDanfe.Tables.Add(table);
+            #endregion
+            #region SP
+            table = new DataTable();
+            table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 1, 2, out erro);
+            table.TableName = "Normais SP";
+            ConsolMSDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 1, 1, out erro);
+            table.TableName = "Excluisão SP";
+            ConsolMSDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 1, 0, out erro);
+            table.TableName = "Adição SP";
+            ConsolMSDanfe.Tables.Add(table);
+            #endregion
+            #region Total
+            table = new DataTable();
+            table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 2, 0, out erro);
+            table.TableName = "Normais Total";
+            ConsolMSDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 2, 1, out erro);
+            table.TableName = "Excluisão Total";
+            ConsolMSDanfe.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetConsolidadoDanfes(dateTimeInicio.Value, dateTimeFim.Value, 2, 2, out erro);
+            table.TableName = "Adição Total";
+            ConsolMSDanfe.Tables.Add(table);
+            #endregion
+            CreateExcelByDataSet(path, "Consolidado-Danfes.xlsx", ConsolMSDanfe);
+
+            DataSet ConsolMSServicoNCum = new DataSet();
+            #region MS
+            table = new DataTable();
+            table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 0, 2, out erro);
+            table.TableName = "Normais MS";
+            ConsolMSServicoNCum.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 0, 1, out erro);
+            table.TableName = "Excluisão MS";
+            ConsolMSServicoNCum.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 0, 0, out erro);
+            table.TableName = "Adição MS";
+            ConsolMSServicoNCum.Tables.Add(table);
+            #endregion
+            #region SP
+            table = new DataTable();
+            table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 0, 2, out erro);
+            table.TableName = "Normais SP";
+            ConsolMSServicoNCum.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 0, 1, out erro);
+            table.TableName = "Excluisão SP";
+            ConsolMSServicoNCum.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 0, 0, out erro);
+            table.TableName = "Adição SP";
+            ConsolMSServicoNCum.Tables.Add(table);
+            #endregion
+            #region Total
+            table = new DataTable();
+            table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 2, 0, 2, out erro);
+            table.TableName = "Normais Total";
+            ConsolMSServicoNCum.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 2, 0, 1, out erro);
+            table.TableName = "Excluisão Total";
+            ConsolMSServicoNCum.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 2, 0, 0, out erro);
+            table.TableName = "Adição Total";
+            ConsolMSServicoNCum.Tables.Add(table);
+            #endregion
+            CreateExcelByDataSet(path, "Consolidado-Serviços-Cumulativos.xlsx", ConsolMSServicoNCum);
+
+            DataSet ConsolMSServicoCum = new DataSet();
+            #region MS
+            table = new DataTable();
+            table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 1, 2, out erro);
+            table.TableName = "Normais MS";
+            ConsolMSServicoCum.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 1, 1, out erro);
+            table.TableName = "Excluisão MS";
+            ConsolMSServicoCum.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 0, 1, 0, out erro);
+            table.TableName = "Adição MS";
+            ConsolMSServicoCum.Tables.Add(table);
+            #endregion
+            #region SP
+            table = new DataTable();
+            table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 1, 2, out erro);
+            table.TableName = "Normais SP";
+            ConsolMSServicoCum.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 1, 1, out erro);
+            table.TableName = "Excluisão SP";
+            ConsolMSServicoCum.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 1, 1, 0, out erro);
+            table.TableName = "Adição SP";
+            ConsolMSServicoCum.Tables.Add(table);
+            #endregion
+            #region Total
+            table = new DataTable();
+            table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 2, 1, 2, out erro);
+            table.TableName = "Normais Total";
+            ConsolMSServicoCum.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 2, 1, 1, out erro);
+            table.TableName = "Excluisão Total";
+            ConsolMSServicoCum.Tables.Add(table);
+            table = new DataTable();
+            table = nDAO.GetConsolidadoServicos(dateTimeInicio.Value, dateTimeFim.Value, 2, 1, 0, out erro);
+            table.TableName = "Adição Total";
+            ConsolMSServicoCum.Tables.Add(table);
+            #endregion
+            CreateExcelByDataSet(path, "Consolidado-Serviços-Não_Cumulativos.xlsx", ConsolMSServicoCum);
+            #endregion
+        }
+
+        public void CreateExcelByDataSet(string Path, string FileName, DataSet dataSet)
+        {
+            using (ExcelPackage excelPackage = new ExcelPackage())
+            {
+                excelPackage.Workbook.Properties.Author = "Assecont";
+                excelPackage.Workbook.Properties.Title = "Relatórios periodo " + dateTimeInicio.Value.ToString("MM/yyyy");
+                Path = System.IO.Path.Combine(Path, "Relatorios_periodo_" + dateTimeInicio.Value.ToString("MM-yyyy"));
+
+                if (!System.IO.Directory.Exists(Path))
+                    System.IO.Directory.CreateDirectory(Path);
+
+                foreach (DataTable table in dataSet.Tables)
+                {
+                    var sheet = excelPackage.Workbook.Worksheets.Add(table.TableName);
+                    sheet.Name = table.TableName;
+
+                    // Títulos
+                    var i = 1;
+                    foreach (DataColumn column in table.Columns)
+                    {
+                        sheet.Cells[1, i++].Value = column;
+                    }
+
+                    var rowIndex = 2;
+                    foreach (DataRow row in table.Rows)
+                    {
+                        var col = 1;
+                        foreach (DataColumn column in table.Columns)
+                        {
+                            sheet.Cells[rowIndex, col++].Value = row[column].ToString();
+                        }
+
+                        rowIndex++;
+                    }
+                }
+
+                string path = System.IO.Path.Combine(Path, FileName);
+                System.IO.File.WriteAllBytes(path, excelPackage.GetAsByteArray());
+            }
         }
     }
 }
